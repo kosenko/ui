@@ -66,6 +66,7 @@ and supports modern C++11/14/17 features.
 @section bootstrap Bootstrap application
 @include cpp11/bootstrap.cpp
 
+@see <a href="https://github.com/kosenko/ui">Source code (GitHub)</a>
 @see <a href="http://en.wikipedia.org/wiki/User_interface">User interface (Wikipedia)</a>
 @see <a href="http://en.wikipedia.org/wiki/Graphical_user_interface">Graphical user interface (Wikipedia)</a>
 @see <a href="http://en.wikipedia.org/wiki/Text-based_user_interface">Text-based user interface (Wikipedia)</a>
