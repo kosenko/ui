@@ -1,0 +1,72 @@
+# Boost UI Library Build Jamfile
+
+# Copyright (c) 2017 Kolya Kosenko
+
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+
+project
+    : requirements
+        <library>/boost/ui//boost_ui
+
+        # msvc: /subsystem:windows requires WinMain
+        <target-os>windows:<user-interface>gui
+    ;
+
+# WinMain implementation
+obj winmain : ../include/boost/ui/native/winmain.cpp ;
+
+obj example_rc : res/example.rc ;
+
+exe hello : hello.cpp example_rc winmain ;
+exe demo : demo.cpp example_rc winmain ;
+exe native : native.cpp example_rc winmain ;
+exe geometry : geometry.cpp example_rc winmain ;
+exe spirit : spirit.cpp example_rc winmain ;
+
+exe asio_chat_client : asio_chat_client.cpp example_rc winmain
+    /boost/system//boost_system
+    /boost/thread//boost_thread
+    ;
+
+exe chrono : chrono.cpp example_rc winmain
+    /boost/chrono//boost_chrono ;
+
+exe date_time : date_time.cpp example_rc winmain
+    /boost/date_time//boost_date_time ;
+
+exe font : font.cpp example_rc winmain ;
+
+exe filesystem : filesystem.cpp example_rc winmain
+    /boost/filesystem//boost_filesystem ;
+
+exe interprocess : interprocess.cpp example_rc winmain
+    /boost/date_time//boost_date_time
+    /boost/chrono//boost_chrono
+    : <host-os>linux:<linkflags>"-lrt" ;
+
+exe lexical_cast : lexical_cast.cpp example_rc winmain ;
+
+exe locale : locale.cpp example_rc winmain
+    /boost/locale//boost_locale ;
+
+exe random : random.cpp example_rc winmain
+    /boost/random//boost_random ;
+
+exe regex : regex.cpp example_rc winmain
+    /boost/regex//boost_regex ;
+
+exe sort : sort.cpp example_rc winmain
+    /boost/chrono//boost_chrono ;
+
+lib dl ;
+exe stacktrace : stacktrace.cpp example_rc winmain : <target-os>linux:<library>dl ;
+
+exe thread : thread.cpp example_rc winmain
+    /boost/thread//boost_thread ;
+
+exe timer : timer.cpp example_rc winmain
+    /boost/chrono//boost_chrono
+    /boost/timer//boost_timer ;
+
+exe tokenizer : tokenizer.cpp example_rc winmain ;

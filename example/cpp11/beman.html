@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<!--
+Copyright (c) 2017 Kolya Kosenko
+
+Distributed under the Boost Software License, Version 1.0.
+See http://www.boost.org/LICENSE_1_0.txt
+-->
+<head>
+<title>Beman's challenge</title>
+<meta charset="UTF-8"/>
+<script>
+
+var paint_x = 20, paint_y = 20;
+function repaint()
+{
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var style = window.getComputedStyle(document.body)
+    context.font = style.fontSize + " " + style.fontFamily;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillText("Hello JavaScript World", paint_x, paint_y);
+}
+function onresize()
+{
+    var canvas = document.getElementById("canvas");
+    canvas.width  = window.innerWidth  * .9;
+    canvas.height = window.innerHeight * .9;
+
+    repaint();
+}
+
+function onload()
+{
+    onresize();
+
+    var canvas = document.getElementById("canvas");
+
+    var drag_start_x, drag_start_y;
+    canvas.onmousedown = function(event)
+    {
+        if ( event.button != 0 )
+            return;
+
+        drag_start_x = event.clientX;
+        drag_start_y = event.clientY;
+    };
+    canvas.onmouseup = function(event)
+    {
+        if ( event.button != 0 )
+            return;
+
+        drag_start_x = undefined;
+        drag_start_y = undefined;
+    };
+    canvas.onmousemove = function onmousemove(event)
+    {
+        if ( drag_start_x == undefined || drag_start_y == undefined )
+            return;
+
+        paint_x += event.clientX - drag_start_x;
+        paint_y += event.clientY - drag_start_y;
+        repaint();
+
+        drag_start_x = event.clientX;
+        drag_start_y = event.clientY;
+    };
+}
+
+</script>
+</head>
+<body onload="onload();" onresize="onresize();"
+    style="background-color:ButtonFace;">
+
+<canvas id="canvas" style="border:1px solid gray;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+</body>
+</html>

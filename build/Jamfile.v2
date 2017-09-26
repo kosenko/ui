@@ -1,0 +1,248 @@
+# Boost UI Library Build Jamfile
+
+# Copyright (c) 2017 Kolya Kosenko
+
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+
+import os ;
+import modules ;
+import string ;
+
+local CXXFLAGS ;
+local LINKFLAGS ;
+
+if [ modules.peek : UNIX ]
+{
+    local WX_CONFIG = [ os.environ WX_CONFIG ] ;
+    if ! $(WX_CONFIG)
+    {
+        WX_CONFIG = "wx-config" ;
+    }
+
+    local wx_config_path = [ SHELL "which "$(WX_CONFIG) ] ;
+    if $(wx_config_path)
+    {
+        CXXFLAGS  = [ SHELL $(WX_CONFIG)" --cxxflags" ] ;
+        CXXFLAGS  = [ MATCH "(.*)[\n]" : $(CXXFLAGS) ] ;
+
+        LINKFLAGS = [ SHELL $(WX_CONFIG)" --libs webview,adv,core,base" ] ;
+        LINKFLAGS = [ MATCH "(.*)[\n]" : $(LINKFLAGS) ] ;
+    }
+}
+
+rule wxuilibs ( properties * )
+{
+    local WXWIN = [ os.environ WXWIN ] ;
+    local output = [ SHELL "type $(WXWIN)\\include\\wx\\version.h" ] ;
+    #local output = [ SHELL "cat $(WXWIN)/include/wx/version.h" ] ;
+    local wxMAJOR_VERSION = [ MATCH "define *wxMAJOR_VERSION *([0-9]*).*" : $(output) ] ;
+    local wxMINOR_VERSION = [ MATCH "define *wxMINOR_VERSION *([0-9]*).*" : $(output) ] ;
+    local wxSHORT_VERSION_STRING = $(wxMAJOR_VERSION)$(wxMINOR_VERSION) ;
+
+    local wxSUFFIX_DEBUG = "" ;
+    if <variant>debug in $(properties)
+    {
+        wxSUFFIX_DEBUG = "d" ;
+    }
+
+    local linklibs ;
+    for local libname in "webview" "adv" "core" "base"
+    {
+        if $(libname) = "base"
+        {
+            linklibs += wx$(libname)$(wxSHORT_VERSION_STRING)u$(wxSUFFIX_DEBUG) ;
+        }
+        else
+        {
+            linklibs += wxmsw$(wxSHORT_VERSION_STRING)u$(wxSUFFIX_DEBUG)_$(libname) ;
+        }
+    }
+
+    return $(linklibs) ;
+}
+
+rule wxlib_subdir ( properties * )
+{
+    local wxLIB_SUBDIR = "" ;
+    if <toolset>msvc in $(properties) { wxLIB_SUBDIR = $(wxLIB_SUBDIR)"vc" ; }
+    if <toolset>gcc in $(properties) { wxLIB_SUBDIR = $(wxLIB_SUBDIR)"gcc" ; }
+    if <address-model>64 in $(properties) { wxLIB_SUBDIR = $(wxLIB_SUBDIR)"_x64" ; }
+    if <link>static in $(properties) { wxLIB_SUBDIR = $(wxLIB_SUBDIR)"_lib" ; }
+    if <link>shared in $(properties) { wxLIB_SUBDIR = $(wxLIB_SUBDIR)"_dll" ; }
+    return $(wxLIB_SUBDIR) ;
+}
+
+rule include_rule ( properties * )
+{
+    local result ;
+
+    if <target-os>windows in $(properties)
+    {
+        if <toolset>msvc in $(properties)
+        {
+            result += <define>_CRT_SECURE_NO_WARNINGS ;
+        }
+
+        local WXWIN = [ os.environ WXWIN ] ;
+
+        result += <include>$(WXWIN)"/include/" ;
+
+        local wxLIB_SUBDIR = [ wxlib_subdir $(properties) ] ;
+
+        local wxTOOLKIT_PREFIX = "msw" ;
+        local wxSUFFIX = "u" ;
+        if <variant>debug in $(properties) { wxSUFFIX = $(wxSUFFIX)"d" ; }
+        result += <include>$(WXWIN)"/lib/"$(wxLIB_SUBDIR)"/"$(wxTOOLKIT_PREFIX)$(wxSUFFIX) ;
+    }
+
+    return $(result) ;
+}
+
+rule lib_rule ( properties * )
+{
+    local result ;
+
+    if <target-os>windows in $(properties)
+    {
+        local WXWIN = [ os.environ WXWIN ] ;
+        local wxLIB_SUBDIR = [ wxlib_subdir $(properties) ] ;
+        result += <library-path>$(WXWIN)"/lib/"$(wxLIB_SUBDIR)"/" ;
+    }
+
+    return $(result) ;
+}
+
+rule linklibs_to_linkflags ( linklibs * : properties * )
+{
+    local result ;
+    if <toolset>msvc in $(properties)
+    {
+        result += <linkflags>$(linklibs)".lib" ;
+    }
+    if <toolset>gcc in $(properties)
+    {
+        local joined_linkflags = [ string.join "-l"$(linklibs) : " " ] ;
+        result += <linkflags>$(joined_linkflags) ;
+    }
+    return $(result) ;
+}
+
+rule requirements ( properties * )
+{
+    local result ;
+
+    if <target-os>windows in $(properties)
+    {
+        result += [ include_rule $(properties) ] ;
+
+        if <link>shared in $(properties)
+        {
+            result += [ lib_rule $(properties) ] ;
+
+            local linklibs = [ wxuilibs $(properties) ] ;
+            result += [ linklibs_to_linkflags $(linklibs) : $(properties) ] ;
+        }
+    }
+
+    return $(result) ;
+}
+
+rule usage-requirements ( properties * )
+{
+    local result ;
+
+    if <target-os>windows in $(properties)
+    {
+        result += [ include_rule $(properties) ] ;
+
+        result += [ lib_rule $(properties) ] ;
+
+        local linklibs = [ wxuilibs $(properties) ] ;
+
+        local wxlibs = tiff jpeg png zlib regexu expat ;
+        if <variant>debug in $(properties)
+        {
+            linklibs += wx$(wxlibs)d ;
+        }
+        if <variant>release in $(properties)
+        {
+            linklibs += wx$(wxlibs) ;
+        }
+
+        linklibs += kernel32 user32 gdi32 comdlg32 winspool winmm shell32 shlwapi
+            comctl32 ole32 oleaut32 uuid rpcrt4 advapi32 version wsock32 wininet ;
+
+        result += [ linklibs_to_linkflags $(linklibs) : $(properties) ] ;
+    }
+
+    return $(result) ;
+}
+
+project boost/ui
+    : source-location ../src
+    ;
+
+lib
+        # main-target-name
+        boost_ui
+    :
+        # sources
+        application.cpp
+        audio.cpp
+        button.cpp
+        canvas.cpp
+        checkbox.cpp
+        choice.cpp
+        color.cpp
+        combobox.cpp
+        datetime.cpp
+        dialog.cpp
+        event.cpp
+        event_loop.cpp
+        font.cpp
+        frame.cpp
+        groupbox.cpp
+        hyperlink.cpp
+        image.cpp
+        image_widget.cpp
+        label.cpp
+        layout.cpp
+        line.cpp
+        listbox.cpp
+        locale.cpp
+        log.cpp
+        menu.cpp
+        message.cpp
+        notebook.cpp
+        painter.cpp
+        panel.cpp
+        progressbar.cpp
+        slider.cpp
+        string.cpp
+        stringsbox.cpp
+        textbox.cpp
+        thread.cpp
+        webview.cpp
+        widget.cpp
+        window.cpp
+    :
+        # requirements
+        <conditional>@requirements
+        <cxxflags>"$(CXXFLAGS)"
+        <link>shared:<linkflags>"$(LINKFLAGS)"
+        <link>shared:<define>WXUSINGDLL
+        <link>shared:<define>BOOST_UI_DYN_LINK=1
+        <link>static:<define>BOOST_UI_STATIC_LINK=1
+        <toolset>gcc,<target-os>windows:<define>UNICODE
+    :
+        # default-build
+    :
+        # usage-requirements
+        <conditional>@usage-requirements
+        <cxxflags>"$(CXXFLAGS)"
+        <linkflags>"$(LINKFLAGS)"
+        <link>shared:<define>WXUSINGDLL
+        <link>shared:<define>BOOST_UI_DYN_LINK=1
+        <link>static:<define>BOOST_UI_STATIC_LINK=1
+    ;

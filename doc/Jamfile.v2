@@ -1,0 +1,35 @@
+# Boost UI Library Build Jamfile
+
+# Copyright (c) 2017 Kolya Kosenko
+
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+
+project boost/ui/doc ;
+using doxygen ;
+
+doxygen
+        # target
+        ui_reference.html
+    :
+        # sources
+        [ glob ../../../libs/ui/include/boost/ui/*.hpp ]
+        [ glob ../../../libs/ui/include/boost/ui.hpp ]
+    :
+        # requirements
+        <doxygen:param>PROJECT_NAME="Boost.UI"
+        <doxygen:param>PROJECT_BRIEF="User&nbsp;Interface&nbsp;Boost&nbsp;library"
+        <doxygen:param>HTML_COLORSTYLE_HUE=206
+        <doxygen:param>HTML_COLORSTYLE_SAT=100
+        <doxygen:param>HTML_COLORSTYLE_GAMMA=80
+        <doxygen:param>HAVE_DOT=yes
+        <doxygen:param>DOT_IMAGE_FORMAT=svg
+        <doxygen:param>COLLABORATION_GRAPH=no
+        <doxygen:param>GRAPHICAL_HIERARCHY=no
+        <doxygen:param>DISTRIBUTE_GROUP_DOC=YES
+        <doxygen:param>MACRO_EXPANSION=YES
+        <doxygen:param>SHOW_INCLUDE_FILES=NO
+        <doxygen:param>STRIP_FROM_PATH=$(BOOST_ROOT)/libs/ui/include
+        <doxygen:param>EXAMPLE_PATH=$(BOOST_ROOT)/libs/ui/example
+        <doxygen:param>PREDEFINED="DOXYGEN BOOST_UI_DECL BOOST_NOEXCEPT=noexcept \"BOOST_SCOPED_ENUM_DECLARE_BEGIN(EnumType)=enum class EnumType\" BOOST_SCOPED_ENUM_DECLARE_END(EnumType)=;"
+    ;

@@ -1,0 +1,12 @@
+# Boost UI Library Build Jamfile
+
+# Copyright (c) 2017 Kolya Kosenko
+
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+
+build-project build ;
+build-project test ;
+build-project example ;
+build-project example/cpp11 ;
+build-project doc ;

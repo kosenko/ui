@@ -1,0 +1,25 @@
+# Boost UI Library Build Jamfile
+
+# Copyright (c) 2017 Kolya Kosenko
+
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+
+project
+    : requirements
+        <library>/boost/ui//boost_ui
+    ;
+
+    test-suite "ui" :
+        [ run cache_test.cpp ]
+        [ run color_test.cpp ]
+        [ run coord_test.cpp ]
+        [ run coord_geometry_test.cpp ]
+        [ run coord_polygon_test.cpp ]
+        [ run datetime_test.cpp /boost/chrono//boost_chrono ]
+        [ run font_test.cpp ]
+        [ run image_test.cpp : : ../example/res/boost.ico ]
+        [ run log_test.cpp ]
+        [ run string_test.cpp ]
+        [ run widget_test.cpp ]
+        ;

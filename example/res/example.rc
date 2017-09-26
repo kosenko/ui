@@ -1,0 +1,10 @@
+// Windows resources file for examples
+// Copyright (c) 2017 Kolya Kosenko
+
+// Distributed under the Boost Software License, Version 1.0.
+// See http://www.boost.org/LICENSE_1_0.txt
+
+// Application icon (first in the alphabetical order)
+aaaaaaaaa ICON "boost.ico"
+
+#include <wx/msw/wx.rc>

@@ -1,0 +1,40 @@
+// Copyright (c) 2017 Kolya Kosenko
+
+// Distributed under the Boost Software License, Version 1.0.
+// See http://www.boost.org/LICENSE_1_0.txt
+
+/// @file dialog.hpp Dialog widget
+
+#ifndef BOOST_UI_DIALOG_HPP
+#define BOOST_UI_DIALOG_HPP
+
+#include <boost/ui/config.hpp>
+#include <boost/ui/window.hpp>
+
+namespace boost {
+namespace ui    {
+
+/// @brief Top level widget that hosts other widgets
+/// @see <a href="http://en.wikipedia.org/wiki/Dialog_box">Dialog (Wikipedia)</a>
+/// @ingroup container
+
+class BOOST_UI_DECL dialog : public window
+{
+public:
+    dialog() {}
+
+    ///@{ Creates dialog with the title
+    explicit dialog(const uistring& title)
+        { create(title); }
+    dialog& create(const uistring& title);
+    ///@}
+
+private:
+    class detail_impl;
+    detail_impl* get_impl();
+};
+
+} // namespace ui
+} // namespace boost
+
+#endif // BOOST_UI_DIALOG_HPP

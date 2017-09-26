@@ -1,0 +1,24 @@
+# Boost UI Library Build Jamfile
+
+# Copyright (c) 2017 Kolya Kosenko
+
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+
+project
+    : requirements
+        <library>/boost/ui//boost_ui
+        <target-os>windows:<user-interface>gui
+    ;
+
+obj winmain : ../../include/boost/ui/native/winmain.cpp ;
+obj example_rc : ../res/example.rc ;
+
+exe hello : hello.cpp example_rc winmain ;
+
+exe beman : beman.cpp example_rc winmain ;
+exe bootstrap : bootstrap.cpp example_rc winmain ;
+exe snippet : snippet.cpp example_rc winmain ;
+exe stroustrup : stroustrup.cpp example_rc winmain ;
+
+exe demo : demo.cpp example_rc winmain ;

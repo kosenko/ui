@@ -1,0 +1,8 @@
+{
+    "key": "ui",
+    "name": "User Interface",
+    "authors": [ "Kolya Kosenko" ],
+    "maintainers": [ "Kolya Kosenko <kolya.kosenko -at- gmail.com>" ],
+    "description": "Interacts with users through electronic devices",
+    "category": [ "System", "IO", "Image-processing" ]
+}
