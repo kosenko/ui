@@ -41,6 +41,11 @@ from "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
 * **src** - Source code
 * **test** - Unit tests
 
+### Build
+
+See [build instructions](build/README.md).
+Tested compilers: GCC 5.4.0, Clang 3.8.0, Visual C++ 9.0, 14.0.
+
 ### License
 
 Distributed under the [Boost Software License, Version 1.0](http://boost.org/LICENSE_1_0.txt).
