@@ -183,14 +183,14 @@ void locale_dialog::on_to_lower_algorithm()
 {
     m_output_widget.text(
         boost::to_lower_copy(m_input_widget.text().wstring(),
-                                get_locale()) );
+                             get_locale()) );
 }
 
 void locale_dialog::on_to_upper_algorithm()
 {
     m_output_widget.text(
         boost::to_upper_copy(m_input_widget.text().wstring(),
-                                get_locale()) );
+                             get_locale()) );
 }
 
 int ui_main()
