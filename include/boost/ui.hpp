@@ -55,10 +55,16 @@
 
 /** @mainpage
 
-Boost.UI is a C++ User Interface Boost library that is cross-platform,
-uses native system-provided widgets, has STL-like and Boost-like API,
-compatible with other Boost libraries
-and supports modern C++11/14/17 features.
+@tableofcontents
+
+@section description Description
+
+Boost.UI is a C++ User Interface Boost library that
+- is cross-platform
+- uses native system-provided widgets
+- has STL-like and Boost-like API
+- compatible with other Boost libraries
+- supports modern C++11/14/17 features
 
 @section hello "Hello, World!" application
 @include cpp11/hello.cpp
@@ -66,7 +72,9 @@ and supports modern C++11/14/17 features.
 @section bootstrap Bootstrap application
 @include cpp11/bootstrap.cpp
 
-@see <a href="https://github.com/kosenko/ui">Source code (GitHub)</a>
+@section src Source code
+See <a href="https://github.com/kosenko/ui">Source code (GitHub)</a>
+
 @see <a href="http://en.wikipedia.org/wiki/User_interface">User interface (Wikipedia)</a>
 @see <a href="http://en.wikipedia.org/wiki/Graphical_user_interface">Graphical user interface (Wikipedia)</a>
 @see <a href="http://en.wikipedia.org/wiki/Text-based_user_interface">Text-based user interface (Wikipedia)</a>

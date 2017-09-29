@@ -3,6 +3,11 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Text processor
+// This example creates dialog with input and output fields, and one button
+// between them. When user press button, input field text copied into output field.
+// Input field is cleared.
+
 #include <boost/ui.hpp>
 #include <sstream>
 
@@ -43,6 +48,7 @@ void bootstrap_dialog::process()
 {
     std::wostringstream ss;
 
+    // TODO: Add your process code here
     ss << m_input_widget.text();
 
     m_output_widget.text(ss.str());
