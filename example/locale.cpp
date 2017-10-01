@@ -3,6 +3,9 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Convert user text to upper, lower cases, etc
+// using Boost.Locale or Boost.Algorithm.
+
 #include <boost/ui.hpp>
 #include <boost/locale.hpp>
 #include <boost/algorithm/string/case_conv.hpp>

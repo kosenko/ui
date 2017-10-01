@@ -3,6 +3,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Fill text box using multiple worker threads.
+
 #include <boost/ui.hpp>
 #include <boost/bind.hpp>
 #include <boost/lexical_cast.hpp>

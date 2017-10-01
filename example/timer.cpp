@@ -3,6 +3,9 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Runs function with boost::ui::on_timeout() function with 1 second delay and
+// checks timeout error using Boost.Timer.
+
 #include <boost/config.hpp>
 
 #if !defined(BOOST_NO_CXX11_HDR_CHRONO)
@@ -47,9 +50,12 @@ timer_dialog::timer_dialog() : ui::dialog("Boost.Timer + Boost.UI example")
         << ( ui::hbox()
             << ui::button(*this, "&Start")
                 .on_press(&this_type::on_start, this)
+                .tooltip("Start timer with one second delay and show results")
             << ui::button(*this, "&Clear results")
                 .on_press(&this_type::on_clear, this)
+                .tooltip("Clear log")
            )
+		<< ui::label(*this, "Timer precision results of 1 second delay:")
         << m_results_listbox.create(*this)
             .tooltip("Timeout precision")
             .layout().stretch().justify()
@@ -62,7 +68,7 @@ void timer_dialog::on_start()
 {
     m_timers.push(boost::timer::cpu_timer());
     ui::on_timeout(chrono_ns::milliseconds(1000),
-                    boost::bind(&this_type::on_timeout, this));
+                   boost::bind(&this_type::on_timeout, this));
     m_timers.back().start();
 }
 

@@ -4,7 +4,7 @@
 // See http://www.boost.org/LICENSE_1_0.txt
 
 // Re-implemented GUI examples from
-// "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
+// "Programming -- Principles and Practice Using C++" book by Bjarne Stroustrup
 
 #include <boost/ui.hpp>
 #include <boost/math/constants/constants.hpp>

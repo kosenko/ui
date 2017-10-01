@@ -3,6 +3,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Provide data exchange between processes using Boost.Interprocess.
+
 #include <boost/config.hpp>
 
 #if !defined(BOOST_NO_CXX11_HDR_CHRONO)

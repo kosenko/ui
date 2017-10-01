@@ -3,6 +3,9 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Visualize sorting algorithms work.
+// Work in progress.
+
 #define BOOST_ENABLE_ASSERT_HANDLER
 
 #include <boost/config.hpp>

@@ -3,6 +3,9 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Parse user data using Boost.Spirit.
+// Not finished yet.
+
 #include <boost/ui.hpp>
 #include <boost/bind.hpp>
 

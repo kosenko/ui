@@ -3,6 +3,9 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Example of Boost.Date_Time integration with date and time pickers.
+// It provides information about selected date and time.
+
 #define BOOST_UI_USE_DATE_TIME
 
 #include <boost/ui.hpp>

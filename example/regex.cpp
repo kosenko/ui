@@ -3,6 +3,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Show C++11 Regex or Boost.Regex work using user data.
+
 #include <boost/ui.hpp>
 #include <boost/bind.hpp>
 

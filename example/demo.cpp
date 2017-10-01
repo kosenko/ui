@@ -3,6 +3,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Sandbox for testing all Boost.UI features.
+
 #define BOOST_ENABLE_ASSERT_HANDLER
 
 #include <boost/ui.hpp>

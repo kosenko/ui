@@ -3,6 +3,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Show boost::lexical_cast<> work using user provided data.
+
 #include <boost/ui.hpp>
 #include <boost/bind.hpp>
 #include <boost/algorithm/string/split.hpp> // boost::split()

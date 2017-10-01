@@ -3,6 +3,11 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// "Hello, World" example
+// This example creates dialog with one button. When user press button
+// informational dialog is shown.
+// Code is written in C++03 style.
+
 #include <boost/ui.hpp>
 
 namespace ui = boost::ui;

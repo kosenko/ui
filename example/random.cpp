@@ -3,6 +3,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Draw normal distribution graph using C++11 or Boost.Random.
+
 #include <boost/ui.hpp>
 #include <boost/bind.hpp>
 
@@ -42,6 +44,7 @@ random_dialog::random_dialog() : ui::dialog(
     "Random + Boost.UI example")
 {
     m_canvas.create(*this)
+        .tooltip("Normal distribution")
         .on_resize(boost::bind(&this_type::draw, this))
         .on_left_mouse_up(boost::bind(&this_type::draw, this))
         ;

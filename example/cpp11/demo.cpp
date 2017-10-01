@@ -3,6 +3,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
+// Demonstration of C++11 usage in Boost.UI.
+
 #include <boost/ui.hpp>
 
 namespace ui = boost::ui;
