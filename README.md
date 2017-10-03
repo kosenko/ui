@@ -41,10 +41,15 @@ from "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
 * **src** - Source code
 * **test** - Unit tests
 
-### Build
+### Build instructions and dependencies
 
 See [build instructions](build/README.md).
+
 Tested compilers: GCC 5.4.0, Clang 3.8.0, Visual C++ 9.0, 14.0.
+
+Boost.UI depends on Boost.Config, Boost.Core, Boost.Function, Boost.Bind, Boost.Move, Boost.Optional, Boost.Range and wxWidgets libraries.
+Also optionally Boost.Chrono and Boost.Date_Time could be used.
+Note that corresponding classes from C++11 Standard also could be used with Boost.UI if available.
 
 ### License
 
