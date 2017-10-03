@@ -5,7 +5,7 @@
 
 // Text processor
 // This example creates dialog with input and output fields, and one button
-// between them. When user press button, input field text copied into output field.
+// between them. When user press button, reversed input field text copied into output field.
 // Input field is cleared.
 
 #include <boost/ui.hpp>
@@ -31,26 +31,33 @@ bootstrap_dialog::bootstrap_dialog()
     : ui::dialog("Bootstrap example")
 {
     ui::vbox(*this)
-        << m_input_widget.create(*this, "Input data")
+        << ui::label(*this, "Input:")
+        << m_input_widget.create(*this, "Boost.UI default input data 0123456789")
             .tooltip("Input string")
             .layout().justify().stretch()
+
         << ui::button(*this, "&Process")
             .on_press(&this_type::process, this)
+            .tooltip("Process input data")
+
+        << ui::label(*this, "Output:")
         << m_output_widget.create(*this)
             .tooltip("Output")
             .layout().justify().stretch()
         ;
 
-    resize(500, 400);
+    resize(400, 300);
 }
 
 void bootstrap_dialog::process()
 {
-    std::wostringstream ss;
+    std::wstring data = m_input_widget.text().wstring();
 
     // TODO: Add your process code here
-    ss << m_input_widget.text();
+    std::reverse(data.begin(), data.end());
 
+    std::wostringstream ss;
+    ss << data;
     m_output_widget.text(ss.str());
     m_input_widget.clear();
 }
