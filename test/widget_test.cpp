@@ -103,64 +103,64 @@ void test_button(ui::widget parent)
 }
 
 template <class Widget>
-void test_checkbox(ui::widget parent)
+void test_check_box(ui::widget parent)
 {
-    Widget checkbox(parent, "Checkbox");
-    BOOST_TEST(checkbox.is_unchecked());
-    BOOST_TEST(!checkbox.is_checked());
-    BOOST_TEST(!checkbox.is_indeterminate());
-    BOOST_TEST_EQ(checkbox.tribool(), false);
-    BOOST_TEST(!boost::indeterminate(checkbox.tribool()));
-    BOOST_TEST(checkbox.optional());
-    BOOST_TEST_EQ(*checkbox.optional(), false);
+    Widget check_box(parent, "Checkbox");
+    BOOST_TEST(check_box.is_unchecked());
+    BOOST_TEST(!check_box.is_checked());
+    BOOST_TEST(!check_box.is_indeterminate());
+    BOOST_TEST_EQ(check_box.tribool(), false);
+    BOOST_TEST(!boost::indeterminate(check_box.tribool()));
+    BOOST_TEST(check_box.optional());
+    BOOST_TEST_EQ(*check_box.optional(), false);
 
-    checkbox.check();
-    BOOST_TEST(!checkbox.is_unchecked());
-    BOOST_TEST(checkbox.is_checked());
-    BOOST_TEST(!checkbox.is_indeterminate());
-    BOOST_TEST_EQ(checkbox.tribool(), true);
-    BOOST_TEST(!boost::indeterminate(checkbox.tribool()));
-    BOOST_TEST(checkbox.optional());
-    BOOST_TEST_EQ(*checkbox.optional(), true);
+    check_box.check();
+    BOOST_TEST(!check_box.is_unchecked());
+    BOOST_TEST(check_box.is_checked());
+    BOOST_TEST(!check_box.is_indeterminate());
+    BOOST_TEST_EQ(check_box.tribool(), true);
+    BOOST_TEST(!boost::indeterminate(check_box.tribool()));
+    BOOST_TEST(check_box.optional());
+    BOOST_TEST_EQ(*check_box.optional(), true);
 
-    checkbox.uncheck();
-    BOOST_TEST(checkbox.is_unchecked());
-    BOOST_TEST(!checkbox.is_checked());
-    BOOST_TEST(!checkbox.is_indeterminate());
-    BOOST_TEST_EQ(checkbox.tribool(), false);
-    BOOST_TEST(!boost::indeterminate(checkbox.tribool()));
-    BOOST_TEST(checkbox.optional());
-    BOOST_TEST_EQ(*checkbox.optional(), false);
+    check_box.uncheck();
+    BOOST_TEST(check_box.is_unchecked());
+    BOOST_TEST(!check_box.is_checked());
+    BOOST_TEST(!check_box.is_indeterminate());
+    BOOST_TEST_EQ(check_box.tribool(), false);
+    BOOST_TEST(!boost::indeterminate(check_box.tribool()));
+    BOOST_TEST(check_box.optional());
+    BOOST_TEST_EQ(*check_box.optional(), false);
 
-    checkbox.indeterminate();
-    BOOST_TEST(!checkbox.is_unchecked());
-    BOOST_TEST(!checkbox.is_checked());
-    BOOST_TEST(checkbox.is_indeterminate());
-    BOOST_TEST(boost::indeterminate(checkbox.tribool()));
-    BOOST_TEST(!checkbox.optional());
+    check_box.indeterminate();
+    BOOST_TEST(!check_box.is_unchecked());
+    BOOST_TEST(!check_box.is_checked());
+    BOOST_TEST(check_box.is_indeterminate());
+    BOOST_TEST(boost::indeterminate(check_box.tribool()));
+    BOOST_TEST(!check_box.optional());
 
-    checkbox.check();
-    BOOST_TEST(!checkbox.is_indeterminate());
-    checkbox.check(ui::nullopt);
-    BOOST_TEST(checkbox.is_indeterminate());
+    check_box.check();
+    BOOST_TEST(!check_box.is_indeterminate());
+    check_box.check(ui::nullopt);
+    BOOST_TEST(check_box.is_indeterminate());
 
-    checkbox.tribool(true);
-    BOOST_TEST_EQ(checkbox.tribool(), true);
+    check_box.tribool(true);
+    BOOST_TEST_EQ(check_box.tribool(), true);
 
-    checkbox.tribool(boost::indeterminate);
-    BOOST_TEST(boost::indeterminate(checkbox.tribool()));
+    check_box.tribool(boost::indeterminate);
+    BOOST_TEST(boost::indeterminate(check_box.tribool()));
 
-    checkbox.tribool(false);
-    BOOST_TEST_EQ(checkbox.tribool(), false);
+    check_box.tribool(false);
+    BOOST_TEST_EQ(check_box.tribool(), false);
 
-    checkbox.optional(true);
-    BOOST_TEST(*checkbox.optional());
+    check_box.optional(true);
+    BOOST_TEST(*check_box.optional());
 
-    checkbox.optional(boost::none);
-    BOOST_TEST_EQ(checkbox.optional(), boost::none);
+    check_box.optional(boost::none);
+    BOOST_TEST_EQ(check_box.optional(), boost::none);
 
-    checkbox.optional(false);
-    BOOST_TEST(!*checkbox.optional());
+    check_box.optional(false);
+    BOOST_TEST(!*check_box.optional());
 }
 
 void test_textbox(ui::widget parent)
@@ -345,8 +345,8 @@ int ui_main()
     test_dialog(dlg);
     test_canvas(dlg);
     test_button(dlg);
-    test_checkbox<ui::checkbox>(dlg);
-    test_checkbox<ui::tristate_checkbox>(dlg);
+    test_check_box<ui::check_box>(dlg);
+    test_check_box<ui::tri_state_check_box>(dlg);
     test_textbox(dlg);
     test_strings_box<ui::choice>(dlg);
     test_strings_box<ui::combo_box>(dlg);

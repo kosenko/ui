@@ -5,7 +5,7 @@
 
 #define BOOST_UI_SOURCE
 
-#include <boost/ui/checkbox.hpp>
+#include <boost/ui/check_box.hpp>
 #include <boost/ui/native/event.hpp>
 #include <boost/ui/native/string.hpp>
 #include <boost/ui/native/widget.hpp>
@@ -18,17 +18,17 @@ namespace ui    {
 
 #if wxUSE_CHECKBOX
 
-class checkbox_base::detail_impl : public detail::widget_detail<wxCheckBox>
+class check_box_base::detail_impl : public detail::widget_detail<wxCheckBox>
 {
 public:
     explicit detail_impl(widget& parent, const uistring& text,
-                         bool istristate)
+                         bool is_tri_state)
     {
         set_native_handle(new wxCheckBox(native::from_widget(parent),
             wxID_ANY, native::from_uistring(text),
             wxDefaultPosition, wxDefaultSize,
-            istristate ? wxCHK_3STATE | wxCHK_ALLOW_3RD_STATE_FOR_USER
-                       : wxCHK_3STATE));
+            is_tri_state ? wxCHK_3STATE | wxCHK_ALLOW_3RD_STATE_FOR_USER
+                         : wxCHK_3STATE));
     }
     void check(bool checked)
     {
@@ -59,7 +59,7 @@ public:
 
 #endif
 
-checkbox_base::detail_impl* checkbox_base::get_impl()
+check_box_base::detail_impl* check_box_base::get_impl()
 {
 #if wxUSE_CHECKBOX
     return get_detail_impl<detail_impl>();
@@ -68,7 +68,7 @@ checkbox_base::detail_impl* checkbox_base::get_impl()
 #endif
 }
 
-const checkbox_base::detail_impl* checkbox_base::get_impl() const
+const check_box_base::detail_impl* check_box_base::get_impl() const
 {
 #if wxUSE_CHECKBOX
     return get_detail_impl<detail_impl>();
@@ -77,14 +77,14 @@ const checkbox_base::detail_impl* checkbox_base::get_impl() const
 #endif
 }
 
-void checkbox_base::detail_create(widget& parent, const uistring& text, bool istristate)
+void check_box_base::detail_create(widget& parent, const uistring& text, bool is_tri_state)
 {
 #if wxUSE_CHECKBOX
-    detail_set_detail_impl(new detail_impl(parent, text, istristate));
+    detail_set_detail_impl(new detail_impl(parent, text, is_tri_state));
 #endif
 }
 
-checkbox_base& checkbox_base::check(bool checked)
+check_box_base& check_box_base::check(bool checked)
 {
 #if wxUSE_CHECKBOX
     detail_impl* impl = get_impl();
@@ -96,7 +96,7 @@ checkbox_base& checkbox_base::check(bool checked)
     return *this;
 }
 
-checkbox_base& checkbox_base::indeterminate()
+check_box_base& check_box_base::indeterminate()
 {
 #if wxUSE_CHECKBOX
     detail_impl* impl = get_impl();
@@ -108,7 +108,7 @@ checkbox_base& checkbox_base::indeterminate()
     return *this;
 }
 
-bool checkbox_base::is_checked() const
+bool check_box_base::is_checked() const
 {
 #if wxUSE_CHECKBOX
     const detail_impl* impl = get_impl();
@@ -120,7 +120,7 @@ bool checkbox_base::is_checked() const
 #endif
 }
 
-bool checkbox_base::is_unchecked() const
+bool check_box_base::is_unchecked() const
 {
 #if wxUSE_CHECKBOX
     const detail_impl* impl = get_impl();
@@ -132,7 +132,7 @@ bool checkbox_base::is_unchecked() const
 #endif
 }
 
-bool checkbox_base::is_indeterminate() const
+bool check_box_base::is_indeterminate() const
 {
 #if wxUSE_CHECKBOX
     const detail_impl* impl = get_impl();
@@ -145,7 +145,7 @@ bool checkbox_base::is_indeterminate() const
 }
 
 
-checkbox_base& checkbox_base::on_toggle(const boost::function<void()>& handler)
+check_box_base& check_box_base::on_toggle(const boost::function<void()>& handler)
 {
 #if wxUSE_CHECKBOX
     native::bind_helper(*this, wxEVT_CHECKBOX, handler);

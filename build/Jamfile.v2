@@ -192,7 +192,7 @@ lib
         audio.cpp
         button.cpp
         canvas.cpp
-        checkbox.cpp
+        check_box.cpp
         choice.cpp
         color.cpp
         combo_box.cpp

@@ -12,7 +12,7 @@
 #include <boost/ui/audio.hpp>
 #include <boost/ui/button.hpp>
 #include <boost/ui/canvas.hpp>
-#include <boost/ui/checkbox.hpp>
+#include <boost/ui/check_box.hpp>
 #include <boost/ui/choice.hpp>
 #include <boost/ui/color.hpp>
 #include <boost/ui/color_io.hpp>

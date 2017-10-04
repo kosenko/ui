@@ -35,7 +35,7 @@ private:
     ui::textbox m_output;
     ui::stringbox m_pattern;
     ui::stringbox m_format;
-    ui::checkbox m_case_sensetive;
+    ui::check_box m_case_sensetive;
 };
 
 regex_dialog::regex_dialog() : ui::dialog(

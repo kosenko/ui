@@ -103,7 +103,7 @@ protected:
                 .on_edit(fn_parse)
                 .tooltip("Kept delimiters")
                 .layout().justify()
-            << m_empty_tokens_checkbox.create(parent, "&Allow empty tokens")
+            << m_empty_tokens_check_box.create(parent, "&Allow empty tokens")
                 .on_toggle(fn_parse)
                 .layout().justify()
             ;
@@ -117,8 +117,8 @@ protected:
         const boost::char_separator<string_type::value_type>
             sep(m_dropped_delims_widget.text().basic_string<char_type>().c_str(),
                 m_kept_delims_widget   .text().basic_string<char_type>().c_str(),
-                m_empty_tokens_checkbox.is_checked() ? boost::keep_empty_tokens
-                                                     : boost::drop_empty_tokens
+                m_empty_tokens_check_box.is_checked() ? boost::keep_empty_tokens
+                                                      : boost::drop_empty_tokens
                );
         tokenizer_type tokens(input, sep);
 
@@ -128,7 +128,7 @@ protected:
 private:
     ui::stringbox m_dropped_delims_widget;
     ui::stringbox m_kept_delims_widget;
-    ui::checkbox m_empty_tokens_checkbox;
+    ui::check_box m_empty_tokens_check_box;
 };
 
 //------------------------------------------------------------------------------

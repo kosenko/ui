@@ -3,10 +3,10 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file checkbox.hpp Checkbox widget
+/// @file check_box.hpp Check box widget
 
-#ifndef BOOST_UI_CHECKBOX_HPP
-#define BOOST_UI_CHECKBOX_HPP
+#ifndef BOOST_UI_CHECK_BOX_HPP
+#define BOOST_UI_CHECK_BOX_HPP
 
 #include <boost/ui/config.hpp>
 #include <boost/ui/def.hpp>
@@ -17,25 +17,25 @@
 namespace boost {
 namespace ui    {
 
-/// @brief Checkbox base class
+/// @brief Check box base class
 /// @ingroup io
 
-class BOOST_UI_DECL checkbox_base : public widget
+class BOOST_UI_DECL check_box_base : public widget
 {
 public:
-    ///@{ Sets checkbox state
-    checkbox_base& check(nullopt_t) { indeterminate(); return *this; }
-    checkbox_base& check(bool checked = true);
-    checkbox_base& uncheck() { return check(false); }
-    checkbox_base& indeterminate();
-    checkbox_base& tribool(boost::tribool value)
+    ///@{ Sets check box state
+    check_box_base& check(nullopt_t) { indeterminate(); return *this; }
+    check_box_base& check(bool checked = true);
+    check_box_base& uncheck() { return check(false); }
+    check_box_base& indeterminate();
+    check_box_base& tribool(boost::tribool value)
     {
         if ( value ) check();
         else if ( !value ) uncheck();
         else indeterminate();
         return *this;
     }
-    checkbox_base& optional(boost::optional<bool> value)
+    check_box_base& optional(boost::optional<bool> value)
     {
         if ( !value ) indeterminate();
         else if ( *value ) check();
@@ -44,7 +44,7 @@ public:
     }
     ///@}
 
-    ///@{ Returns checkbox state
+    ///@{ Returns check box state
     bool is_checked() const;
     bool is_unchecked() const;
     bool is_indeterminate() const;
@@ -62,14 +62,14 @@ public:
     }
     ///@}
 
-    /// Connects checkbox toggle handler
-    checkbox_base& on_toggle(const boost::function<void()>& handler);
+    /// Connects check box toggle handler
+    check_box_base& on_toggle(const boost::function<void()>& handler);
 
 protected:
-    checkbox_base() {}
+    check_box_base() {}
 
 #ifndef DOXYGEN
-    void detail_create(widget& parent, const uistring& text, bool istristate);
+    void detail_create(widget& parent, const uistring& text, bool is_tri_state);
 #endif
 
 private:
@@ -82,15 +82,15 @@ private:
 /// @see <a href="http://en.wikipedia.org/wiki/Checkbox">Checkbox (Wikipedia)</a>
 /// @ingroup io
 
-class BOOST_UI_DECL checkbox : public checkbox_base
+class BOOST_UI_DECL check_box : public check_box_base
 {
 public:
-    checkbox() {}
+    check_box() {}
 
-    ///@{ Creates checkbox widget with text
-    explicit checkbox(widget& parent, const uistring& text)
+    ///@{ Creates check box widget with text
+    explicit check_box(widget& parent, const uistring& text)
         { create(parent, text); }
-    checkbox& create(widget& parent, const uistring& text)
+    check_box& create(widget& parent, const uistring& text)
         { detail_create(parent, text, false); return *this; }
     ///@}
 };
@@ -99,15 +99,15 @@ public:
 /// @see <a href="http://en.wikipedia.org/wiki/Checkbox">Checkbox (Wikipedia)</a>
 /// @ingroup io
 
-class BOOST_UI_DECL tristate_checkbox : public checkbox_base
+class BOOST_UI_DECL tri_state_check_box : public check_box_base
 {
 public:
-    tristate_checkbox() {}
+    tri_state_check_box() {}
 
-    ///@{ Creates tristate checkbox widget with text
-    explicit tristate_checkbox(widget& parent, const uistring& text)
+    ///@{ Creates tri-state check box widget with text
+    explicit tri_state_check_box(widget& parent, const uistring& text)
         { create(parent, text); }
-    tristate_checkbox& create(widget& parent, const uistring& text)
+    tri_state_check_box& create(widget& parent, const uistring& text)
         { detail_create(parent, text, true); return *this; }
     ///@}
 };
@@ -115,4 +115,4 @@ public:
 } // namespace ui
 } // namespace boost
 
-#endif // BOOST_UI_CHECKBOX_HPP
+#endif // BOOST_UI_CHECK_BOX_HPP
