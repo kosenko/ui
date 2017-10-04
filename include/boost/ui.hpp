@@ -73,7 +73,7 @@ Boost.UI is a C++ User Interface Boost library that
 @include cpp11/bootstrap.cpp
 
 @section src Source code
-See <a href="https://github.com/kosenko/ui">Source code (GitHub)</a>
+See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>
 
 @see <a href="http://en.wikipedia.org/wiki/User_interface">User interface (Wikipedia)</a>
 @see <a href="http://en.wikipedia.org/wiki/Graphical_user_interface">Graphical user interface (Wikipedia)</a>
