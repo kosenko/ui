@@ -5,7 +5,7 @@
 
 #define BOOST_UI_SOURCE
 
-#include <boost/ui/listbox.hpp>
+#include <boost/ui/list_box.hpp>
 #include <boost/ui/native/event.hpp>
 #include <boost/ui/native/string.hpp>
 #include <boost/ui/native/widget.hpp>
@@ -18,7 +18,7 @@ namespace ui    {
 
 #if wxUSE_LISTBOX
 
-class listbox::detail_impl : public detail::widget_detail<wxListBox>
+class list_box::detail_impl : public detail::widget_detail<wxListBox>
 {
 public:
     explicit detail_impl(widget& parent)
@@ -47,7 +47,7 @@ public:
 
 #endif
 
-listbox::detail_impl* listbox::get_impl()
+list_box::detail_impl* list_box::get_impl()
 {
 #if wxUSE_LISTBOX
     return get_detail_impl<detail_impl>();
@@ -56,7 +56,7 @@ listbox::detail_impl* listbox::get_impl()
 #endif
 }
 
-const listbox::detail_impl* listbox::get_impl() const
+const list_box::detail_impl* list_box::get_impl() const
 {
 #if wxUSE_LISTBOX
     return get_detail_impl<detail_impl>();
@@ -65,7 +65,7 @@ const listbox::detail_impl* listbox::get_impl() const
 #endif
 }
 
-listbox& listbox::create(widget& parent)
+list_box& list_box::create(widget& parent)
 {
 #if wxUSE_LISTBOX
     detail_set_detail_impl(new detail_impl(parent));
@@ -74,7 +74,7 @@ listbox& listbox::create(widget& parent)
     return *this;
 }
 
-listbox& listbox::create(widget& parent, const std::vector<uistring>& options)
+list_box& list_box::create(widget& parent, const std::vector<uistring>& options)
 {
 #if wxUSE_LISTBOX
     detail_set_detail_impl(new detail_impl(parent, options));
@@ -83,7 +83,7 @@ listbox& listbox::create(widget& parent, const std::vector<uistring>& options)
     return *this;
 }
 
-listbox::size_type listbox::selected_index() const
+list_box::size_type list_box::selected_index() const
 {
 #if wxUSE_LISTBOX
     const detail_impl* impl = get_impl();
@@ -95,7 +95,7 @@ listbox::size_type listbox::selected_index() const
 #endif
 }
 
-uistring listbox::selected_string() const
+uistring list_box::selected_string() const
 {
 #if wxUSE_LISTBOX
     const detail_impl* impl = get_impl();
@@ -108,7 +108,7 @@ uistring listbox::selected_string() const
 #endif
 }
 
-listbox& listbox::on_select(const boost::function<void()>& handler)
+list_box& list_box::on_select(const boost::function<void()>& handler)
 {
 #if wxUSE_LISTBOX
     native::bind_helper(*this, wxEVT_LISTBOX, handler);
@@ -117,7 +117,7 @@ listbox& listbox::on_select(const boost::function<void()>& handler)
     return *this;
 }
 
-listbox& listbox::on_select_event(const boost::function<void(index_event&)>& handler)
+list_box& list_box::on_select_event(const boost::function<void(index_event&)>& handler)
 {
 #if wxUSE_LISTBOX
     native::bind_event_helper(*this, wxEVT_LISTBOX, handler);
@@ -126,7 +126,7 @@ listbox& listbox::on_select_event(const boost::function<void(index_event&)>& han
     return *this;
 }
 
-listbox& listbox::on_activate(const boost::function<void()>& handler)
+list_box& list_box::on_activate(const boost::function<void()>& handler)
 {
 #if wxUSE_LISTBOX
     native::bind_helper(*this, wxEVT_LISTBOX_DCLICK, handler);
@@ -135,7 +135,7 @@ listbox& listbox::on_activate(const boost::function<void()>& handler)
     return *this;
 }
 
-listbox& listbox::on_activate_event(const boost::function<void(index_event&)>& handler)
+list_box& list_box::on_activate_event(const boost::function<void(index_event&)>& handler)
 {
 #if wxUSE_LISTBOX
     native::bind_event_helper(*this, wxEVT_LISTBOX_DCLICK, handler);

@@ -40,7 +40,7 @@ private:
     void on_clear();
     void on_timeout();
 
-    ui::listbox m_results_listbox;
+    ui::list_box m_results_list_box;
     std::queue<boost::timer::cpu_timer> m_timers;
 };
 
@@ -56,7 +56,7 @@ timer_dialog::timer_dialog() : ui::dialog("Boost.Timer + Boost.UI example")
                 .tooltip("Clear log")
            )
 		<< ui::label(*this, "Timer precision results of 1 second delay:")
-        << m_results_listbox.create(*this)
+        << m_results_list_box.create(*this)
             .tooltip("Timeout precision")
             .layout().stretch().justify()
         ;
@@ -74,7 +74,7 @@ void timer_dialog::on_start()
 
 void timer_dialog::on_clear()
 {
-    m_results_listbox.clear();
+    m_results_list_box.clear();
 }
 
 void timer_dialog::on_timeout()
@@ -89,7 +89,7 @@ void timer_dialog::on_timeout()
     const std::string format = boost::timer::format(times, 9);
     ss << " (" << format.substr(0, format.find_first_of('\n')) << ")";
 
-    m_results_listbox.push_back(ss.str());
+    m_results_list_box.push_back(ss.str());
 }
 
 int ui_main()

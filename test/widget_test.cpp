@@ -350,7 +350,7 @@ int ui_main()
     test_textbox(dlg);
     test_strings_box<ui::choice>(dlg);
     test_strings_box<ui::combo_box>(dlg);
-    test_strings_box<ui::listbox>(dlg);
+    test_strings_box<ui::list_box>(dlg);
     test_progressbar(dlg);
     test_slider(dlg);
 

@@ -55,7 +55,7 @@ private:
     void on_clear();
     void on_timeout();
 
-    ui::listbox m_results_listbox;
+    ui::list_box m_results_list_box;
     std::queue<time_point> m_time_points;
 };
 
@@ -77,7 +77,7 @@ chrono_dialog::chrono_dialog() : ui::dialog(
                 .tooltip("Clear log")
            )
 		<< ui::label(*this, "Clocks precision results of 1 second delay:")
-        << m_results_listbox.create(*this)
+        << m_results_list_box.create(*this)
             .tooltip("Timeout precision")
             .layout().stretch().justify()
         ;
@@ -97,7 +97,7 @@ void chrono_dialog::on_start()
 
 void chrono_dialog::on_clear()
 {
-    m_results_listbox.clear();
+    m_results_list_box.clear();
 }
 
 void chrono_dialog::on_timeout()
@@ -119,7 +119,7 @@ void chrono_dialog::on_timeout()
     ss << ", high resolution: " << (elapsed_high_resolution - g_duration).count() << " (";
     ss << (elapsed_high_resolution - g_duration) / g_duration * 100 << "%)";
 
-    m_results_listbox.push_back(ss.str());
+    m_results_list_box.push_back(ss.str());
 }
 
 int ui_main()

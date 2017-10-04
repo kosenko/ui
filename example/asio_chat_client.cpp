@@ -171,7 +171,7 @@ private:
     ui::stringbox m_host;
     ui::stringbox m_service;
     ui::stringbox m_message;
-    ui::listbox m_messages;
+    ui::list_box m_messages;
 };
 
 asio_dialog::asio_dialog() : ui::dialog(

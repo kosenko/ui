@@ -34,7 +34,7 @@
 #include <boost/ui/label.hpp>
 #include <boost/ui/layout.hpp>
 #include <boost/ui/line.hpp>
-#include <boost/ui/listbox.hpp>
+#include <boost/ui/list_box.hpp>
 #include <boost/ui/locale.hpp>
 #include <boost/ui/log.hpp>
 #include <boost/ui/menu.hpp>

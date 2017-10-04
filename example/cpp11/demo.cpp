@@ -13,23 +13,23 @@ int ui_main()
 {
     ui::dialog dlg{"Boost.UI C++11 Demo"};
 
-    ui::listbox listbox = ui::listbox(dlg, {"first", "second", "third"} )
-        .on_activate_event([&listbox](ui::index_event& e)
+    ui::list_box list_box = ui::list_box(dlg, {"first", "second", "third"} )
+        .on_activate_event([&list_box](ui::index_event& e)
         {
             ui::log::info().spaces() << "Item activated"
-                << e.index() << listbox[e.index()];
+                << e.index() << list_box[e.index()];
         })
         ;
 
-    listbox.push_back({U'G', U' ', U'\U0001D11E'});
+    list_box.push_back({U'G', U' ', U'\U0001D11E'});
 
-    listbox.push_back( R"*("(\char)")*");
-    listbox.push_back(LR"*("(\wchar_t)")*");
-    listbox.push_back(uR"*("(\char16_t)")*");
-    listbox.push_back(UR"*("(\char32_t)")*");
+    list_box.push_back( R"*("(\char)")*");
+    list_box.push_back(LR"*("(\wchar_t)")*");
+    list_box.push_back(uR"*("(\char16_t)")*");
+    list_box.push_back(UR"*("(\char32_t)")*");
 
-    auto str = listbox.at(0) + " c" + L" w" + u" u" + U" U";
-    listbox.push_back(str);
+    auto str = list_box.at(0) + " c" + L" w" + u" u" + U" U";
+    list_box.push_back(str);
 
     ui::log() << 18446744073709551615ull;
 

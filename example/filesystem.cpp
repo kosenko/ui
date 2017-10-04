@@ -59,7 +59,7 @@ private:
     const fs::path m_initial_path;
 
     ui::label m_path_label;
-    ui::listbox m_files_listbox;
+    ui::list_box m_files_list_box;
     ui::button m_up_button;
     ui::button m_copy_button;
     ui::button m_rename_button;
@@ -86,7 +86,7 @@ filesystem_dialog::filesystem_dialog(const fs::path& p)
                     .tooltip("Edit current path")
            ).layout().justify()
         << ( ui::hbox()
-            << m_files_listbox.create(*this)
+            << m_files_list_box.create(*this)
                 .on_select_event(boost::bind(&this_type::on_file_select, this, _1))
                 .on_activate_event(boost::bind(&this_type::on_file_activate, this, _1))
                 .on_key_press_event(boost::bind(&this_type::on_file_key_press, this, _1))
@@ -141,7 +141,7 @@ filesystem_dialog::filesystem_dialog(const fs::path& p)
 
 fs::path filesystem_dialog::selected_path() const
 {
-    return m_path / m_files_listbox.selected_string().wstring();
+    return m_path / m_files_list_box.selected_string().wstring();
 }
 
 static std::wstring bytes_to_wstring(const boost::uintmax_t fsz)
@@ -320,12 +320,12 @@ void filesystem_dialog::on_file_select(ui::index_event& e)
     m_rename_button.enable();
     m_remove_button.enable();
 
-    show_file_info(m_path / m_files_listbox[e.index()].wstring());
+    show_file_info(m_path / m_files_list_box[e.index()].wstring());
 }
 
 void filesystem_dialog::on_file_activate(ui::index_event& e)
 {
-    const fs::path new_path = m_path / m_files_listbox[e.index()].wstring();
+    const fs::path new_path = m_path / m_files_list_box[e.index()].wstring();
 
     if ( fs::is_directory(new_path) )
         load_path(fs::canonical(new_path));
@@ -373,10 +373,10 @@ void filesystem_dialog::on_temp_path()
 
 void filesystem_dialog::on_copy()
 {
-    if ( !m_files_listbox.has_selection() )
+    if ( !m_files_list_box.has_selection() )
         return;
 
-    std::wstring filename = m_files_listbox.selected_string().wstring();
+    std::wstring filename = m_files_list_box.selected_string().wstring();
     if ( !ui::prompt("Enter new file name", "File coping", filename) )
         return;
 
@@ -387,10 +387,10 @@ void filesystem_dialog::on_copy()
 
 void filesystem_dialog::on_rename()
 {
-    if ( !m_files_listbox.has_selection() )
+    if ( !m_files_list_box.has_selection() )
         return;
 
-    std::wstring filename = m_files_listbox.selected_string().wstring();
+    std::wstring filename = m_files_list_box.selected_string().wstring();
     if ( !ui::prompt("Enter new file name", "File renaming", filename) )
         return;
 
@@ -401,7 +401,7 @@ void filesystem_dialog::on_rename()
 
 void filesystem_dialog::on_remove()
 {
-    if ( !m_files_listbox.has_selection() )
+    if ( !m_files_list_box.has_selection() )
         return;
 
     const fs::path p = selected_path();
@@ -453,7 +453,7 @@ void filesystem_dialog::refresh()
               std::back_inserter(files));
     std::sort(files.begin(), files.end(), compare_path());
 
-    m_files_listbox.clear();
+    m_files_list_box.clear();
 
     for ( std::vector<fs::path>::const_iterator iter = files.begin();
          iter != files.end(); ++iter )
@@ -461,7 +461,7 @@ void filesystem_dialog::refresh()
         std::wstring filename = iter->filename().wstring();
         if ( fs::is_directory(*iter) )
             filename += L'/';
-        m_files_listbox.push_back(filename);
+        m_files_list_box.push_back(filename);
     }
 
     m_up_button.enable(m_path.has_parent_path());
