@@ -49,7 +49,7 @@
 #include <boost/ui/stringsbox.hpp>
 #include <boost/ui/textbox.hpp>
 #include <boost/ui/thread.hpp>
-#include <boost/ui/webview.hpp>
+#include <boost/ui/web_widget.hpp>
 #include <boost/ui/widget.hpp>
 #include <boost/ui/window.hpp>
 

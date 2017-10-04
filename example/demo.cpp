@@ -247,18 +247,18 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
             .on_change(boost::bind(&this_type::on_time_change, this))
         ;
 
-    ui::webview webview_panel(main_notebook);
-    if ( webview_panel.native_valid() )
+    ui::web_widget web_widget_panel(main_notebook);
+    if ( web_widget_panel.native_valid() )
     {
-        main_notebook.append_page(webview_panel, "WebView");
-        webview_panel.html("<h1>Hello</h1>See "
+        main_notebook.append_page(web_widget_panel, "WebWidget");
+        web_widget_panel.html("<h1>Hello</h1>See "
             "<a href=\"http://boost.org/\">Boost</a> libraries, "
             "<a href=\"http://isocpp.org/\">ISO C++</a>, "
             "<a href=\"http://en.wikipedia.org/\">Wikipedia</a>, "
             "<a href=\"http://www.w3.org/\">W3C</a> and "
             "<a href=\"http://google.com/\">Google</a>"
             );
-        //webview_panel.load("http://boost.org/");
+        //web_widget_panel.load("http://boost.org/");
     }
 
     m_canvas.create(main_notebook)

@@ -5,7 +5,7 @@
 
 #define BOOST_UI_SOURCE
 
-#include <boost/ui/webview.hpp>
+#include <boost/ui/web_widget.hpp>
 #include <boost/ui/native/string.hpp>
 #include <boost/ui/native/widget.hpp>
 
@@ -16,7 +16,7 @@ namespace ui    {
 
 #if wxUSE_WEBVIEW
 
-class webview::detail_impl : public detail::widget_detail<wxWebView>
+class web_widget::detail_impl : public detail::widget_detail<wxWebView>
 {
 public:
     explicit detail_impl(widget& parent)
@@ -37,7 +37,7 @@ public:
 
 #endif
 
-webview::detail_impl* webview::get_impl()
+web_widget::detail_impl* web_widget::get_impl()
 {
 #if wxUSE_WEBVIEW
     return get_detail_impl<detail_impl>();
@@ -46,7 +46,7 @@ webview::detail_impl* webview::get_impl()
 #endif
 }
 
-webview& webview::create(widget& parent)
+web_widget& web_widget::create(widget& parent)
 {
 #if wxUSE_WEBVIEW
     detail_set_detail_impl(new detail_impl(parent));
@@ -55,7 +55,7 @@ webview& webview::create(widget& parent)
     return *this;
 }
 
-webview& webview::html(const uistring& html)
+web_widget& web_widget::html(const uistring& html)
 {
 #if wxUSE_WEBVIEW
     detail_impl* impl = get_impl();
@@ -67,7 +67,7 @@ webview& webview::html(const uistring& html)
     return *this;
 }
 
-webview& webview::load(const uistring& url)
+web_widget& web_widget::load(const uistring& url)
 {
 #if wxUSE_WEBVIEW
     detail_impl* impl = get_impl();

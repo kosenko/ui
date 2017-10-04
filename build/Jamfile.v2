@@ -223,7 +223,7 @@ lib
         stringsbox.cpp
         textbox.cpp
         thread.cpp
-        webview.cpp
+        web_widget.cpp
         widget.cpp
         window.cpp
     :

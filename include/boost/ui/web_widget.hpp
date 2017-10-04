@@ -3,10 +3,10 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file webview.hpp WebView widget
+/// @file web_widget.hpp Web widget
 
-#ifndef BOOST_UI_WEBVIEW_HPP
-#define BOOST_UI_WEBVIEW_HPP
+#ifndef BOOST_UI_WEB_WIDGET_HPP
+#define BOOST_UI_WEB_WIDGET_HPP
 
 #include <boost/ui/config.hpp>
 #include <boost/ui/widget.hpp>
@@ -19,24 +19,24 @@ namespace ui    {
 /// @see <a href="http://www.w3.org/TR/html-markup/iframe.html">iframe (W3C)</a>
 /// @ingroup info
 
-class BOOST_UI_DECL webview : public widget
+class BOOST_UI_DECL web_widget : public widget
 {
 public:
-    webview() {}
+    web_widget() {}
 
-    ///@{ Creates webview widget
-    explicit webview(widget& parent)
+    ///@{ Creates web_widget widget
+    explicit web_widget(widget& parent)
         { create(parent); }
-    webview& create(widget& parent);
+    web_widget& create(widget& parent);
     ///@}
 
     /// @brief Sets HTML content
     /// @see <a href="http://en.wikipedia.org/wiki/HTML">HTML (Wikipedia)</a>
-    webview& html(const uistring& html);
+    web_widget& html(const uistring& html);
 
     /// @brief Loads content from the URL
     /// @see <a href="http://en.wikipedia.org/wiki/Uniform_resource_locator">Uniform resource locator (Wikipedia)</a>
-    webview& load(const uistring& url);
+    web_widget& load(const uistring& url);
 
 private:
     class detail_impl;
@@ -46,4 +46,4 @@ private:
 } // namespace ui
 } // namespace boost
 
-#endif // BOOST_UI_WEBVIEW_HPP
+#endif // BOOST_UI_WEB_WIDGET_HPP
