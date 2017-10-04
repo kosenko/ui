@@ -227,8 +227,8 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
                 .on_select_event(utility::make_event_handler<ui::index_event>("listbox", "select"))
                 .select(1)
                 .layout().justify()
-            << ui::combobox(widgets_panel, "Default combobox text",
-                            boost::assign::list_of("combobox 1")("combobox 2")("combobox 3"))
+            << ui::combo_box(widgets_panel, "Default combo_box text",
+                             boost::assign::list_of("combo_box 1")("combo_box 2")("combo_box 3"))
                 .on_select_event(utility::make_event_handler<ui::index_event>("listbox", "select"))
                 .select(2)
                 .layout().justify()

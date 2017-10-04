@@ -195,7 +195,7 @@ lib
         checkbox.cpp
         choice.cpp
         color.cpp
-        combobox.cpp
+        combo_box.cpp
         datetime.cpp
         dialog.cpp
         event.cpp

@@ -16,7 +16,7 @@
 #include <boost/ui/choice.hpp>
 #include <boost/ui/color.hpp>
 #include <boost/ui/color_io.hpp>
-#include <boost/ui/combobox.hpp>
+#include <boost/ui/combo_box.hpp>
 #include <boost/ui/config.hpp>
 #include <boost/ui/coord.hpp>
 #include <boost/ui/coord_io.hpp>

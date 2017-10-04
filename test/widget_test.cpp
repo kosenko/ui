@@ -349,7 +349,7 @@ int ui_main()
     test_checkbox<ui::tristate_checkbox>(dlg);
     test_textbox(dlg);
     test_stringsbox<ui::choice>(dlg);
-    test_stringsbox<ui::combobox>(dlg);
+    test_stringsbox<ui::combo_box>(dlg);
     test_stringsbox<ui::listbox>(dlg);
     test_progressbar(dlg);
     test_slider(dlg);

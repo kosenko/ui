@@ -59,16 +59,16 @@ ui::on_timeout(std::chrono::milliseconds(1000), []{ BOOST_UI_LOG; });
 /// [on_timeout]
     });
 
-/// [combobox]
-ui::combobox combobox = ui::combobox(parent, "Initial text",
+/// [combo_box]
+ui::combo_box combo_box = ui::combo_box(parent, "Initial text",
     { "Option 1", "Option 2", "Option 3" })
     .on_select_event([&](ui::index_event& e)
     {
         ui::log::info() << "Selected index: " << e.index()
-                        << ", text: " << combobox.text();
+                        << ", text: " << combo_box.text();
     });
-/// [combobox]
-    layout << combobox.layout().justify();
+/// [combo_box]
+    layout << combo_box.layout().justify();
 
     parent.show_modal();
 

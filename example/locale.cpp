@@ -33,8 +33,8 @@ private:
 
     ui::textbox m_input_widget;
     ui::textbox m_output_widget;
-    ui::combobox m_locale_combobox;
-    ui::combobox m_charset_combobox;
+    ui::combo_box m_locale_combo_box;
+    ui::combo_box m_charset_combo_box;
 };
 
 locale_dialog::locale_dialog()
@@ -72,12 +72,12 @@ locale_dialog::locale_dialog()
         << ( ui::vbox().layout().justify()
             << ui::label(*this, "Locale:")
                 .layout().margin(1, 1, 0, 1)
-            << m_locale_combobox.create(*this, locales)
+            << m_locale_combo_box.create(*this, locales)
                 .on_select(boost::bind(&this_type::on_init, this))
                 .layout().justify()
             << ui::label(*this, "Charset:")
                 .layout().margin(1, 1, 0, 1)
-            << m_charset_combobox.create(*this, charsets)
+            << m_charset_combo_box.create(*this, charsets)
                 .on_select(boost::bind(&this_type::on_init, this))
                 .layout().justify()
             << ui::button(*this, "&Init")
@@ -106,7 +106,7 @@ locale_dialog::locale_dialog()
            )
         ;
 
-    m_locale_combobox.push_back(ui::getloc().name());
+    m_locale_combo_box.push_back(ui::getloc().name());
 
     resize(600, 500);
 
@@ -115,7 +115,7 @@ locale_dialog::locale_dialog()
 
 std::locale locale_dialog::get_locale() const
 {
-    return boost::locale::generator()(m_locale_combobox.text().u8string());
+    return boost::locale::generator()(m_locale_combo_box.text().u8string());
 }
 
 void locale_dialog::on_init()
@@ -141,7 +141,7 @@ void locale_dialog::on_init()
     ss << "\n-12345678901 is " << boost::locale::as::spellout << -12345678901;
     ss << "\n0.1234 is " << boost::locale::as::spellout << 0.1234;
 
-    const std::string charset = m_charset_combobox.text().u8string();
+    const std::string charset = m_charset_combo_box.text().u8string();
     if ( !charset.empty() )
     {
         std::ostringstream ext_ascii;

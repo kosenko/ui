@@ -5,7 +5,7 @@
 
 #define BOOST_UI_SOURCE
 
-#include <boost/ui/combobox.hpp>
+#include <boost/ui/combo_box.hpp>
 #include <boost/ui/native/event.hpp>
 #include <boost/ui/native/string.hpp>
 #include <boost/ui/native/widget.hpp>
@@ -18,7 +18,7 @@ namespace ui    {
 
 #if wxUSE_COMBOBOX
 
-class combobox::detail_impl : public detail::widget_detail<wxComboBox>
+class combo_box::detail_impl : public detail::widget_detail<wxComboBox>
 {
 public:
     explicit detail_impl(widget& parent)
@@ -47,7 +47,7 @@ public:
 
 #endif
 
-combobox::detail_impl* combobox::get_impl()
+combo_box::detail_impl* combo_box::get_impl()
 {
 #if wxUSE_COMBOBOX
     return get_detail_impl<detail_impl>();
@@ -56,7 +56,7 @@ combobox::detail_impl* combobox::get_impl()
 #endif
 }
 
-const combobox::detail_impl* combobox::get_impl() const
+const combo_box::detail_impl* combo_box::get_impl() const
 {
 #if wxUSE_COMBOBOX
     return get_detail_impl<detail_impl>();
@@ -65,7 +65,7 @@ const combobox::detail_impl* combobox::get_impl() const
 #endif
 }
 
-combobox& combobox::create(widget& parent)
+combo_box& combo_box::create(widget& parent)
 {
 #if wxUSE_COMBOBOX
     detail_set_detail_impl(new detail_impl(parent));
@@ -74,8 +74,8 @@ combobox& combobox::create(widget& parent)
     return *this;
 }
 
-combobox& combobox::create(widget& parent, const uistring& txt,
-                           const std::vector<uistring>& options)
+combo_box& combo_box::create(widget& parent, const uistring& txt,
+                             const std::vector<uistring>& options)
 {
 #if wxUSE_COMBOBOX
     detail_set_detail_impl(new detail_impl(parent, txt, options));
@@ -84,7 +84,7 @@ combobox& combobox::create(widget& parent, const uistring& txt,
     return *this;
 }
 
-combobox& combobox::text(const uistring& txt)
+combo_box& combo_box::text(const uistring& txt)
 {
 #if wxUSE_COMBOBOX
     detail_impl* impl = get_impl();
@@ -96,7 +96,7 @@ combobox& combobox::text(const uistring& txt)
     return *this;
 }
 
-uistring combobox::text() const
+uistring combo_box::text() const
 {
 #if wxUSE_COMBOBOX
     const detail_impl* impl = get_impl();
@@ -108,7 +108,7 @@ uistring combobox::text() const
 #endif
 }
 
-combobox& combobox::on_select(const boost::function<void()>& handler)
+combo_box& combo_box::on_select(const boost::function<void()>& handler)
 {
 #if wxUSE_COMBOBOX
     native::bind_helper(*this, wxEVT_COMBOBOX, handler);
@@ -117,7 +117,7 @@ combobox& combobox::on_select(const boost::function<void()>& handler)
     return *this;
 }
 
-combobox& combobox::on_select_event(const boost::function<void(index_event&)>& handler)
+combo_box& combo_box::on_select_event(const boost::function<void(index_event&)>& handler)
 {
 #if wxUSE_COMBOBOX
     native::bind_event_helper(*this, wxEVT_COMBOBOX, handler);
