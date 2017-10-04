@@ -214,7 +214,7 @@ void test_container_api(Container& container)
 }
 
 template <class Widget>
-void test_stringsbox(ui::widget parent)
+void test_strings_box(ui::widget parent)
 {
     {
         Widget sw;
@@ -348,9 +348,9 @@ int ui_main()
     test_checkbox<ui::checkbox>(dlg);
     test_checkbox<ui::tristate_checkbox>(dlg);
     test_textbox(dlg);
-    test_stringsbox<ui::choice>(dlg);
-    test_stringsbox<ui::combo_box>(dlg);
-    test_stringsbox<ui::listbox>(dlg);
+    test_strings_box<ui::choice>(dlg);
+    test_strings_box<ui::combo_box>(dlg);
+    test_strings_box<ui::listbox>(dlg);
     test_progressbar(dlg);
     test_slider(dlg);
 

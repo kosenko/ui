@@ -5,7 +5,7 @@
 
 #define BOOST_UI_SOURCE
 
-#include <boost/ui/stringsbox.hpp>
+#include <boost/ui/strings_box.hpp>
 #include <boost/ui/native/string.hpp>
 #include <boost/ui/native/widget.hpp>
 #include <boost/ui/detail/memcheck.hpp>
@@ -19,13 +19,13 @@ namespace ui    {
 
 #if wxUSE_CONTROLS
 
-class stringsbox::native_impl : public wxControlWithItems, private detail::memcheck
+class strings_box::native_impl : public wxControlWithItems, private detail::memcheck
 {
 };
 
 #endif
 
-stringsbox::native_impl* stringsbox::get_native()
+strings_box::native_impl* strings_box::get_native()
 {
 #if wxUSE_CONTROLS
     return native::impl<native_impl, wxControlWithItems>(*this);
@@ -34,7 +34,7 @@ stringsbox::native_impl* stringsbox::get_native()
 #endif
 }
 
-const stringsbox::native_impl* stringsbox::get_native() const
+const strings_box::native_impl* strings_box::get_native() const
 {
 #if wxUSE_CONTROLS
     return native::impl<native_impl, wxControlWithItems>(*this);
@@ -43,13 +43,13 @@ const stringsbox::native_impl* stringsbox::get_native() const
 #endif
 }
 
-uistring stringsbox::at(size_type pos) const
+uistring strings_box::at(size_type pos) const
 {
     check_range(pos);
     return operator[](pos);
 }
 
-uistring stringsbox::operator[](size_type pos) const
+uistring strings_box::operator[](size_type pos) const
 {
 #if wxUSE_CONTROLS
     const native_impl* impl = get_native();
@@ -61,7 +61,7 @@ uistring stringsbox::operator[](size_type pos) const
 #endif
 }
 
-stringsbox::size_type stringsbox::size() const
+strings_box::size_type strings_box::size() const
 {
 #if wxUSE_CONTROLS
     const native_impl* impl = get_native();
@@ -73,7 +73,7 @@ stringsbox::size_type stringsbox::size() const
 #endif
 }
 
-void stringsbox::clear()
+void strings_box::clear()
 {
 #if wxUSE_CONTROLS
     native_impl* impl = get_native();
@@ -83,7 +83,7 @@ void stringsbox::clear()
 #endif
 }
 
-stringsbox& stringsbox::append(const std::vector<uistring>& options)
+strings_box& strings_box::append(const std::vector<uistring>& options)
 {
 #if wxUSE_CONTROLS
     native_impl* impl = get_native();
@@ -95,7 +95,7 @@ stringsbox& stringsbox::append(const std::vector<uistring>& options)
     return *this;
 }
 
-void stringsbox::push_back(const uistring& value)
+void strings_box::push_back(const uistring& value)
 {
 #if wxUSE_CONTROLS
     native_impl* impl = get_native();
@@ -105,7 +105,7 @@ void stringsbox::push_back(const uistring& value)
 #endif
 }
 
-stringsbox& stringsbox::select(size_type pos)
+strings_box& strings_box::select(size_type pos)
 {
 #if wxUSE_CONTROLS
     native_impl* impl = get_native();
@@ -117,10 +117,10 @@ stringsbox& stringsbox::select(size_type pos)
     return *this;
 }
 
-void stringsbox::check_range(size_type pos) const
+void strings_box::check_range(size_type pos) const
 {
     if ( pos < 0 || pos >= size() )
-        BOOST_THROW_EXCEPTION(std::out_of_range("ui::stringsbox::check_range(): invalid index"));
+        BOOST_THROW_EXCEPTION(std::out_of_range("ui::strings_box::check_range(): invalid index"));
 }
 
 } // namespace ui

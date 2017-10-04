@@ -9,7 +9,7 @@
 #define BOOST_UI_COMBO_BOX_HPP
 
 #include <boost/ui/config.hpp>
-#include <boost/ui/stringsbox.hpp>
+#include <boost/ui/strings_box.hpp>
 
 namespace boost {
 namespace ui    {
@@ -21,7 +21,7 @@ namespace ui    {
 /// @see <a href="http://en.wikipedia.org/wiki/Combo_box">Combo box (Wikipedia)</a>
 /// @ingroup strings
 
-class BOOST_UI_DECL combo_box : public stringsbox
+class BOOST_UI_DECL combo_box : public strings_box
 {
 public:
     combo_box() {}

@@ -9,7 +9,7 @@
 #define BOOST_UI_CHOICE_HPP
 
 #include <boost/ui/config.hpp>
-#include <boost/ui/stringsbox.hpp>
+#include <boost/ui/strings_box.hpp>
 
 namespace boost {
 namespace ui    {
@@ -18,7 +18,7 @@ namespace ui    {
 /// @see <a href="http://en.wikipedia.org/wiki/Drop-down_list">Drop-down list (Wikipedia)</a>
 /// @ingroup strings
 
-class BOOST_UI_DECL choice : public stringsbox
+class BOOST_UI_DECL choice : public strings_box
 {
 public:
     choice() {}

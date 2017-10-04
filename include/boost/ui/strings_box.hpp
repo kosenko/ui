@@ -3,10 +3,10 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file stringsbox.hpp Widget with array of strings
+/// @file strings_box.hpp Widget with array of strings
 
-#ifndef BOOST_UI_STRINGSBOX_HPP
-#define BOOST_UI_STRINGSBOX_HPP
+#ifndef BOOST_UI_STRINGS_BOX_HPP
+#define BOOST_UI_STRINGS_BOX_HPP
 
 #include <boost/ui/config.hpp>
 #include <boost/ui/widget.hpp>
@@ -63,7 +63,7 @@ initializer_list_to_vector_uistring(std::initializer_list<T> list)
 /// @brief Abstract widget that holds array of strings
 /// @ingroup strings
 
-class BOOST_UI_DECL stringsbox : public widget
+class BOOST_UI_DECL strings_box : public widget
 {
 public:
     /// String type
@@ -92,44 +92,44 @@ public:
     void clear();
 
     ///@{ Replaces the contents of the container
-    stringsbox& assign(const std::vector<uistring>& options)
+    strings_box& assign(const std::vector<uistring>& options)
         { clear(); return append(options); }
 
-    stringsbox& assign(size_type count, const value_type& value)
+    strings_box& assign(size_type count, const value_type& value)
         { return assign(std::vector<uistring>(count, value)); }
 
     template <class Iterator>
-    stringsbox& assign(Iterator first, Iterator last)
+    strings_box& assign(Iterator first, Iterator last)
         { return assign(detail::begin_end_to_vector_uistring(first, last)); }
 
     template <class Range>
-    stringsbox& assign(const Range& r)
+    strings_box& assign(const Range& r)
         { return assign(detail::range_to_vector_uistring(r)); }
 
 #ifndef BOOST_NO_CXX11_HDR_INITIALIZER_LIST
     template <class T>
-    stringsbox& assign(std::initializer_list<T> list)
+    strings_box& assign(std::initializer_list<T> list)
         { return assign(detail::initializer_list_to_vector_uistring(list)); }
 #endif
     ///@}
 
     ///@{ Appends contents to the end
-    stringsbox& append(const std::vector<uistring>& options);
+    strings_box& append(const std::vector<uistring>& options);
 
-    stringsbox& append(size_type count, const value_type& value)
+    strings_box& append(size_type count, const value_type& value)
         { return append(std::vector<uistring>(count, value)); }
 
     template <class Iterator>
-    stringsbox& append(Iterator first, Iterator last)
+    strings_box& append(Iterator first, Iterator last)
         { return append(detail::begin_end_to_vector_uistring(first, last)); }
 
     template <class Range>
-    stringsbox& append(const Range& r)
+    strings_box& append(const Range& r)
         { return append(detail::range_to_vector_uistring(r)); }
 
 #ifndef BOOST_NO_CXX11_HDR_INITIALIZER_LIST
     template <class T>
-    stringsbox& append(std::initializer_list<T> list)
+    strings_box& append(std::initializer_list<T> list)
         { return append(detail::initializer_list_to_vector_uistring(list)); }
 #endif
     ///@}
@@ -138,7 +138,7 @@ public:
     void push_back(const uistring& value);
 
     /// Selects specified element
-    stringsbox& select(size_type pos);
+    strings_box& select(size_type pos);
 
 private:
     void check_range(size_type pos) const;
@@ -151,4 +151,4 @@ private:
 } // namespace ui
 } // namespace boost
 
-#endif // BOOST_UI_STRINGSBOX_HPP
+#endif // BOOST_UI_STRINGS_BOX_HPP

@@ -220,7 +220,7 @@ lib
         progressbar.cpp
         slider.cpp
         string.cpp
-        stringsbox.cpp
+        strings_box.cpp
         textbox.cpp
         thread.cpp
         web_widget.cpp
