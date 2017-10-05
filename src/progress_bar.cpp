@@ -5,7 +5,7 @@
 
 #define BOOST_UI_SOURCE
 
-#include <boost/ui/progressbar.hpp>
+#include <boost/ui/progress_bar.hpp>
 #include <boost/ui/native/widget.hpp>
 #include <boost/ui/detail/memcheck.hpp>
 
@@ -18,7 +18,7 @@ namespace ui    {
 
 #if wxUSE_GAUGE
 
-class progressbar::detail_impl : public detail::widget_detail<wxGauge>
+class progress_bar::detail_impl : public detail::widget_detail<wxGauge>
 {
 public:
     explicit detail_impl(widget& parent, bool horizontal, value_type initial,
@@ -49,7 +49,7 @@ public:
 
 #endif
 
-progressbar::detail_impl* progressbar::get_impl()
+progress_bar::detail_impl* progress_bar::get_impl()
 {
 #if wxUSE_GAUGE
     return get_detail_impl<detail_impl>();
@@ -58,7 +58,7 @@ progressbar::detail_impl* progressbar::get_impl()
 #endif
 }
 
-const progressbar::detail_impl* progressbar::get_impl() const
+const progress_bar::detail_impl* progress_bar::get_impl() const
 {
 #if wxUSE_GAUGE
     return get_detail_impl<detail_impl>();
@@ -67,7 +67,7 @@ const progressbar::detail_impl* progressbar::get_impl() const
 #endif
 }
 
-void progressbar::detail_create(widget& parent, bool horizontal, value_type initial,
+void progress_bar::detail_create(widget& parent, bool horizontal, value_type initial,
                                 value_type max)
 
 {
@@ -78,7 +78,7 @@ void progressbar::detail_create(widget& parent, bool horizontal, value_type init
 #endif
 }
 
-progressbar& progressbar::value(value_type value)
+progress_bar& progress_bar::value(value_type value)
 {
     check_range(value);
 
@@ -92,7 +92,7 @@ progressbar& progressbar::value(value_type value)
     return *this;
 }
 
-progressbar::value_type progressbar::value() const
+progress_bar::value_type progress_bar::value() const
 {
 #if wxUSE_GAUGE
     const detail_impl* impl = get_impl();
@@ -104,7 +104,7 @@ progressbar::value_type progressbar::value() const
 #endif
 }
 
-progressbar::value_type progressbar::max() const
+progress_bar::value_type progress_bar::max() const
 {
 #if wxUSE_GAUGE
     const detail_impl* impl = get_impl();
@@ -116,10 +116,10 @@ progressbar::value_type progressbar::max() const
 #endif
 }
 
-void progressbar::check_range(value_type value, value_type max)
+void progress_bar::check_range(value_type value, value_type max)
 {
     if ( value < 0 || value > max )
-        BOOST_THROW_EXCEPTION(std::out_of_range("ui::progressbar::check_range(): invalid value"));
+        BOOST_THROW_EXCEPTION(std::out_of_range("ui::progress_bar::check_range(): invalid value"));
 }
 
 } // namespace ui

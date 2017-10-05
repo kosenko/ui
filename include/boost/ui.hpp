@@ -42,7 +42,7 @@
 #include <boost/ui/notebook.hpp>
 #include <boost/ui/painter.hpp>
 #include <boost/ui/panel.hpp>
-#include <boost/ui/progressbar.hpp>
+#include <boost/ui/progress_bar.hpp>
 #include <boost/ui/slider.hpp>
 #include <boost/ui/string.hpp>
 #include <boost/ui/string_io.hpp>

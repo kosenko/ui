@@ -3,10 +3,10 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file progressbar.hpp Progress bar widget
+/// @file progress_bar.hpp Progress bar widget
 
-#ifndef BOOST_UI_PROGRESSBAR_HPP
-#define BOOST_UI_PROGRESSBAR_HPP
+#ifndef BOOST_UI_PROGRESS_BAR_HPP
+#define BOOST_UI_PROGRESS_BAR_HPP
 
 #include <boost/ui/config.hpp>
 #include <boost/ui/widget.hpp>
@@ -18,7 +18,7 @@ namespace ui    {
 /// @see <a href="http://en.wikipedia.org/wiki/Progress_bar">Progress bar (Wikipedia)</a>
 /// @ingroup info
 
-class BOOST_UI_DECL progressbar : public widget
+class BOOST_UI_DECL progress_bar : public widget
 {
 public:
     /// Progress bar value type
@@ -26,7 +26,7 @@ public:
 
     /// @brief Sets value position
     /// @throw std::out_of_range If @a value is out of range
-    progressbar& value(value_type value);
+    progress_bar& value(value_type value);
 
     /// Returns value position
     value_type value() const;
@@ -35,7 +35,7 @@ public:
     value_type max() const;
 
 protected:
-    progressbar() {}
+    progress_bar() {}
 
 #ifndef DOXYGEN
     void detail_create(widget& parent, bool horizontal, value_type initial,
@@ -55,17 +55,17 @@ private:
 /// @brief Horizontal progress bar widget
 /// @ingroup info
 
-class BOOST_UI_DECL hprogressbar : public progressbar
+class BOOST_UI_DECL hprogress_bar : public progress_bar
 {
 public:
-    hprogressbar() {}
+    hprogress_bar() {}
 
     ///@{ @brief Creates horizontal progress bar
     /// @throw std::out_of_range
-    explicit hprogressbar(widget& parent, value_type initial = 0,
+    explicit hprogress_bar(widget& parent, value_type initial = 0,
                           value_type max = 100)
         { create(parent, initial, max); }
-    hprogressbar& create(widget& parent, value_type initial = 0,
+    hprogress_bar& create(widget& parent, value_type initial = 0,
                          value_type max = 100)
         { detail_create(parent, true, initial, max); return *this; }
     ///@}
@@ -74,17 +74,17 @@ public:
 /// @brief Vertical progress bar widget
 /// @ingroup info
 
-class BOOST_UI_DECL vprogressbar : public progressbar
+class BOOST_UI_DECL vprogress_bar : public progress_bar
 {
 public:
-    vprogressbar() {}
+    vprogress_bar() {}
 
     ///@{ @brief Creates vertical progress bar
     /// @throw std::out_of_range
-    explicit vprogressbar(widget& parent, value_type initial = 0,
+    explicit vprogress_bar(widget& parent, value_type initial = 0,
                           value_type max = 100)
         { create(parent, initial, max); }
-    vprogressbar& create(widget& parent, value_type initial = 0,
+    vprogress_bar& create(widget& parent, value_type initial = 0,
                          value_type max = 100)
         { detail_create(parent, false, initial, max); return *this; }
     ///@}
@@ -93,4 +93,4 @@ public:
 } // namespace ui
 } // namespace boost
 
-#endif // BOOST_UI_PROGRESSBAR_HPP
+#endif // BOOST_UI_PROGRESS_BAR_HPP

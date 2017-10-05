@@ -217,7 +217,7 @@ lib
         notebook.cpp
         painter.cpp
         panel.cpp
-        progressbar.cpp
+        progress_bar.cpp
         slider.cpp
         string.cpp
         strings_box.cpp

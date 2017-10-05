@@ -106,7 +106,7 @@ private:
     static void on_log();
 
     void on_slide();
-    ui::hprogressbar m_progressbar;
+    ui::hprogress_bar m_progress_bar;
     ui::hslider m_slider;
 
     void on_date_change();
@@ -208,7 +208,7 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
             << ui::text_box(widgets_panel, "text_box")
                 .on_edit(utility::make_handler("text", "edit"))
                 .layout().justify().stretch()
-            << m_progressbar.create(widgets_panel, 50)
+            << m_progress_bar.create(widgets_panel, 50)
                 .layout().justify()
             << m_slider.create(widgets_panel, 50)
                 .on_slide(boost::bind(&this_type::on_slide, this))
@@ -452,7 +452,7 @@ void demo_frame::on_log()
 
 void demo_frame::on_slide()
 {
-    m_progressbar.value(m_slider.value());
+    m_progress_bar.value(m_slider.value());
 }
 
 void demo_frame::on_date_change()

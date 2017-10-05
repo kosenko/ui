@@ -299,10 +299,10 @@ void test_strings_box(ui::widget parent)
     }
 }
 
-void test_progressbar(ui::widget parent)
+void test_progress_bar(ui::widget parent)
 {
     {
-        ui::hprogressbar pb(parent);
+        ui::hprogress_bar pb(parent);
         BOOST_TEST_EQ(pb.value(), 0);
         BOOST_TEST_EQ(pb.max(), 100);
         pb.value(0);
@@ -311,12 +311,12 @@ void test_progressbar(ui::widget parent)
         BOOST_TEST_THROWS(pb.value(101), std::out_of_range);
     }
     {
-        ui::hprogressbar pb(parent, 200, 1000);
+        ui::hprogress_bar pb(parent, 200, 1000);
         BOOST_TEST_EQ(pb.value(), 200);
         BOOST_TEST_EQ(pb.max(), 1000);
     }
-    BOOST_TEST_THROWS(ui::vprogressbar(parent, 101), std::out_of_range);
-    BOOST_TEST_THROWS(ui::hprogressbar(parent, 50, 40), std::out_of_range);
+    BOOST_TEST_THROWS(ui::vprogress_bar(parent, 101), std::out_of_range);
+    BOOST_TEST_THROWS(ui::hprogress_bar(parent, 50, 40), std::out_of_range);
 }
 
 void test_slider(ui::widget parent)
@@ -351,7 +351,7 @@ int ui_main()
     test_strings_box<ui::choice>(dlg);
     test_strings_box<ui::combo_box>(dlg);
     test_strings_box<ui::list_box>(dlg);
-    test_progressbar(dlg);
+    test_progress_bar(dlg);
     test_slider(dlg);
 
     BOOST_TEST(!ui::getloc().name().empty());
