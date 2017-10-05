@@ -129,7 +129,7 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
     main_notebook.append_page(layout_panel, "Layout");
 
 
-    ui::groupbox fixed_panel(layout_panel, "Fixed layout");
+    ui::group_box fixed_panel(layout_panel, "Fixed layout");
 
     ui::button(fixed_panel, "&Press me")
         .on_press(&on_press_me)

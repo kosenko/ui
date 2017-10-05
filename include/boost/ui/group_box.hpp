@@ -3,10 +3,10 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file groupbox.hpp Group box widget
+/// @file group_box.hpp Group box widget
 
-#ifndef BOOST_UI_GROUPBOX_HPP
-#define BOOST_UI_GROUPBOX_HPP
+#ifndef BOOST_UI_GROUP_BOX_HPP
+#define BOOST_UI_GROUP_BOX_HPP
 
 #include <boost/ui/config.hpp>
 #include <boost/ui/widget.hpp>
@@ -18,15 +18,15 @@ namespace ui    {
 /// @see <a href="http://en.wikipedia.org/wiki/Frame_(GUI)">Frame (Wikipedia)</a>
 /// @ingroup container
 
-class BOOST_UI_DECL groupbox : public widget
+class BOOST_UI_DECL group_box : public widget
 {
 public:
-    groupbox() {}
+    group_box() {}
 
-    ///@{ Creates groupbox widget
-    explicit groupbox(widget& parent, const uistring& title = uistring())
+    ///@{ Creates group box widget
+    explicit group_box(widget& parent, const uistring& title = uistring())
         { create(parent, title); }
-    groupbox& create(widget& parent, const uistring& title = uistring());
+    group_box& create(widget& parent, const uistring& title = uistring());
     ///@}
 
 private:
@@ -38,4 +38,4 @@ private:
 } // namespace ui
 } // namespace boost
 
-#endif // BOOST_UI_GROUPBOX_HPP
+#endif // BOOST_UI_GROUP_BOX_HPP

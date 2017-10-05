@@ -27,7 +27,7 @@
 #include <boost/ui/event_loop.hpp>
 #include <boost/ui/font.hpp>
 #include <boost/ui/frame.hpp>
-#include <boost/ui/groupbox.hpp>
+#include <boost/ui/group_box.hpp>
 #include <boost/ui/hyperlink.hpp>
 #include <boost/ui/image.hpp>
 #include <boost/ui/image_widget.hpp>

@@ -5,7 +5,7 @@
 
 #define BOOST_UI_SOURCE
 
-#include <boost/ui/groupbox.hpp>
+#include <boost/ui/group_box.hpp>
 #include <boost/ui/native/string.hpp>
 #include <boost/ui/native/widget.hpp>
 #include <boost/ui/detail/memcheck.hpp>
@@ -17,7 +17,7 @@ namespace ui    {
 
 #if wxUSE_STATBOX
 
-class groupbox::detail_impl : public detail::widget_detail<wxStaticBox>
+class group_box::detail_impl : public detail::widget_detail<wxStaticBox>
 {
 public:
     explicit detail_impl(widget& parent, const uistring& title)
@@ -29,7 +29,7 @@ public:
 
 #endif
 
-groupbox::detail_impl* groupbox::get_impl()
+group_box::detail_impl* group_box::get_impl()
 {
 #if wxUSE_STATBOX
     return get_detail_impl<detail_impl>();
@@ -38,7 +38,7 @@ groupbox::detail_impl* groupbox::get_impl()
 #endif
 }
 
-const groupbox::detail_impl* groupbox::get_impl() const
+const group_box::detail_impl* group_box::get_impl() const
 {
 #if wxUSE_STATBOX
     return get_detail_impl<detail_impl>();
@@ -47,7 +47,7 @@ const groupbox::detail_impl* groupbox::get_impl() const
 #endif
 }
 
-groupbox& groupbox::create(widget& parent, const uistring& title)
+group_box& group_box::create(widget& parent, const uistring& title)
 {
 #if wxUSE_STATBOX
     detail_set_detail_impl(new detail_impl(parent, title));

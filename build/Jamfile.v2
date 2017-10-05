@@ -202,7 +202,7 @@ lib
         event_loop.cpp
         font.cpp
         frame.cpp
-        groupbox.cpp
+        group_box.cpp
         hyperlink.cpp
         image.cpp
         image_widget.cpp
