@@ -47,7 +47,7 @@
 #include <boost/ui/string.hpp>
 #include <boost/ui/string_io.hpp>
 #include <boost/ui/strings_box.hpp>
-#include <boost/ui/textbox.hpp>
+#include <boost/ui/text_box.hpp>
 #include <boost/ui/thread.hpp>
 #include <boost/ui/web_widget.hpp>
 #include <boost/ui/widget.hpp>

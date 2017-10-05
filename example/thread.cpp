@@ -33,9 +33,9 @@ private:
     void thread_entry(int thread_number, int repeats);
     void write(int thread_number, int repeats);
 
-    ui::textbox m_output_widget;
-    ui::stringbox m_threads_count_widget;
-    ui::stringbox m_repeats_widget;
+    ui::text_box m_output_widget;
+    ui::string_box m_threads_count_widget;
+    ui::string_box m_repeats_widget;
 };
 
 thread_dialog::thread_dialog() : ui::dialog(

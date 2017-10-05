@@ -168,9 +168,9 @@ private:
 
     chat_client m_client;
 
-    ui::stringbox m_host;
-    ui::stringbox m_service;
-    ui::stringbox m_message;
+    ui::string_box m_host;
+    ui::string_box m_service;
+    ui::string_box m_message;
     ui::list_box m_messages;
 };
 

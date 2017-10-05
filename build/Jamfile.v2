@@ -221,7 +221,7 @@ lib
         slider.cpp
         string.cpp
         strings_box.cpp
-        textbox.cpp
+        text_box.cpp
         thread.cpp
         web_widget.cpp
         widget.cpp

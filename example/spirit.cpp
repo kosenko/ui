@@ -88,7 +88,7 @@ public:
 private:
     void on_parse();
 
-    ui::stringbox m_input_widget;
+    ui::string_box m_input_widget;
 };
 
 spirit_dialog::spirit_dialog() : ui::dialog("Boost.Spirit + Boost.UI example")

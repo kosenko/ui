@@ -27,8 +27,8 @@ private:
     void update_family();
 
     ui::choice m_family_widget;
-    ui::stringbox m_name_widget;
-    ui::stringbox m_size_widget;
+    ui::string_box m_name_widget;
+    ui::string_box m_size_widget;
     ui::choice m_slant_widget;
     ui::choice m_weight_widget;
     ui::label m_output_widget;

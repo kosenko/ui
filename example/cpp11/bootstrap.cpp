@@ -23,7 +23,7 @@ public:
 private:
     void process();
 
-    ui::textbox m_input_widget;
+    ui::text_box m_input_widget;
     ui::label m_output_widget;
 };
 

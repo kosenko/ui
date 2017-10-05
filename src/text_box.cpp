@@ -5,7 +5,7 @@
 
 #define BOOST_UI_SOURCE
 
-#include <boost/ui/textbox.hpp>
+#include <boost/ui/text_box.hpp>
 #include <boost/ui/native/event.hpp>
 #include <boost/ui/native/string.hpp>
 #include <boost/ui/native/widget.hpp>
@@ -18,7 +18,7 @@ namespace ui    {
 
 #if wxUSE_TEXTCTRL
 
-class textbox_base::detail_impl : public detail::widget_detail<wxTextCtrl>
+class text_box_base::detail_impl : public detail::widget_detail<wxTextCtrl>
 {
 public:
     explicit detail_impl(widget& parent, const uistring& text, int style)
@@ -46,7 +46,7 @@ public:
 
 #endif
 
-textbox_base::detail_impl* textbox_base::get_impl()
+text_box_base::detail_impl* text_box_base::get_impl()
 {
 #if wxUSE_TEXTCTRL
     return get_detail_impl<detail_impl>();
@@ -55,7 +55,7 @@ textbox_base::detail_impl* textbox_base::get_impl()
 #endif
 }
 
-const textbox_base::detail_impl* textbox_base::get_impl() const
+const text_box_base::detail_impl* text_box_base::get_impl() const
 {
 #if wxUSE_TEXTCTRL
     return get_detail_impl<detail_impl>();
@@ -64,14 +64,14 @@ const textbox_base::detail_impl* textbox_base::get_impl() const
 #endif
 }
 
-void textbox_base::detail_create(widget& parent, const uistring& text, int style)
+void text_box_base::detail_create(widget& parent, const uistring& text, int style)
 {
 #if wxUSE_TEXTCTRL
     detail_set_detail_impl(new detail_impl(parent, text, style));
 #endif
 }
 
-void textbox_base::clear()
+void text_box_base::clear()
 {
 #if wxUSE_TEXTCTRL
     detail_impl* impl = get_impl();
@@ -81,7 +81,7 @@ void textbox_base::clear()
 #endif
 }
 
-textbox_base& textbox_base::text(const uistring& text)
+text_box_base& text_box_base::text(const uistring& text)
 {
 #if wxUSE_TEXTCTRL
     detail_impl* impl = get_impl();
@@ -93,7 +93,7 @@ textbox_base& textbox_base::text(const uistring& text)
     return *this;
 }
 
-uistring textbox_base::text() const
+uistring text_box_base::text() const
 {
 #if wxUSE_TEXTCTRL
     const detail_impl* impl = get_impl();
@@ -105,7 +105,7 @@ uistring textbox_base::text() const
 #endif
 }
 
-textbox_base& textbox_base::on_edit(const boost::function<void()>& handler)
+text_box_base& text_box_base::on_edit(const boost::function<void()>& handler)
 {
 #if wxUSE_TEXTCTRL
     native::bind_helper(*this, wxEVT_TEXT, handler);
@@ -114,14 +114,14 @@ textbox_base& textbox_base::on_edit(const boost::function<void()>& handler)
     return *this;
 }
 
-stringbox& stringbox::create(widget& parent, const uistring& text)
+string_box& string_box::create(widget& parent, const uistring& text)
 {
     detail_create(parent, text, 0);
 
     return *this;
 }
 
-passwordbox& passwordbox::create(widget& parent, const uistring& text)
+password_box& password_box::create(widget& parent, const uistring& text)
 {
 #if wxUSE_TEXTCTRL
     detail_create(parent, text, wxTE_PASSWORD);
@@ -132,7 +132,7 @@ passwordbox& passwordbox::create(widget& parent, const uistring& text)
     return *this;
 }
 
-textbox& textbox::create(widget& parent, const uistring& text)
+text_box& text_box::create(widget& parent, const uistring& text)
 {
 #if wxUSE_TEXTCTRL
     detail_create(parent, text, wxTE_MULTILINE);

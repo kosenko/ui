@@ -31,8 +31,8 @@ private:
     void on_to_lower_algorithm();
     void on_to_upper_algorithm();
 
-    ui::textbox m_input_widget;
-    ui::textbox m_output_widget;
+    ui::text_box m_input_widget;
+    ui::text_box m_output_widget;
     ui::combo_box m_locale_combo_box;
     ui::combo_box m_charset_combo_box;
 };

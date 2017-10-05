@@ -71,7 +71,7 @@ protected:
     }
 
 private:
-    ui::stringbox m_input_widget;
+    ui::string_box m_input_widget;
     ui::label m_output_widget;
 };
 
@@ -126,8 +126,8 @@ protected:
     }
 
 private:
-    ui::stringbox m_dropped_delims_widget;
-    ui::stringbox m_kept_delims_widget;
+    ui::string_box m_dropped_delims_widget;
+    ui::string_box m_kept_delims_widget;
     ui::check_box m_empty_tokens_check_box;
 };
 

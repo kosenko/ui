@@ -3,10 +3,10 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file textbox.hpp Text editor widgets
+/// @file text_box.hpp Text editor widgets
 
-#ifndef BOOST_UI_TEXTBOX_HPP
-#define BOOST_UI_TEXTBOX_HPP
+#ifndef BOOST_UI_TEXT_BOX_HPP
+#define BOOST_UI_TEXT_BOX_HPP
 
 #include <boost/ui/config.hpp>
 #include <boost/ui/widget.hpp>
@@ -17,24 +17,24 @@ namespace ui    {
 /// @brief Abstract text editor widget
 /// @ingroup text
 
-class BOOST_UI_DECL textbox_base : public widget
+class BOOST_UI_DECL text_box_base : public widget
 {
 public:
     /// Clears the contents
     void clear();
 
     /// Sets text into the editor
-    textbox_base& text(const uistring& text);
+    text_box_base& text(const uistring& text);
 
     /// Returns text from the editor
     uistring text() const;
 
     ///@{ Connects text edit handler
-    textbox_base& on_edit(const boost::function<void()>& handler);
+    text_box_base& on_edit(const boost::function<void()>& handler);
     ///@}
 
 protected:
-    textbox_base() {}
+    text_box_base() {}
 
 #ifndef DOXYGEN
     void detail_create(widget& parent, const uistring& text, int style);
@@ -50,17 +50,17 @@ private:
 /// @see <a href="http://en.wikipedia.org/wiki/Text_box">Text box (Wikipedia)</a>
 /// @ingroup text
 
-class BOOST_UI_DECL stringbox : public textbox_base
+class BOOST_UI_DECL string_box : public text_box_base
 {
 public:
-    stringbox() {}
+    string_box() {}
 
     ///@{ @brief Creates widget
     ///   @param parent Parent widget
     ///   @param text Initial text in the editor
-    explicit stringbox(widget& parent, const uistring& text = uistring())
+    explicit string_box(widget& parent, const uistring& text = uistring())
         { create(parent, text); }
-    stringbox& create(widget& parent, const uistring& text = uistring());
+    string_box& create(widget& parent, const uistring& text = uistring());
     ///@}
 };
 
@@ -68,17 +68,17 @@ public:
 /// @see <a href="http://en.wikipedia.org/wiki/Text_box">Text box (Wikipedia)</a>
 /// @ingroup text
 
-class BOOST_UI_DECL passwordbox : public textbox_base
+class BOOST_UI_DECL password_box : public text_box_base
 {
 public:
-    passwordbox() {}
+    password_box() {}
 
     ///@{ @brief Creates widget
     ///   @param parent Parent widget
     ///   @param text Initial text in the editor
-    explicit passwordbox(widget& parent, const uistring& text = uistring())
+    explicit password_box(widget& parent, const uistring& text = uistring())
         { create(parent, text); }
-    passwordbox& create(widget& parent, const uistring& text = uistring());
+    password_box& create(widget& parent, const uistring& text = uistring());
     ///@}
 };
 
@@ -86,21 +86,21 @@ public:
 /// @see <a href="http://en.wikipedia.org/wiki/Text_box">Text box (Wikipedia)</a>
 /// @ingroup text
 
-class BOOST_UI_DECL textbox : public textbox_base
+class BOOST_UI_DECL text_box : public text_box_base
 {
 public:
-    textbox() {}
+    text_box() {}
 
     ///@{ @brief Creates widget
     ///   @param parent Parent widget
     ///   @param text Initial text in the editor
-    explicit textbox(widget& parent, const uistring& text = uistring())
+    explicit text_box(widget& parent, const uistring& text = uistring())
         { create(parent, text); }
-    textbox& create(widget& parent, const uistring& text = uistring());
+    text_box& create(widget& parent, const uistring& text = uistring());
     ///@}
 };
 
 } // namespace ui
 } // namespace boost
 
-#endif // BOOST_UI_TEXTBOX_HPP
+#endif // BOOST_UI_TEXT_BOX_HPP

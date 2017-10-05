@@ -31,10 +31,10 @@ private:
 
     regex_ns::wregex get_pattern() const;
 
-    ui::textbox m_input;
-    ui::textbox m_output;
-    ui::stringbox m_pattern;
-    ui::stringbox m_format;
+    ui::text_box m_input;
+    ui::text_box m_output;
+    ui::string_box m_pattern;
+    ui::string_box m_format;
     ui::check_box m_case_sensetive;
 };
 

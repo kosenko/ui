@@ -24,7 +24,7 @@ public:
 private:
     void convert();
 
-    ui::textbox m_input_widget;
+    ui::text_box m_input_widget;
     ui::label m_output_widget;
     ui::choice m_type_choice;
 };

@@ -163,15 +163,15 @@ void test_check_box(ui::widget parent)
     BOOST_TEST(!*check_box.optional());
 }
 
-void test_textbox(ui::widget parent)
+void test_text_box(ui::widget parent)
 {
     {
-        ui::stringbox text0;
+        ui::string_box text0;
         BOOST_TEST(text0.native_handle() == NULL);
     }
 
     {
-        ui::stringbox text1(parent, "Text");
+        ui::string_box text1(parent, "Text");
         BOOST_TEST_EQ(text1.text(), "Text");
         text1.text(text1.text() + "!");
         BOOST_TEST_EQ(text1.text(), "Text!");
@@ -347,7 +347,7 @@ int ui_main()
     test_button(dlg);
     test_check_box<ui::check_box>(dlg);
     test_check_box<ui::tri_state_check_box>(dlg);
-    test_textbox(dlg);
+    test_text_box(dlg);
     test_strings_box<ui::choice>(dlg);
     test_strings_box<ui::combo_box>(dlg);
     test_strings_box<ui::list_box>(dlg);
