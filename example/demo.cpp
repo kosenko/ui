@@ -584,5 +584,5 @@ int ui_main(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-    return ui::entry(argc, argv, &ui_main);
+    return ui::entry(&ui_main, argc, argv);
 }

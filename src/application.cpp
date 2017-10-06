@@ -30,8 +30,8 @@
 
 namespace {
 
-int (*g_ui_main)() = NULL;
 int (*g_ui_main_args)(int, char*[]) = NULL;
+int (*g_ui_main)() = NULL;
 int g_argc = 0;
 char** g_argv = NULL;
 
@@ -278,18 +278,18 @@ static int entry(int argc, char* argv[])
 
 } // detail namespace
 
-int entry(int argc, char* argv[], int (*ui_main)())
+int entry(int (*ui_main)(), int argc, char* argv[])
 {
     g_ui_main = ui_main;
     detail::parse_cmdline(argc, argv);
     return detail::entry(argc, argv);
 }
 
-int entry(int argc, char* argv[], int (*ui_main)(int, char*[]))
+int entry(int (*ui_main)(int, char*[]), int argc, char* argv[])
 {
+    g_ui_main_args = ui_main;
     g_argc = argc;
     g_argv = argv;
-    g_ui_main_args = ui_main;
     detail::parse_cmdline(argc, argv);
     return detail::entry(argc, argv);
 }

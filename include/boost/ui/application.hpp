@@ -31,12 +31,12 @@ namespace ui    {
 /// @details Initializes and uninitializer UI library, catches exceptions
 /// @ingroup helper
 /**
+ * @param ui_main main UI function
  * @param argc count of program arguments
  * @param argv array of program arguments
- * @param ui_main main UI function
  */
-BOOST_UI_DECL int entry(int argc, char* argv[], int (*ui_main)());
-BOOST_UI_DECL int entry(int argc, char* argv[], int (*ui_main)(int, char*[]));
+BOOST_UI_DECL int entry(int (*ui_main)(int, char*[]), int argc, char* argv[]);
+BOOST_UI_DECL int entry(int (*ui_main)(),             int argc, char* argv[]);
 ///@}
 
 #ifndef DOXYGEN
