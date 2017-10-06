@@ -479,7 +479,7 @@ void demo_frame::on_canvas_resize()
         static const double pi = boost::math::constants::pi<double>();
 
         painter
-            .fill_color(ui::colors::green()).stroke_color(ui::colors::red())
+            .fill_color(ui::color::green).stroke_color(ui::color::red)
             .line_width(2)
             .font(font()).fill_text("Hello", 60, 50)
             .fill_rect(20, 20, 30, 30).clear_rect(30, 30, 10, 10)
@@ -490,7 +490,7 @@ void demo_frame::on_canvas_resize()
             .stroke().fill()
             .draw_image(ui::image::xdg("edit-cut", 24, 24), 60, 60);
 
-        painter.line_width(5).stroke_color(ui::colors::black());
+        painter.line_width(5).stroke_color(ui::color::black);
 
         int y = 180;
         {
@@ -550,7 +550,7 @@ void demo_frame::on_canvas_resize()
 void demo_frame::on_canvas_mouse_draw(ui::mouse_event& e)
 {
     m_canvas.painter()
-        .fill_color(ui::colors::red())
+        .fill_color(ui::color::red)
         .fill_rect(e.x() - 1, e.y() - 1, 3, 3);
 }
 

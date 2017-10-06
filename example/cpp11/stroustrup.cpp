@@ -93,15 +93,15 @@ int ui_main()
             draw_axis(painter, {20, 300}, {300, 300});
             painter.fill_text("x axis", 100, 320);
 
-            painter.stroke_color(ui::colors::teal());
+            painter.stroke_color(ui::color::teal);
             draw_axis(painter, {20, 300}, {20, 20});
-            painter.fill_color(ui::colors::maroon()).fill_text("y axis", 10, 10);
+            painter.fill_color(ui::color::maroon).fill_text("y axis", 10, 10);
         }
 
         // Function
         {
             ui::painter::state_saver saver(painter);
-            painter.stroke_color(ui::colors::blue());
+            painter.stroke_color(ui::color::blue);
             draw_function(painter, &std::sin, 0, 100, {20, 150}, 1000, 50, 50);
         }
 
@@ -113,7 +113,7 @@ int ui_main()
                 .begin_path()
                 .move_to(300, 200).line_to(350, 100).line_to(400, 200).close_path()
                 .line_dash({ 12, 4 }).line_width(4)
-                .stroke_color(ui::colors::red()).stroke();
+                .stroke_color(ui::color::red).stroke();
         }
 
         {
@@ -121,7 +121,7 @@ int ui_main()
 
             // Rectangle
             painter
-                .fill_color(ui::colors::yellow())
+                .fill_color(ui::color::yellow)
                 .fill_rect(  200, 200, 100, 50)
                 .stroke_rect(200, 200, 100, 50);
 
@@ -129,7 +129,7 @@ int ui_main()
             painter
                 .begin_path().move_to(100, 50).line_to(200, 50).line_to(200, 100)
                 .line_to(100, 100).line_to(50, 75).close_path()
-                .fill_color(ui::colors::green()).fill()
+                .fill_color(ui::color::green).fill()
                 .line_dash({ 6, 2 }).line_width(2)
                 .stroke();
         }
@@ -149,7 +149,7 @@ int ui_main()
 
         {
             ui::painter::state_saver saver(painter);
-            painter.stroke_color(ui::colors::maroon());
+            painter.stroke_color(ui::color::maroon);
             draw_ellipse(painter, center, 75, 25);
         }
 

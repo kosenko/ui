@@ -29,7 +29,7 @@ painter_impl::painter_impl(widget& parent)
     : m_gc(NULL)
 #endif
 {
-    m_state.m_fill = m_state.m_stroke = colors::black();
+    m_state.m_fill = m_state.m_stroke = color::black;
     m_state.m_line_width = 1;
     m_state.m_cap = wxCAP_BUTT;
     m_state.m_join = wxJOIN_MITER;

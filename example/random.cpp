@@ -79,7 +79,7 @@ void random_dialog::draw()
         else
             painter.line_to(x, y);
     }
-    painter.stroke_color(ui::colors::blue()).stroke();
+    painter.stroke_color(ui::color::blue).stroke();
 }
 
 int ui_main()

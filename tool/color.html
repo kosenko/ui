@@ -167,15 +167,11 @@ function onload()
     for ( var i in colors )
     {
         var color = colors[i];
-        strHPP += "extern BOOST_UI_DECL const color& " + color[0] + "() BOOST_NOEXCEPT;\n";
+        strHPP += "    static const color " + color[0] + ";\n";
 
-        strCPP += "\
-const color& " + color[0] + "() BOOST_NOEXCEPT\n\
-{\n\
-    static color c = color::rgb255(" + color[1] + ", " + color[2] + ", " + color[3] + ");\n\
-    return c;\n\
-}\n\
-\n";
+        strCPP += "const color color::" + color[0] +
+            " ".repeat(20 - color[0].length) +
+            " = color::rgb255(" + color[1] + ", " + color[2] + ", " + color[3] + ");\n";
     }
     document.getElementById("output").innerHTML = strHPP + "\n" + strCPP;
 }

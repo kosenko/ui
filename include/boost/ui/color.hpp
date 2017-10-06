@@ -15,10 +15,12 @@ namespace boost {
 namespace ui    {
 
 /// @brief Color class
-/// @see boost::ui::colors predefined colors namespace
 /// @see <a href="http://www.w3.org/TR/css3-color/">CSS Color Module (W3C)</a>
 /// @see <a href="http://en.wikipedia.org/wiki/Color">Color (Wikipedia)</a>
 /// @see <a href="http://en.wikipedia.org/wiki/RGB_color_model">RGB color model (Wikipedia)</a>
+/// @see <a href="http://www.w3.org/TR/css3-color/#html4">Basic CSS colors (W3C)</a>
+/// @see <a href="http://www.w3.org/TR/css3-color/#svg-color">Extended CSS colors (W3C)</a>
+/// @see <a href="https://en.wikipedia.org/wiki/Web_colors">Web colors (Wikipedia)</a>
 /// @ingroup graphics
 
 class BOOST_UI_DECL color
@@ -65,6 +67,156 @@ public:
     channel1_type alpha1() const BOOST_NOEXCEPT { return static_cast<channel1_type>(m_alpha) / 255; }
     ///@}
 
+    ///@{ @brief Predefined color
+    static const color aliceblue;
+    static const color antiquewhite;
+    static const color aqua;
+    static const color aquamarine;
+    static const color azure;
+    static const color beige;
+    static const color bisque;
+    static const color black;
+    static const color blanchedalmond;
+    static const color blue;
+    static const color blueviolet;
+    static const color brown;
+    static const color burlywood;
+    static const color cadetblue;
+    static const color chartreuse;
+    static const color chocolate;
+    static const color coral;
+    static const color cornflowerblue;
+    static const color cornsilk;
+    static const color crimson;
+    static const color cyan;
+    static const color darkblue;
+    static const color darkcyan;
+    static const color darkgoldenrod;
+    static const color darkgray;
+    static const color darkgreen;
+    static const color darkgrey;
+    static const color darkkhaki;
+    static const color darkmagenta;
+    static const color darkolivegreen;
+    static const color darkorange;
+    static const color darkorchid;
+    static const color darkred;
+    static const color darksalmon;
+    static const color darkseagreen;
+    static const color darkslateblue;
+    static const color darkslategray;
+    static const color darkslategrey;
+    static const color darkturquoise;
+    static const color darkviolet;
+    static const color deeppink;
+    static const color deepskyblue;
+    static const color dimgray;
+    static const color dimgrey;
+    static const color dodgerblue;
+    static const color firebrick;
+    static const color floralwhite;
+    static const color forestgreen;
+    static const color fuchsia;
+    static const color gainsboro;
+    static const color ghostwhite;
+    static const color gold;
+    static const color goldenrod;
+    static const color gray;
+    static const color green;
+    static const color greenyellow;
+    static const color grey;
+    static const color honeydew;
+    static const color hotpink;
+    static const color indianred;
+    static const color indigo;
+    static const color ivory;
+    static const color khaki;
+    static const color lavender;
+    static const color lavenderblush;
+    static const color lawngreen;
+    static const color lemonchiffon;
+    static const color lightblue;
+    static const color lightcoral;
+    static const color lightcyan;
+    static const color lightgoldenrodyellow;
+    static const color lightgray;
+    static const color lightgreen;
+    static const color lightgrey;
+    static const color lightpink;
+    static const color lightsalmon;
+    static const color lightseagreen;
+    static const color lightskyblue;
+    static const color lightslategray;
+    static const color lightslategrey;
+    static const color lightsteelblue;
+    static const color lightyellow;
+    static const color lime;
+    static const color limegreen;
+    static const color linen;
+    static const color magenta;
+    static const color maroon;
+    static const color mediumaquamarine;
+    static const color mediumblue;
+    static const color mediumorchid;
+    static const color mediumpurple;
+    static const color mediumseagreen;
+    static const color mediumslateblue;
+    static const color mediumspringgreen;
+    static const color mediumturquoise;
+    static const color mediumvioletred;
+    static const color midnightblue;
+    static const color mintcream;
+    static const color mistyrose;
+    static const color moccasin;
+    static const color navajowhite;
+    static const color navy;
+    static const color oldlace;
+    static const color olive;
+    static const color olivedrab;
+    static const color orange;
+    static const color orangered;
+    static const color orchid;
+    static const color palegoldenrod;
+    static const color palegreen;
+    static const color paleturquoise;
+    static const color palevioletred;
+    static const color papayawhip;
+    static const color peachpuff;
+    static const color peru;
+    static const color pink;
+    static const color plum;
+    static const color powderblue;
+    static const color purple;
+    static const color red;
+    static const color rosybrown;
+    static const color royalblue;
+    static const color saddlebrown;
+    static const color salmon;
+    static const color sandybrown;
+    static const color seagreen;
+    static const color seashell;
+    static const color sienna;
+    static const color silver;
+    static const color skyblue;
+    static const color slateblue;
+    static const color slategray;
+    static const color slategrey;
+    static const color snow;
+    static const color springgreen;
+    static const color steelblue;
+    static const color tan;
+    static const color teal;
+    static const color thistle;
+    static const color tomato;
+    static const color turquoise;
+    static const color violet;
+    static const color wheat;
+    static const color white;
+    static const color whitesmoke;
+    static const color yellow;
+    static const color yellowgreen;
+    ///@}
+
 private:
     channel255_type m_red;
     channel255_type m_green;
@@ -82,164 +234,6 @@ inline bool operator==(const color& lhs, const color& rhs) BOOST_NOEXCEPT
 inline bool operator!=(const color& lhs, const color& rhs) BOOST_NOEXCEPT
     { return !operator==(lhs, rhs); }
 ///@}
-
-/// @brief Predefined colors
-/// @see <a href="http://www.w3.org/TR/css3-color/#html4">Basic CSS colors (W3C)</a>
-/// @see <a href="http://www.w3.org/TR/css3-color/#svg-color">Extended CSS colors (W3C)</a>
-/// @see <a href="https://en.wikipedia.org/wiki/Web_colors">Web colors (Wikipedia)</a>
-/// @ingroup graphics
-namespace colors
-{
-///@{ Predefined color
-extern BOOST_UI_DECL const color& aliceblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& antiquewhite() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& aqua() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& aquamarine() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& azure() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& beige() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& bisque() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& black() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& blanchedalmond() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& blue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& blueviolet() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& brown() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& burlywood() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& cadetblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& chartreuse() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& chocolate() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& coral() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& cornflowerblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& cornsilk() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& crimson() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& cyan() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkcyan() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkgoldenrod() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkgray() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkgreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkgrey() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkkhaki() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkmagenta() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkolivegreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkorange() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkorchid() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkred() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darksalmon() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkseagreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkslateblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkslategray() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkslategrey() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkturquoise() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& darkviolet() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& deeppink() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& deepskyblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& dimgray() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& dimgrey() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& dodgerblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& firebrick() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& floralwhite() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& forestgreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& fuchsia() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& gainsboro() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& ghostwhite() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& gold() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& goldenrod() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& gray() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& green() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& greenyellow() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& grey() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& honeydew() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& hotpink() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& indianred() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& indigo() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& ivory() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& khaki() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lavender() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lavenderblush() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lawngreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lemonchiffon() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightcoral() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightcyan() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightgoldenrodyellow() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightgray() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightgreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightgrey() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightpink() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightsalmon() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightseagreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightskyblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightslategray() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightslategrey() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightsteelblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lightyellow() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& lime() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& limegreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& linen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& magenta() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& maroon() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumaquamarine() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumorchid() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumpurple() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumseagreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumslateblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumspringgreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumturquoise() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mediumvioletred() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& midnightblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mintcream() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& mistyrose() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& moccasin() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& navajowhite() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& navy() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& oldlace() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& olive() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& olivedrab() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& orange() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& orangered() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& orchid() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& palegoldenrod() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& palegreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& paleturquoise() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& palevioletred() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& papayawhip() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& peachpuff() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& peru() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& pink() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& plum() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& powderblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& purple() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& red() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& rosybrown() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& royalblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& saddlebrown() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& salmon() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& sandybrown() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& seagreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& seashell() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& sienna() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& silver() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& skyblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& slateblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& slategray() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& slategrey() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& snow() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& springgreen() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& steelblue() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& tan() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& teal() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& thistle() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& tomato() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& turquoise() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& violet() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& wheat() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& white() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& whitesmoke() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& yellow() BOOST_NOEXCEPT;
-extern BOOST_UI_DECL const color& yellowgreen() BOOST_NOEXCEPT;
-///@}
-} // namespace colors
 
 } // namespace ui
 } // namespace boost

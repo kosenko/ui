@@ -451,7 +451,7 @@ void sort_dialog::draw()
     const ui::size dist(m_canvas.width()  / size,
                         m_canvas.height() / m_max_value);
     painter.translate(0, m_canvas.height()).scale(1, -1).translate(0.5, 0.5);
-    painter.stroke_color(ui::colors::blue());
+    painter.stroke_color(ui::color::blue);
     size_t index = 0;
     for ( array_type::const_iterator iter = m_array.begin();
          iter != m_array.end(); ++iter, index++ )
@@ -462,11 +462,11 @@ void sort_dialog::draw()
         painter.stroke_rect(rect);
         if ( index == m_index_less )
         {
-            painter.fill_color(ui::colors::red()).fill_rect(rect);
+            painter.fill_color(ui::color::red).fill_rect(rect);
         }
         if ( index == m_index_greater )
         {
-            painter.fill_color(ui::colors::lime()).fill_rect(rect);
+            painter.fill_color(ui::color::lime).fill_rect(rect);
         }
     }
 }
