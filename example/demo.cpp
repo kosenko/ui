@@ -288,7 +288,7 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
 
     main_notebook.current_page(page);
 
-    resize(600, 400);
+    resize(600, 500);
 }
 
 void demo_frame::on_press_me()
