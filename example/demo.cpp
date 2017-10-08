@@ -218,7 +218,7 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
            )
         << ( ui::vbox().layout().justify().stretch()
             << ui::list_box(widgets_panel,
-                           boost::assign::list_of("list_box 1")("list_box 2")("list_box 3"))
+                            boost::assign::list_of("list_box 1")("list_box 2")("list_box 3"))
                 .on_select_event(utility::make_event_handler<ui::index_event>("list_box", "select"))
                 .on_activate_event(utility::make_event_handler<ui::index_event>("list_box", "activate"))
                 .select(0).layout().justify().stretch()
