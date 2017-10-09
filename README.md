@@ -17,19 +17,19 @@ Boost.UI is a C++ User Interface Boost library that
 * **example** - Examples
   * example/hello.cpp - **"Hello, world!"** application
   * example/asio_chat_client.cpp - **Boost.ASIO** chat client example
-  * example/chrono.cpp - **Boost.Chrono** usage example
+  * example/chrono.cpp - **Boost.Chrono** and **std::chrono** usage example
   * example/date_time.cpp - **Boost.Date_Time** usage example
   * example/font.cpp - Font usage example
-  * example/filesystem.cpp - **Boost.Filesystem** usage example
+  * example/filesystem.cpp - **Boost.Filesystem** and **std::filesystem** usage example
   * example/geometry.cpp - **Boost.Geometry** usage example
   * example/interprocess.cpp - **Boost.Interprocess** usage example
   * example/lexical_cast.cpp - **Boost.Lexical_Cast** usage example
   * example/locale.cpp - **Boost.Locale** usage example
-  * example/random.cpp - **Boost.Random** usage example
-  * example/regex.cpp - **Boost.Regex** usage example
+  * example/random.cpp - **Boost.Random** and **std::random** usage example
+  * example/regex.cpp - **Boost.Regex** and **std::regex** usage example
   * example/sort.cpp - Visualization of **sorting algorithms**
   * example/stacktrace.cpp - **Boost.Stacktrace** usage example
-  * example/thread.cpp - **Boost.Thread** usage example
+  * example/thread.cpp - **Boost.Thread** and **std::thread** usage example
   * example/timer.cpp - **Boost.Timer** usage example
   * example/tokenizer.cpp - **Boost.Tokenizer** usage example
 * **example/cpp11** - C++11 Examples
