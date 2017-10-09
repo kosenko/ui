@@ -104,7 +104,7 @@ See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>
 
 @example cpp11/snippet.cpp Documentation snippets
 @example cpp11/stroustrup.cpp Re-implemented Bjarne Stroustrup's GUI examples
-@example asio_chat_client.cpp Boost.ASI chat client example
+@example asio_chat_client.cpp Boost.ASIO chat client example
 @example chrono.cpp Boost.Chrono example
 @example date_time.cpp Boost.Date_Time example
 
