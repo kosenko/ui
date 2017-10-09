@@ -67,10 +67,18 @@ Boost.UI is a C++ User Interface Boost library that
 - supports modern C++11/14/17 features
 
 @section hello "Hello, World!" application
+@image html hello_windows7.png "\"Hello, World!\" application under Windows 7"
 @include cpp11/hello.cpp
 
 @section bootstrap Bootstrap application
+@image html bootstrap_unity.png "Bootstrap application under Unity"
 @include cpp11/bootstrap.cpp
+
+@section widgets_screenshot Screenshots
+@image html demo_unity.png "Demo application under Unity"
+@image html demo_windows7.png "Demo application under Windows 7"
+@image html demo_windows_xp.png "Demo application under Windows XP"
+@image html demo_windows95.png "Demo application with Windows 95 theme"
 
 @section src Source code
 See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>
@@ -84,16 +92,28 @@ See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>
 
 @example cpp11/beman.cpp Beman's challenge
 @see <a href="http://isocpp.org/files/papers/n3791.html">N3791 Lightweight Drawing Library ideas</a>
+
 @example cpp11/bootstrap.cpp Bootstrap code
+@image html bootstrap_unity.png "Bootstrap application under Unity"
+
 @example cpp11/demo.cpp Boost.UI C++11 demo
+
 @example cpp11/hello.cpp C++11 "Hello, World!" application
 @see <a href="http://en.wikipedia.org/wiki/%22Hello,_world!%22_program">"Hello, world!" program (Wikipedia)</a>
+@image html hello_windows7.png "\"Hello, World!\" application under Windows 7"
+
 @example cpp11/snippet.cpp Documentation snippets
 @example cpp11/stroustrup.cpp Re-implemented Bjarne Stroustrup's GUI examples
 @example asio_chat_client.cpp Boost.ASI chat client example
 @example chrono.cpp Boost.Chrono example
 @example date_time.cpp Boost.Date_Time example
+
 @example demo.cpp Boost.UI demo
+@image html demo_unity.png "Demo application under Unity"
+@image html demo_windows7.png "Demo application under Windows 7"
+@image html demo_windows_xp.png "Demo application under Windows XP"
+@image html demo_windows95.png "Demo application with Windows 95 theme"
+
 @example font.cpp Boost.UI font example
 @example filesystem.cpp Boost.Filesystem file manager
 @see <a href="http://en.wikipedia.org/wiki/File_manager">File manager (Wikipedia)</a>
