@@ -14,7 +14,7 @@ namespace ui = boost::ui;
 
 void handle_button_press()
 {
-    ui::info_dlg("Hello, C++ World!");
+    ui::info_dialog("Hello, C++ World!");
 }
 
 int ui_main()

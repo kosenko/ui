@@ -428,7 +428,7 @@ void sort_dialog::on_close_handler(ui::close_event& e)
     if ( m_loop.is_running() )
     {
         e.veto();
-        ui::error_dlg("Unable exit during algorithm execution");
+        ui::error_dialog("Unable exit during algorithm execution");
     }
 }
 

@@ -20,17 +20,17 @@ int ui_main()
 {
     ui::dialog dlg("Boost.UI native API usage example");
 
-    wxWindow* native_dlg = ui::native::from_widget(dlg);
-    wxCHECK(native_dlg, 1);
-    native_dlg->SetTransparent(224);
+    wxWindow* native_dialog = ui::native::from_widget(dlg);
+    wxCHECK(native_dialog, 1);
+    native_dialog->SetTransparent(224);
 
     std::ostringstream ss;
     ss << wxGetLibraryVersionInfo().ToString();
     ss << "\nBuild options: " << WX_BUILD_OPTIONS_SIGNATURE;
-    wxStaticText* staticText = new wxStaticText(native_dlg, wxID_ANY, ss.str());
+    wxStaticText* staticText = new wxStaticText(native_dialog, wxID_ANY, ss.str());
 
-    wxButton* button = new wxButton(native_dlg, wxID_ANY, "C&lose");
-    button->Bind(wxEVT_BUTTON, boost::bind(&wxDialog::Close, native_dlg, false));
+    wxButton* button = new wxButton(native_dialog, wxID_ANY, "C&lose");
+    button->Bind(wxEVT_BUTTON, boost::bind(&wxDialog::Close, native_dialog, false));
 
     ui::vbox(dlg)
         << ui::native_widget(staticText)

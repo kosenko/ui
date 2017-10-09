@@ -83,7 +83,7 @@ interprocess_dialog::interprocess_dialog() :
 void interprocess_dialog::on_lock()
 {
     if ( !m_mutex.try_lock() )
-        ui::error_dlg("Mutex is already locked");
+        ui::error_dialog("Mutex is already locked");
 }
 
 void interprocess_dialog::on_unlock()
@@ -130,7 +130,7 @@ void interprocess_dialog::on_recieve()
     if ( i == 0 )
         ss << "There is no new messages";
 
-    ui::info_dlg(ss.str(), "Messages");
+    ui::info_dialog(ss.str(), "Messages");
 }
 
 int ui_main()

@@ -36,20 +36,20 @@ void error_notify(const uistring& message,
 /// @brief Display information in application-modal dialog
 /// @ingroup alert
 BOOST_UI_DECL
-void info_dlg(const uistring& message,
-              const uistring& title = ascii("Information"));
+void info_dialog(const uistring& message,
+                 const uistring& title = ascii("Information"));
 
 /// @brief Display warning in application-modal dialog
 /// @ingroup alert
 BOOST_UI_DECL
-void warning_dlg(const uistring& message,
-                 const uistring& title = ascii("Warning"));
+void warning_dialog(const uistring& message,
+                    const uistring& title = ascii("Warning"));
 
 /// @brief Display error in application-modal dialog
 /// @ingroup alert
 BOOST_UI_DECL
-void error_dlg(const uistring& message,
-               const uistring& title = ascii("Error"));
+void error_dialog(const uistring& message,
+                  const uistring& title = ascii("Error"));
 
 /// @brief Request user confirmation using application-modal dialog
 /// @see <a href="http://en.wikipedia.org/wiki/Confirmation_dialog_box">Confirmation dialog box (Wikipedia)</a>

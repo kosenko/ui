@@ -22,7 +22,7 @@ void info_notify(const uistring& message, const uistring& title)
                                 native::from_uistring(message),
                                 NULL, wxICON_INFORMATION).Show() )
 #endif
-        info_dlg(message, title);
+        info_dialog(message, title);
 }
 
 void warning_notify(const uistring& message, const uistring& title)
@@ -32,7 +32,7 @@ void warning_notify(const uistring& message, const uistring& title)
                                 native::from_uistring(message),
                                 NULL, wxICON_WARNING).Show() )
 #endif
-        warning_dlg(message, title);
+        warning_dialog(message, title);
 }
 
 void error_notify(const uistring& message, const uistring& title)
@@ -42,10 +42,10 @@ void error_notify(const uistring& message, const uistring& title)
                                 native::from_uistring(message),
                                 NULL, wxICON_ERROR).Show() )
 #endif
-        error_dlg(message, title);
+        error_dialog(message, title);
 }
 
-void info_dlg(const uistring& message, const uistring& title)
+void info_dialog(const uistring& message, const uistring& title)
 {
 #if wxUSE_MSGDLG
     wxMessageBox(native::from_uistring(message), native::from_uistring(title),
@@ -53,7 +53,7 @@ void info_dlg(const uistring& message, const uistring& title)
 #endif
 }
 
-void warning_dlg(const uistring& message, const uistring& title)
+void warning_dialog(const uistring& message, const uistring& title)
 {
 #if wxUSE_MSGDLG
     wxMessageBox(native::from_uistring(message), native::from_uistring(title),
@@ -61,7 +61,7 @@ void warning_dlg(const uistring& message, const uistring& title)
 #endif
 }
 
-void error_dlg(const uistring& message, const uistring& title)
+void error_dialog(const uistring& message, const uistring& title)
 {
 #if wxUSE_MSGDLG
     wxMessageBox(native::from_uistring(message), native::from_uistring(title),

@@ -30,7 +30,7 @@ public:
 private:
     void on_press_me()
     {
-        ui::info_dlg("Hello");
+        ui::info_dialog("Hello");
     }
 };
 /// [button]

@@ -69,7 +69,7 @@ geometry_dialog::geometry_dialog(const std::string& filename)
 {
     boost::geometry::assign_inverse(m_box);
     if ( !filename.empty() && !read_wkt_file(filename, m_countries, m_box) )
-        ui::error_dlg("File not found: " + filename);
+        ui::error_dialog("File not found: " + filename);
 
     if ( m_countries.empty() )
     {

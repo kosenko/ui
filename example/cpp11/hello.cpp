@@ -18,7 +18,7 @@ int ui_main()
     ui::button(dlg, "Say &hello")
         .on_press([]
         {
-            ui::info_dlg("Hello, C++ World!");
+            ui::info_dialog("Hello, C++ World!");
         });
 
     dlg.show_modal();

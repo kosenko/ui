@@ -14,7 +14,7 @@ void handle_button_press()
 {
     std::ostringstream info;
     info << boost::stacktrace::stacktrace();
-    ui::info_dlg(info.str());
+    ui::info_dialog(info.str());
 }
 
 int ui_main()

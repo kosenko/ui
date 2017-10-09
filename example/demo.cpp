@@ -406,7 +406,7 @@ void demo_frame::on_press_me()
     info << "\nSTD_HASH";
 #endif
 
-    ui::info_dlg(info.str());
+    ui::info_dialog(info.str());
 }
 
 void demo_frame::on_log()
@@ -426,10 +426,10 @@ void demo_frame::on_log()
     if ( !ui::prompt_password("Enter your password", "Password", password) )
         return;
 
-    ui::info_dlg(L"Your name is " + name
+    ui::info_dialog(L"Your name is " + name
         + L" and your password is " + password);
-    ui::warning_dlg("Password could be lost");
-    ui::error_dlg("Password was lost");
+    ui::warning_dialog("Password could be lost");
+    ui::error_dialog("Password was lost");
 
     if ( !ui::confirm("This code throws errors. Are you sure?") )
         return;
