@@ -8,6 +8,7 @@
 #include <boost/ui.hpp>
 #include <boost/bind.hpp>
 #include <boost/lexical_cast.hpp>
+#include <sstream>
 
 #include "to_string.hpp"
 
@@ -31,7 +32,7 @@ public:
 private:
     void on_start();
     void thread_entry(int thread_number, int repeats);
-    void write(int thread_number, int repeats);
+    void write(std::wstring str);
 
     ui::text_box m_output_widget;
     ui::string_box m_threads_count_widget;
@@ -78,6 +79,9 @@ void thread_dialog::on_start()
 
     for ( int i = 0; i < threads_count; i++ )
     {
+        // Single thread
+        //thread_entry(i, repeats);
+
         thread_ns::thread t(&this_type::thread_entry, this, i, repeats);
         t.detach();
     }
@@ -85,22 +89,22 @@ void thread_dialog::on_start()
 
 void thread_dialog::thread_entry(int thread_number, int repeats)
 {
-    // Not thread safe
-    // write(thread_number, repeats);
-
-    // Thread safe
-    ui::call_async(boost::bind(&this_type::write, this,
-                                thread_number, repeats));
-}
-
-void thread_dialog::write(int thread_number, int repeats)
-{
     for ( int r = 0; r < repeats; r++ )
     {
-        m_output_widget.text(m_output_widget.text() +
-            boost::lexical_cast<std::string>(thread_number) + "-" +
-            boost::lexical_cast<std::string>(r) + " ");
+        std::wostringstream ss;
+        ss << thread_number << L"-" << r << " ";
+
+        // Not thread safe
+        //write(ss.str());
+
+        // Thread safe
+        ui::call_async( boost::bind(&this_type::write, this, ss.str()) );
     }
+}
+
+void thread_dialog::write(std::wstring str)
+{
+    m_output_widget.text(m_output_widget.text() + str);
 }
 
 int ui_main()
