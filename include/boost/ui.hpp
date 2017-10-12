@@ -105,8 +105,8 @@ See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>
 @example cpp11/snippet.cpp Documentation snippets
 @example cpp11/stroustrup.cpp Re-implemented Bjarne Stroustrup's GUI examples
 @example asio_chat_client.cpp Boost.ASIO chat client example
-@example chrono.cpp Boost.Chrono example
-@example date_time.cpp Boost.Date_Time example
+@example chrono.cpp Boost.Chrono and std::chrono usage example
+@example date_time.cpp Boost.Date_Time usage example
 
 @example demo.cpp Boost.UI demo
 @image html demo_unity.png "Demo application under Unity"
@@ -114,31 +114,31 @@ See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>
 @image html demo_windows_xp.png "Demo application under Windows XP"
 @image html demo_windows95.png "Demo application with Windows 95 theme"
 
-@example font.cpp Boost.UI font example
-@example filesystem.cpp Boost.Filesystem file manager
+@example font.cpp Boost.UI font usage example
+@example filesystem.cpp Boost.Filesystem and std::filesystem file manager
 @see <a href="http://en.wikipedia.org/wiki/File_manager">File manager (Wikipedia)</a>
-@example geometry.cpp Boost.Geometry example
+@example geometry.cpp Boost.Geometry usage example
 @example hello.cpp "Hello, World!" application
 @see <a href="http://en.wikipedia.org/wiki/%22Hello,_world!%22_program">"Hello, world!" program (Wikipedia)</a>
-@example interprocess.cpp Boost.Interprocess example
-@example lexical_cast.cpp Boost.Lexical_Cast example
-@example locale.cpp Boost.Locale example
+@example interprocess.cpp Boost.Interprocess usage example
+@example lexical_cast.cpp Boost.Lexical_Cast usage example
+@example locale.cpp Boost.Locale usage example
 @example native.cpp Native API usage example
-@example random.cpp Boost.Random example
+@example random.cpp Boost.Random and std::random usage example
 @see <a href="http://en.wikipedia.org/wiki/Pseudorandom_number_generator">Pseudorandom number generator (Wikipedia)</a>
-@example regex.cpp Boost.Regex example
+@example regex.cpp Boost.Regex and std::regex usage example
 @see <a href="http://en.wikipedia.org/wiki/Regular_expression">Regular expression (Wikipedia)</a>
 @example sort.cpp Visualization of sorting algorithms
 @see <a href="http://en.wikipedia.org/wiki/Sorting_algorithm">Sorting algorithm (Wikipedia)</a>
-@example spirit.cpp Boost.Spirit example
-@example stacktrace.cpp Boost.Stacktrace example
-@example thread.cpp Boost.Thread example
+@example spirit.cpp Boost.Spirit usage example
+@example stacktrace.cpp Boost.Stacktrace usage example
+@example thread.cpp Boost.Thread and std::thread usage example
 @see boost::ui::call_async
 @see <a href="http://en.wikipedia.org/wiki/Thread_(computing)">Thread (Wikipedia)</a>
-@example timer.cpp Boost.Timer example
+@example timer.cpp Boost.Timer usage example
 @see boost::ui::on_timeout
 @see <a href="http://en.wikipedia.org/wiki/Timer">Timer (Wikipedia)</a>
-@example tokenizer.cpp Boost.Tokenizer example
+@example tokenizer.cpp Boost.Tokenizer usage example
 
 @defgroup graphics Graphics
 @see <a href="http://en.wikipedia.org/wiki/Computer_graphics">Computer graphics (Wikipedia)</a>

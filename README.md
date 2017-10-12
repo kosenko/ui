@@ -22,7 +22,7 @@ Boost.UI is a C++ User Interface Boost library that
   * example/chrono.cpp - **Boost.Chrono** and **std::chrono** usage example
   * example/date_time.cpp - **Boost.Date_Time** usage example
   * example/font.cpp - Font usage example
-  * example/filesystem.cpp - **Boost.Filesystem** and **std::filesystem** usage example
+  * example/filesystem.cpp - **Boost.Filesystem** and **std::filesystem** file manager
   * example/geometry.cpp - **Boost.Geometry** usage example
   * example/interprocess.cpp - **Boost.Interprocess** usage example
   * example/lexical_cast.cpp - **Boost.Lexical_Cast** usage example
