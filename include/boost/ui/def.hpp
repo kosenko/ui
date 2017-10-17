@@ -19,7 +19,7 @@ struct nullopt_t {
     nullopt_t(int) {}
 };
 
-extern nullopt_t nullopt;
+extern BOOST_UI_DECL nullopt_t nullopt;
 
 #endif
 
