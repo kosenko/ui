@@ -42,11 +42,14 @@ void show_exception_raw(const std::basic_string<charT>& message,
     wxString str = title;
     if ( wxTheApp )
         str << wxS(" - ") << wxTheApp->GetAppDisplayName();
+
 #if wxUSE_MSGDLG
-    wxMessageBox(message, str, wxICON_ERROR);
-#else
-    wxLogDebug(wxS("Error: %s: %s"), str, message);
+    wxString value;
+    if ( !wxGetEnv(wxS("DEBIAN_FRONTEND"), &value) || value != wxS("noninteractive") )
+        wxMessageBox(message, str, wxICON_ERROR);
+    else
 #endif
+        wxLogDebug(wxS("Error: %s: %s"), str, message);
 }
 
 void show_exception(const boost::exception& e, const char* where)

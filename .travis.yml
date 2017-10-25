@@ -1,0 +1,66 @@
+# Travis CI build script
+
+# Copyright (c) 2017 Kolya Kosenko
+
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+
+language: cpp
+
+matrix:
+    include:
+        - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++03 SKIP_CPP11=1
+          compiler: g++
+        - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++11
+          compiler: g++
+        - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++03 SKIP_CPP11=1
+          compiler: clang++
+        - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++11
+          compiler: clang++
+
+addons:
+    apt:
+        packages:
+            - libgtk2.0-dev
+            - libwebkitgtk-dev
+            - realpath
+
+before_install:
+    - sudo apt-get update -yq
+    - sudo sh -c "echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections"
+    - sudo apt-get install msttcorefonts -qq
+
+install:
+    - cd ..
+    - git clone -b boost-1.65.1 --depth 1 https://github.com/boostorg/boost.git boost-root
+    - cd boost-root
+    - git submodule update --init --checkout --depth 1
+    - git submodule update --init tools/build
+    - git submodule update --init libs/config
+    - git submodule update --init tools/boostdep
+    - ln -s $TRAVIS_BUILD_DIR libs/ui
+    - python tools/boostdep/depinst/depinst.py ui
+    - ./bootstrap.sh
+    - ./b2 headers
+
+before_script:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 3 # give xvfb some time to start
+
+script:
+    - set -e
+    - |-
+        echo "using $TOOLSET : : $COMPILER : <cxxflags>-std=$CXXSTD ;" > ~/user-config.jam
+    - wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3/wxWidgets-3.0.3.tar.bz2
+    - tar -xf wxWidgets-3.0.3.tar.bz2
+    - mkdir build-wx
+    - pushd build-wx
+    - ../wxWidgets-3.0.3/configure --disable-optimise --enable-debug=max
+    - make
+    - export WX_CONFIG=`realpath .`/wx-config
+    - popd
+    - ./b2 libs/ui/build toolset=$TOOLSET
+    - ./b2 libs/ui/test toolset=$TOOLSET
+    - ./b2 libs/ui/example toolset=$TOOLSET
+    - (test "$SKIP_CPP11" && echo "SKIPPED") || ./b2 libs/ui/example/cpp11 toolset=$TOOLSET
