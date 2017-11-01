@@ -10,13 +10,14 @@ using doxygen ;
 
 doxygen
         # target
-        ui_reference.html
+        ui_reference
     :
         # sources
         [ glob ../../../libs/ui/include/boost/ui/*.hpp ]
         [ glob ../../../libs/ui/include/boost/ui.hpp ]
     :
         # requirements
+        <doxygen:param>GENERATE_HTML=YES
         <doxygen:param>PROJECT_NAME="Boost.UI"
         <doxygen:param>PROJECT_BRIEF="User&nbsp;Interface&nbsp;Boost&nbsp;library"
         <doxygen:param>HTML_COLORSTYLE_HUE=206
@@ -36,4 +37,14 @@ doxygen
         <doxygen:param>PREDEFINED="DOXYGEN BOOST_UI_DECL BOOST_NOEXCEPT=noexcept \\
             \"BOOST_SCOPED_ENUM_DECLARE_BEGIN(EnumType)=enum class EnumType\" \\
             BOOST_SCOPED_ENUM_DECLARE_END(EnumType)=;"
+    ;
+
+xml ui : ui.qbk : <dependency>ui_reference ;
+
+boostbook standalone
+    :
+        ui
+    :
+        <xsl:param>boost.root=http://www.boost.org/doc/libs/1_65_1
+        #<xsl:param>boost.root=$(BOOST_ROOT)
     ;
