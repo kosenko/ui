@@ -54,6 +54,8 @@ Boost.UI depends on Boost.Config, Boost.Core, Boost.Function, Boost.Bind, Boost.
 Also optionally Boost.Chrono and Boost.Date_Time could be used.
 Note that corresponding classes from C++11 Standard also could be used with Boost.UI if available.
 
+Boost.UI is a binary library (not header-only) and must be built separately.
+
 ### License
 
 Distributed under the [Boost Software License, Version 1.0](http://boost.org/LICENSE_1_0.txt).
