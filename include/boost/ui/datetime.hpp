@@ -126,6 +126,7 @@ public:
     /// Connects data change handler
     date_picker& on_change(const boost::function<void()>& handler);
 
+#ifndef DOXYGEN
 private:
     void ymd(int& year, int& month, int& day) const;
     void set_ymd(int year, int month, int day);
@@ -133,6 +134,7 @@ private:
     class detail_impl;
     detail_impl* get_impl();
     const detail_impl* get_impl() const;
+#endif
 };
 
 /// @brief Time picker widget
