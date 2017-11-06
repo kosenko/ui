@@ -49,3 +49,11 @@ boostbook standalone
         #<xsl:param>boost.root=https://www.boost.org/doc/libs/1_65_1
         #<xsl:param>boost.root=$(BOOST_ROOT)
     ;
+
+###############################################################################
+
+alias boostdoc : standalone ;
+explicit boostdoc ;
+
+alias boostrelease ;
+explicit boostrelease ;
