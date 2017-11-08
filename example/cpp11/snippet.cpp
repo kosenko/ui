@@ -47,7 +47,8 @@ int ui_main()
     {
 /// [event]
 ui::dialog dlg("Example dialog");
-ui::button(dlg, "&Quit").on_press(&ui::dialog::close, &dlg);
+ui::button(dlg, "&Quit")
+    .on_press(&ui::dialog::close, &dlg);
 dlg.show_modal();
 /// [event]
     });
@@ -55,17 +56,20 @@ dlg.show_modal();
     layout << ui::button(parent, "&Timeout").on_press([]
     {
 /// [on_timeout]
-ui::on_timeout(std::chrono::milliseconds(1000), []{ BOOST_UI_LOG; });
+ui::on_timeout(std::chrono::milliseconds(1000),
+               []{ BOOST_UI_LOG; }
+              );
 /// [on_timeout]
     });
 
 /// [combo_box]
-ui::combo_box combo_box = ui::combo_box(parent, "Initial text",
+ui::combo_box combo_box = ui::combo_box(parent,
+    "Initial text",
     { "Option 1", "Option 2", "Option 3" })
     .on_select_event([&](ui::index_event& e)
     {
         ui::log::info() << "Selected index: " << e.index()
-                        << ", text: " << combo_box.text();
+                        << ", text: "         << combo_box.text();
     });
 /// [combo_box]
     layout << combo_box.layout().justify();

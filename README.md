@@ -1,7 +1,7 @@
 Boost.UI
 ========
 
-Boost.UI is a C++ User Interface Boost library that
+Boost.UI is a C++ User Interface (GUI) Boost library that
 * is cross-platform
 * uses native system-provided widgets
 * has STL-like and Boost-like API

@@ -57,28 +57,63 @@
 
 @tableofcontents
 
-@section description Description
+@section introduction Introduction
 
-Boost.UI is a C++ User Interface Boost library that
+Boost.UI is a C++ User Interface (GUI) Boost library that
 - is cross-platform
 - uses native system-provided widgets
 - has STL-like and Boost-like API
 - compatible with other Boost libraries
 - supports modern C++11/14/17 features
 
-@section hello "Hello, World!" application
+It supports @ref graphics, various @ref widget, @ref event, @ref layout.
+
+@section motivation Motivation
+C++ programs should have a better way to interact with humans then std::cin / std::cout.
+
+@section examples_and_screenshots Examples and screenshots
+@subsection hello "Hello, World!" application
 @image html hello_windows7.png "\"Hello, World!\" application under Windows 7"
 @include cpp11/hello.cpp
 
-@section bootstrap Bootstrap application
+@subsection bootstrap Bootstrap application
 @image html bootstrap_unity.png "Bootstrap application under Unity"
 @include cpp11/bootstrap.cpp
 
-@section widgets_screenshot Screenshots
+@subsection widgets_screenshot Screenshots
 @image html demo_unity.png "Demo application under Unity"
 @image html demo_windows7.png "Demo application under Windows 7"
 @image html demo_windows_xp.png "Demo application under Windows XP"
 @image html demo_windows95.png "Demo application with Windows 95 theme"
+
+@section overview Overview
+
+@subsection initialization Initialization
+Boost.UI library master include file is <boost/ui.hpp> and this library uses @ref boost::ui namespace to hold all classes and functions.
+Boost.UI requires GUI initialization and uninitialization, therefore you should use @ref boost::ui::entry() function to do it.
+
+@subsection thread_safety Thread safety
+Boost.UI is @b not thread safe library, so you should use @ref boost::ui::call_async() function to synchronize worker threads with main (GUI) thread.
+However you can use @ref log in any thread.
+
+@subsection event_loops Event loops
+Boost.UI has own event loops and you can't create other your own event loops inside main (GUI) thread without freezing GUI.
+For example if you are using Boost.ASIO you should create other (worker) thread and synchronize it with main thread as described before.
+Note that main thread is used to interact with user, not for long time calculations.
+
+@subsection exception_safety Exception safety
+Boost.UI catches exception inside @ref boost::ui::entry() and event handlers if you didn't catch it before.
+And shows exception dialog window to the user.
+
+@subsection event_handling Event handing
+@ref widget have various event subscription functions (for example @ref boost::ui::button::on_press()).
+If you pass callback function to it, this function will be called when event occurs (button press in this case).
+Multiple subscription calls causes multiple event handlers calls,
+i. e. event handler callback function isn't overrided on next event subscription call.
+
+@subsection strings Strings
+Boost.UI has own @ref boost::ui::uistring string class that simplifies conversion between native widget toolkit string classes and C++ Standard string classes.
+Native string format could be ANSI, UTF-8, wchar_t etc.
 
 @section src Source code
 See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>

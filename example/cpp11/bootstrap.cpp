@@ -30,6 +30,8 @@ private:
 bootstrap_dialog::bootstrap_dialog()
     : ui::dialog("Bootstrap example")
 {
+    // Create vertical box layout inside dialog window
+    // and put children widgets inside it
     ui::vbox(*this)
         << ui::label(*this, "Input:")
         << m_input_widget.create(*this, "Boost.UI default input data 0123456789")
@@ -46,11 +48,13 @@ bootstrap_dialog::bootstrap_dialog()
             .layout().justify().stretch()
         ;
 
+    // Change dialog window size
     resize(400, 300);
 }
 
 void bootstrap_dialog::process()
 {
+    // Read string from input widget
     std::wstring data = m_input_widget.text().wstring();
 
     // TODO: Add your process code here
@@ -58,7 +62,11 @@ void bootstrap_dialog::process()
 
     std::wostringstream ss;
     ss << data;
+
+    // Write string to output widget
     m_output_widget.text(ss.str());
+
+    // Clear input widget text
     m_input_widget.clear();
 }
 
