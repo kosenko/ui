@@ -294,6 +294,7 @@ private:
     boost::optional<size_t> get_index(const item& i);
     void on_less(const item& item_less, const item& item_greater);
 
+    ui::choice m_sorting_algorithm;
     ui::button m_generate_button;
     ui::button m_start_button;
     ui::button m_next_button;
@@ -308,11 +309,22 @@ sort_dialog::sort_dialog() : ui::dialog("Visualization of sorting algorithms"),
 {
     on_close_event(boost::bind(&this_type::on_close_handler, this, _1));
 
+    static const char *sorting_algorithms[] =
+    {
+        "Stupid", "Gnome", "Bubble", "Stooge", "Quick", "Selection", "Heap",
+        "Insertion", "Shell", "Tree", "Merge",
+        "std::sort()", "std::stable_sort()", "std::qsort()"
+    };
+
     ui::hbox(*this)
         << m_canvas.create(*this)
             .on_resize(boost::bind(&this_type::draw, this))
             .layout().justify().stretch()
         << ( ui::vbox().layout().justify()
+            << ui::label(*this, "Algorithm:")
+            << m_sorting_algorithm.create(*this, sorting_algorithms)
+                .select(2)
+                .layout().justify()
             << m_generate_button.create(*this, "&Generate")
                 .on_press(&this_type::on_generate, this)
                 .layout().justify()
@@ -357,44 +369,47 @@ void sort_dialog::on_generate()
 
 void sort_dialog::on_start()
 {
+    m_sorting_algorithm.disable();
     m_generate_button.disable();
     m_start_button.disable();
     m_next_button.enable();
     m_run_button.enable();
 
+    switch ( m_sorting_algorithm.current_selection_index() )
+    {
+        case  0: stupid_sort(   m_array.begin(), m_array.end()); break;
+        case  1: gnome_sort(    m_array.begin(), m_array.end()); break;
+        case  2: bubble_sort(   m_array.begin(), m_array.end()); break;
+        case  3: stooge_sort(   m_array.begin(), m_array.end()); break;
+        case  4: quick_sort(    m_array.begin(), m_array.end()); break;
+        case  5: selection_sort(m_array.begin(), m_array.end()); break;
+        case  6: heap_sort(     m_array.begin(), m_array.end()); break;
+        case  7: insertion_sort(m_array.begin(), m_array.end()); break;
+        case  8: shell_sort(    m_array.begin(), m_array.end()); break;
+        case  9: tree_sort(     m_array.begin(), m_array.end()); break;
+        case 10: merge_sort(    m_array.begin(), m_array.end()); break;
+        case 11: std::sort(     m_array.begin(), m_array.end()); break;
+        case 12: std::stable_sort(m_array.begin(), m_array.end()); break;
+        case 13: std::qsort(&m_array[0], m_array.size(), sizeof(item), &item::cmp); break;
+    }
+
     //const item value = item(m_max_value / 2, this);
     //std::partition(m_array.begin(), m_array.end(),
     //               std::bind2nd(std::less<array_type::value_type>(), value));
-    //std::sort(m_array.begin(), m_array.end());
     //std::binary_search(m_array.begin(), m_array.end(), value);
     //std::lower_bound(m_array.begin(), m_array.end(), value);
     //std::upper_bound(m_array.begin(), m_array.end(), value);
     //std::equal_range(m_array.begin(), m_array.end(), value);
 
-    //std::stable_sort(m_array.begin(), m_array.end());
     //std::partial_sort(m_array.begin(), m_array.begin() + m_array.size() / 2, m_array.end());
     //std::nth_element(m_array.begin(), m_array.begin() + m_array.size() / 2, m_array.end());
-    //std::qsort(&m_array[0], m_array.size(), sizeof(item), &item::cmp);
     //std::bsearch(&value, &m_array[0], m_array.size(), sizeof(item), &item::cmp);
     //m_array.sort();
-
-    //stupid_sort(m_array.begin(), m_array.end());
-    //gnome_sort(m_array.begin(), m_array.end());
-    bubble_sort(m_array.begin(), m_array.end());
-    //stooge_sort(m_array.begin(), m_array.end());
-    //quick_sort(m_array.begin(), m_array.end());
-    //selection_sort(m_array.begin(), m_array.end());
-    //heap_sort(m_array.begin(), m_array.end());
-    //insertion_sort(m_array.begin(), m_array.end());
-    //shell_sort(m_array.begin(), m_array.end());
-    //tree_sort(m_array.begin(), m_array.end());
-    //merge_sort(m_array.begin(), m_array.end());
-
-    //std::is_sorted(m_array.begin(), m_array.end());
 
     //std::unique(m_array.begin(), m_array.end();
     //m_array.erase(std::unique(m_array.begin(), m_array.end()), m_array.end());
 
+    m_sorting_algorithm.enable();
     m_generate_button.enable();
     m_start_button.enable();
     m_next_button.disable();
@@ -404,6 +419,8 @@ void sort_dialog::on_start()
     m_index_greater = boost::none;
 
     draw();
+
+    BOOST_ASSERT( std::is_sorted(m_array.begin(), m_array.end()) );
 }
 
 void sort_dialog::on_next()
