@@ -11,7 +11,9 @@ Boost.UI is a C++ User Interface (GUI) Boost library that
 [![Licence](https://img.shields.io/badge/license-boost-4480cc.png)](http://www.boost.org/LICENSE_1_0.txt)
 [![Build Status](https://travis-ci.org/kosenko/ui.svg?branch=master)](https://travis-ci.org/kosenko/ui)
 
-[Documentation](https://kosenko.github.io/boost.ui/)
+### Documentation
+
+Latest development documentation are available [online](https://kosenko.github.io/boost.ui/).
 
 ### Contents
 
