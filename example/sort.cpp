@@ -420,7 +420,7 @@ void sort_dialog::on_start()
 
     draw();
 
-    BOOST_ASSERT( std::is_sorted(m_array.begin(), m_array.end()) );
+    //BOOST_ASSERT( std::is_sorted(m_array.begin(), m_array.end()) );
 }
 
 void sort_dialog::on_next()
