@@ -3,11 +3,11 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-// http://isocpp.org/files/papers/n3791.html
 // Beman's challenge:
 // "Display Hello C++ World in a window and allow the user to drag that text
 // around inside the window with a program that is only slightly more complex
 // that the traditional hello world program."
+// http://isocpp.org/files/papers/n3791.html
 
 #include <boost/ui.hpp>
 
