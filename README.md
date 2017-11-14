@@ -42,6 +42,7 @@ Latest development documentation are available [online](https://kosenko.github.i
   * example/cpp11/beman.cpp - Beman's challenge
   * example/cpp11/stroustrup.cpp - Re-implemented GUI examples
 from "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
+  * example/cpp11/io2d.cpp - Re-implemented examples from P0267 proposal (io2d library)
 * **include** - Interface headers with documentation
 * **src** - Source code
 * **test** - Unit tests
