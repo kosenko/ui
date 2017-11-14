@@ -406,6 +406,9 @@ void demo_frame::on_press_me()
     info << "\nSTD_HASH";
 #endif
 
+    info << "\nBOOST_COMPILER_CONFIG: " << BOOST_COMPILER_CONFIG;
+    info << "\nBOOST_STDLIB_CONFIG: "   << BOOST_STDLIB_CONFIG  ;
+
     ui::info_dialog(info.str());
 }
 
