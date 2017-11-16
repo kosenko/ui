@@ -8,6 +8,7 @@
 import os ;
 import modules ;
 import string ;
+import errors ;
 
 local CXXFLAGS ;
 local LINKFLAGS ;
@@ -34,6 +35,12 @@ if [ modules.peek : UNIX ]
 rule wxuilibs ( properties * )
 {
     local WXWIN = [ os.environ WXWIN ] ;
+    if ! $(WXWIN)
+    {
+        errors.user-error "WXWIN environment variable (path to wxWidgets) wasn't set" ;
+    }
+    return ;
+
     local output = [ SHELL "type $(WXWIN)\\include\\wx\\version.h" ] ;
     #local output = [ SHELL "cat $(WXWIN)/include/wx/version.h" ] ;
     local wxMAJOR_VERSION = [ MATCH "define *wxMAJOR_VERSION *([0-9]*).*" : $(output) ] ;
