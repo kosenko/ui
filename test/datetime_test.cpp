@@ -335,7 +335,7 @@ void test_time_picker(ui::widget parent)
     picker.chrono_duration(std::chrono::minutes(82));
     BOOST_TEST_EQ(picker.get_time_t(), 82 * 60);
 
-    picker.chrono_duration(std::chrono::duration<double, std::chrono::minutes::period>(93.5));
+    picker.chrono_duration(std::chrono::minutes(93) + std::chrono::seconds(30));
     BOOST_TEST_EQ(picker.get_time_t(), 93 * 60 + 30);
 #endif
 }
