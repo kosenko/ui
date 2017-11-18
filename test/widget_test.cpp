@@ -274,19 +274,19 @@ void test_strings_box(ui::widget parent)
     }
 #ifndef BOOST_NO_CXX11_HDR_INITIALIZER_LIST
     {
-        Widget sw(parent, { ui::uistring("Item 1") });
+        Widget sw(parent, { ui::uistring("Item 1"), ui::uistring("Item 2") });
         BOOST_TEST(!sw.empty());
-        BOOST_TEST_EQ(sw.size(), 1);
+        BOOST_TEST_EQ(sw.size(), 2);
     }
     {
-        Widget sw(parent, { "Item 1" });
+        Widget sw(parent, { "Item 1", "Item 2" });
         BOOST_TEST(!sw.empty());
-        BOOST_TEST_EQ(sw.size(), 1);
+        BOOST_TEST_EQ(sw.size(), 2);
     }
     {
-        Widget sw(parent, { L"Item 1" });
+        Widget sw(parent, { L"Item 1", L"Item 2" });
         BOOST_TEST(!sw.empty());
-        BOOST_TEST_EQ(sw.size(), 1);
+        BOOST_TEST_EQ(sw.size(), 2);
     }
 #endif
 
