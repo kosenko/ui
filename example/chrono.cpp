@@ -9,7 +9,10 @@
 
 #include <boost/config.hpp>
 
-#if !defined(BOOST_NO_CXX11_HDR_CHRONO)
+// std::chrono is broken under Visual C++ 11 (2012) and 12 (2013)
+// TODO: Fix it
+#if !defined(BOOST_NO_CXX11_HDR_CHRONO) && \
+    !(defined(BOOST_DINKUMWARE_STDLIB) && (BOOST_DINKUMWARE_STDLIB >= 540) && (BOOST_DINKUMWARE_STDLIB < 650))
 #include <chrono>
 namespace chrono_ns = std::chrono;
 #else

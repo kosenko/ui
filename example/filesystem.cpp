@@ -15,7 +15,7 @@
 
 #include <fstream>
 
-// Visual C++ 2015
+// Visual C++ 14 (2015)
 #if defined(BOOST_DINKUMWARE_STDLIB) && (BOOST_DINKUMWARE_STDLIB >= 650)
 #include <chrono>
 #include <filesystem>

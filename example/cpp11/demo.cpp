@@ -21,6 +21,8 @@ int ui_main()
         })
         ;
 
+// Requires at least Visual C++ 14.0 (2015)
+#if !defined(BOOST_DINKUMWARE_STDLIB) || (BOOST_DINKUMWARE_STDLIB >= 650)
     list_box.push_back({U'G', U' ', U'\U0001D11E'});
 
     list_box.push_back( R"*("(\char)")*");
@@ -30,6 +32,7 @@ int ui_main()
 
     auto str = list_box.at(0) + " c" + L" w" + u" u" + U" U";
     list_box.push_back(str);
+#endif
 
     ui::log() << 18446744073709551615ull;
 

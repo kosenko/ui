@@ -1,0 +1,72 @@
+# AppVeyor build script
+
+# Copyright (c) 2017 Kolya Kosenko
+
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+
+version: 1.0.{build}-{branch}
+
+shallow_clone: true
+
+environment:
+    matrix:
+        # Visual Studio 2008, _CPPLIB_VER: 505
+        - VS: 9.0
+          SKIP_CPP11: 1
+
+        # Visual Studio 2010, _CPPLIB_VER: 520
+        - VS: 10.0
+          SKIP_CPP11: 1
+
+        # Visual Studio 2012, _CPPLIB_VER: 540
+        - VS: 11.0
+          NMAKE_ARGS: BUILD=release
+          B2_ARGS: variant=release
+          SKIP_CPP11: 1
+
+        # Visual Studio 2013, _CPPLIB_VER: 610
+        - VS: 12.0
+          NMAKE_ARGS: TARGET_CPU=X64
+          ARCH: x86_amd64
+          B2_ARGS: address-model=64
+
+        # Visual Studio 2015, _CPPLIB_VER: 650
+        - VS: 14.0
+
+        # Visual Studio 2017
+        #- VS: 14.1
+        #  APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+
+install:
+- cmd: |
+    cd ..
+    git clone -b boost-1.65.1 --depth 1 https://github.com/boostorg/boost.git boost-root
+    cd boost-root
+    git submodule update --init --checkout --depth 1
+    git submodule update --init tools/build
+    git submodule update --init libs/config
+    git submodule update --init tools/boostdep
+    xcopy /s /e /q /i %APPVEYOR_BUILD_FOLDER% libs\ui\
+    python tools/boostdep/depinst/depinst.py ui
+    cmd /c bootstrap
+    b2 headers
+
+build: off
+
+test_script:
+- cmd: |
+    cd ..
+    appveyor DownloadFile https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3/wxWidgets-3.0.3.zip
+    7z x wxWidgets-3.0.3.zip -y -owxWidgets
+    set WXWIN=%APPVEYOR_BUILD_FOLDER%\..\wxWidgets
+    cd %WXWIN%
+    cd build\msw
+    call "C:\Program Files (x86)\Microsoft Visual Studio %VS%\VC\vcvarsall.bat" %ARCH%
+    nmake -f makefile.vc %NMAKE_ARGS%
+    cd %APPVEYOR_BUILD_FOLDER%\..\boost-root\
+
+    b2 libs/ui/build link=static toolset=msvc-%VS% %B2_ARGS%
+    b2 libs/ui/test link=static toolset=msvc-%VS% %B2_ARGS%
+    b2 libs/ui/example link=static toolset=msvc-%VS% %B2_ARGS%
+    IF NOT DEFINED SKIP_CPP11 (b2 libs/ui/example/cpp11 link=static toolset=msvc-%VS% %B2_ARGS%) ELSE (ECHO SKIPPED)
