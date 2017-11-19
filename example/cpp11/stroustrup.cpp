@@ -5,6 +5,7 @@
 
 // Re-implemented GUI examples from
 // "Programming -- Principles and Practice Using C++" book by Bjarne Stroustrup
+// http://www.stroustrup.com/programming.html
 
 #include <boost/ui.hpp>
 #include <boost/math/constants/constants.hpp>
