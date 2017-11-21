@@ -10,6 +10,7 @@
 #include <boost/ui/detail/memcheck.hpp>
 
 #include <boost/exception/get_error_info.hpp>
+#include <boost/bind.hpp>
 
 #include <sstream>
 #include <map>
@@ -100,10 +101,38 @@ void show_exception(const char* where)
     show_exception_raw(ss.str(), "Unknown exception");
 }
 
+void safe_call(const boost::function<void()>& fn, const char* where)
+{
+    try
+    {
+        fn();
+    }
+    catch ( boost::exception& e )
+    {
+        show_exception(e, where);
+    }
+    catch ( std::exception& e )
+    {
+        show_exception(e, where);
+    }
+    catch ( boost::ui::uistring& e )
+    {
+        show_exception(e, where);
+    }
+    catch ( ... )
+    {
+        show_exception(where);
+    }
+
+}
+
 } // unnamed namespace
 
 class boost_ui_app : public wxApp
 {
+    typedef boost_ui_app this_type;
+    typedef wxApp        base_type;
+
 public:
     virtual ~boost_ui_app();
     virtual bool OnInit() wxOVERRIDE;
@@ -129,6 +158,15 @@ private:
     typedef std::map< int, std::pair< wxTimer*, boost::function<void()> > > timers_type;
     timers_type m_timers;
 #endif
+
+    void OnRunHere(int &result);
+
+    void CallEventHandlerBase(wxEvtHandler* handler,
+                              wxEventFunctor& functor,
+                              wxEvent& event) const
+    {
+        base_type::CallEventHandler(handler, functor, event);
+    }
 };
 
 boost_ui_app::~boost_ui_app()
@@ -142,68 +180,38 @@ boost_ui_app::~boost_ui_app()
 bool boost_ui_app::OnInit()
 {
     // Don't try to parse command line in
-    // wxApp::OnInit();
+    // base_type::OnInit();
 
     return true;
 }
 
+void boost_ui_app::OnRunHere(int &result)
+{
+#if wxUSE_TIMER
+    Bind(wxEVT_TIMER, &this_type::on_timer, this);
+#endif
+    if ( g_ui_main_args )
+        result = g_ui_main_args(g_argc, g_argv);
+    else if ( g_ui_main )
+        result = g_ui_main();
+}
+
 int boost_ui_app::OnRun()
 {
-    try
-    {
-#if wxUSE_TIMER
-        Bind(wxEVT_TIMER, &boost_ui_app::on_timer, this);
-#endif
-        if ( g_ui_main_args )
-            return g_ui_main_args(g_argc, g_argv);
-
-        if ( g_ui_main )
-            return g_ui_main();
-    }
-    catch ( boost::exception& e )
-    {
-        show_exception(e, " in the main Boost.UI function, terminating");
-    }
-    catch ( std::exception& e )
-    {
-        show_exception(e, " in the main Boost.UI function, terminating");
-    }
-    catch ( boost::ui::uistring& e )
-    {
-        show_exception(e, " in the main Boost.UI function, terminating");
-    }
-    catch ( ... )
-    {
-        show_exception(" in the main Boost.UI function, terminating");
-    }
-
-    return EXIT_FAILURE;
+    int result = EXIT_FAILURE;
+    safe_call(boost::bind(&this_type::OnRunHere, this,
+                          boost::ref(result)),
+              " in the main Boost.UI function, terminating");
+    return result;
 }
 
 void boost_ui_app::CallEventHandler(wxEvtHandler* handler,
                                     wxEventFunctor& functor,
                                     wxEvent& event) const
 {
-    try
-    {
-        wxApp::CallEventHandler(handler, functor, event);
-    }
-    catch ( boost::exception& e )
-    {
-        show_exception(e, " in a Boost.UI event handler");
-    }
-    catch ( std::exception& e )
-    {
-        show_exception(e, " in a Boost.UI event handler");
-    }
-    catch ( boost::ui::uistring& e )
-    {
-        show_exception(e, " in a Boost.UI event handler");
-    }
-    catch ( ... )
-    {
-        show_exception(" in a Boost.UI event handler");
-    }
+    safe_call(boost::bind(&this_type::CallEventHandlerBase, this,
+                          handler, boost::ref(functor), boost::ref(event)),
+              " in a Boost.UI event handler");
 }
 
 void boost_ui_app::on_timeout(int milliseconds, const boost::function<void()>& fn)
