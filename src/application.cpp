@@ -7,6 +7,7 @@
 
 #include <boost/ui/application.hpp>
 #include <boost/ui/string.hpp>
+#include <boost/ui/native/string.hpp>
 #include <boost/ui/detail/memcheck.hpp>
 
 #include <boost/exception/get_error_info.hpp>
@@ -36,21 +37,21 @@ int (*g_ui_main)() = NULL;
 int g_argc = 0;
 char** g_argv = NULL;
 
-template <class charT>
-void show_exception_raw(const std::basic_string<charT>& message,
-                        const charT* title)
+void show_exception_raw(const boost::ui::uistring& message,
+                        const boost::ui::uistring& title)
 {
-    wxString str = title;
+    const wxString msg = boost::ui::native::from_uistring(message);
+    wxString str = boost::ui::native::from_uistring(title);
     if ( wxTheApp )
         str << wxS(" - ") << wxTheApp->GetAppDisplayName();
 
 #if wxUSE_MSGDLG
     wxString value;
     if ( !wxGetEnv(wxS("DEBIAN_FRONTEND"), &value) || value != wxS("noninteractive") )
-        wxMessageBox(message, str, wxICON_ERROR);
+        wxMessageBox(msg, str, wxICON_ERROR);
     else
 #endif
-        wxLogDebug(wxS("Error: %s: %s"), str, message);
+        wxLogDebug(wxS("Error: %s: %s"), str, msg);
 }
 
 void show_exception(const boost::exception& e, const char* where)
@@ -84,13 +85,13 @@ void show_exception(const std::exception& e, const char* where)
     show_exception_raw(ss.str(), "std::exception");
 }
 
-void show_exception(const boost::ui::uistring& e, const char* where)
+void show_exception(const boost::ui::uistring& e, const char* where, const char* type)
 {
     std::wostringstream ss;
     ss  << "\"" << e.wstring() << "\"\n\n"
-        << L"Caught boost::ui::uistring"
+        << L"Caught " << type
         << where;
-    show_exception_raw(ss.str(), L"boost::ui::uistring");
+    show_exception_raw(ss.str(), type);
 }
 
 void show_exception(const char* where)
@@ -115,9 +116,29 @@ void safe_call(const boost::function<void()>& fn, const char* where)
     {
         show_exception(e, where);
     }
+    catch ( std::wstring& e )
+    {
+        show_exception(e, where, "std::wstring exception");
+    }
+    catch ( std::string& e )
+    {
+        show_exception(e, where, "std::string exception");
+    }
+#ifndef BOOST_NO_CXX11_CHAR16_T
+    catch ( std::u16string& e )
+    {
+        show_exception(e, where, "std::u16string exception");
+    }
+#endif
+#ifndef BOOST_NO_CXX11_CHAR32_T
+    catch ( std::u32string& e )
+    {
+        show_exception(e, where, "std::u32string exception");
+    }
+#endif
     catch ( boost::ui::uistring& e )
     {
-        show_exception(e, where);
+        show_exception(e, where, "boost::ui::uistring exception");
     }
     catch ( ... )
     {
