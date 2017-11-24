@@ -22,7 +22,7 @@ int ui_main()
         ;
 
 // Requires at least Visual C++ 14.0 (2015)
-#if !defined(BOOST_DINKUMWARE_STDLIB) || (BOOST_DINKUMWARE_STDLIB >= 650)
+#if !defined(_MSC_VER) || (_MSC_VER >= 1900)
     list_box.push_back({U'G', U' ', U'\U0001D11E'});
 
     list_box.push_back( R"*("(\char)")*");
