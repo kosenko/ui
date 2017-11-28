@@ -54,7 +54,7 @@ by Bjarne Stroustrup
 
 See [build instructions](build/README.md).
 
-Tested compilers: GCC 5.4.0, Clang 3.8.0, Visual C++ 9.0 (2008), 14.0 (2015).
+Tested compilers: GCC 5.4.0, Clang 3.8.0, Visual C++ 9.0 (2008), 14.0 (2015), Travis CI and AppVeyor compilers.
 
 Boost.UI depends on Boost.Config, Boost.Core, Boost.Function, Boost.Bind, Boost.Move, Boost.Optional, Boost.Tribool, Boost.Range and wxWidgets libraries.
 Also optionally Boost.Chrono and Boost.Date_Time could be used.
