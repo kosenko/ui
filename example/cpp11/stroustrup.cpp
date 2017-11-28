@@ -5,6 +5,7 @@
 
 // Re-implemented GUI examples from
 // "Programming -- Principles and Practice Using C++" book by Bjarne Stroustrup
+// Chapter 12
 // http://www.stroustrup.com/programming.html
 
 #include <boost/ui.hpp>
