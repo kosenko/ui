@@ -9,6 +9,11 @@
 #define BOOST_UI_COLOR_HPP
 
 #include <boost/ui/config.hpp>
+
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #include <boost/cstdint.hpp>
 
 namespace boost {

@@ -10,6 +10,12 @@
 
 #include <boost/config.hpp>
 
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
+//------------------------------------------------------------------------------
+
 #ifndef DOXYGEN
 
 #if (__cplusplus < 201103L || \

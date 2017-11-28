@@ -24,6 +24,10 @@
 
 #include <boost/ui/config.hpp>
 
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #ifdef BOOST_UI_USE_GEOMETRY
 #include <boost/geometry.hpp> // TODO: Remove hotfix
 #include <boost/geometry/geometries/point_xy.hpp>

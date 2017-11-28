@@ -9,6 +9,11 @@
 #define BOOST_UI_MESSAGE_HPP
 
 #include <boost/ui/config.hpp>
+
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #include <boost/ui/string.hpp>
 
 namespace boost {

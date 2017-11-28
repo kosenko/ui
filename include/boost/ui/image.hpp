@@ -9,6 +9,11 @@
 #define BOOST_UI_IMAGE_HPP
 
 #include <boost/ui/config.hpp>
+
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #include <boost/ui/coord.hpp>
 
 #include <istream>

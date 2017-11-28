@@ -9,6 +9,11 @@
 #define BOOST_UI_PAINTER_HPP
 
 #include <boost/ui/config.hpp>
+
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #include <boost/ui/def.hpp>
 #include <boost/ui/color.hpp>
 #include <boost/ui/image.hpp>

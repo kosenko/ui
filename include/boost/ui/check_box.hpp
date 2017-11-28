@@ -9,6 +9,11 @@
 #define BOOST_UI_CHECK_BOX_HPP
 
 #include <boost/ui/config.hpp>
+
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #include <boost/ui/def.hpp>
 #include <boost/ui/widget.hpp>
 #include <boost/logic/tribool.hpp>

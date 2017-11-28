@@ -10,6 +10,10 @@
 
 #include <boost/ui/config.hpp>
 
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #include <boost/noncopyable.hpp>
 
 namespace boost  {

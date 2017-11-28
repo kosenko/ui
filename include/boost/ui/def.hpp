@@ -10,6 +10,10 @@
 
 #include <boost/ui/config.hpp>
 
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 namespace boost {
 namespace ui    {
 

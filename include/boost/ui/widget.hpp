@@ -9,6 +9,11 @@
 #define BOOST_UI_WIDGET_HPP
 
 #include <boost/ui/config.hpp>
+
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #include <boost/ui/coord.hpp>
 #include <boost/ui/string.hpp>
 #include <boost/ui/event.hpp>

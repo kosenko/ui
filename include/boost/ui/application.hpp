@@ -10,6 +10,10 @@
 
 #include <boost/ui/config.hpp>
 
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #ifndef BOOST_NO_CXX11_HDR_CHRONO
 #include <chrono>
 #endif

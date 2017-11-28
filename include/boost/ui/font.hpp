@@ -9,6 +9,11 @@
 #define BOOST_UI_FONT_HPP
 
 #include <boost/ui/config.hpp>
+
+#ifdef BOOST_HAS_PRAGMA_ONCE
+#pragma once
+#endif
+
 #include <boost/ui/string.hpp>
 
 #include <boost/core/scoped_enum.hpp>
