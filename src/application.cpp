@@ -41,7 +41,7 @@ void show_exception_raw(const boost::ui::uistring& message,
                         const boost::ui::uistring& title)
 {
     const wxString msg = boost::ui::native::from_uistring(message);
-    wxString str = boost::ui::native::from_uistring(title);
+          wxString str = boost::ui::native::from_uistring(title);
     if ( wxTheApp )
         str << wxS(" - ") << wxTheApp->GetAppDisplayName();
 
@@ -65,7 +65,7 @@ void show_exception(const boost::exception& e, const char* where)
         << where;
 
     const char* const* file = boost::get_error_info<boost::throw_file>(e);
-    const int*   line = boost::get_error_info<boost::throw_line>(e);
+    const int*         line = boost::get_error_info<boost::throw_line>(e);
     if ( file && line )
         ss << "\n\nSource: " << *file << ":" << *line;
 
