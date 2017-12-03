@@ -116,7 +116,8 @@ Boost.UI has own @ref boost::ui::uistring string class that simplifies conversio
 Native string format could be ANSI, UTF-8, wchar_t etc.
 
 @section src Source code
-See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>
+See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>.
+Read README.md file for build instructions and library details.
 
 @see <a href="http://en.wikipedia.org/wiki/User_interface">User interface (Wikipedia)</a>
 @see <a href="http://en.wikipedia.org/wiki/Graphical_user_interface">Graphical user interface (Wikipedia)</a>
