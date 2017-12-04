@@ -198,6 +198,26 @@ T merge_sort(T first, T last)
     return last;
 }
 
+template <class T>
+bool std_is_sorted(T first, T last)
+{
+    for ( T i = first; ++i != last; )
+    {
+        if ( *i < *first )
+            return false;
+
+        first = i;
+    }
+    return true;
+}
+
+template <class T>
+void bogo_sort(T first, T last)
+{
+    while ( !std_is_sorted(first, last) )
+        std::random_shuffle(first, last);
+}
+
 //------------------------------------------------------------------------------
 // item
 
@@ -314,6 +334,7 @@ sort_dialog::sort_dialog() : ui::dialog("Visualization of sorting algorithms"),
         "Stupid", "Gnome", "Bubble", "Stooge", "Quick", "Selection", "Heap",
         "Insertion", "Shell", "Tree", "Merge",
         "std::sort()", "std::stable_sort()", "std::qsort()"
+        //, "Bogo"
     };
 
     ui::hbox(*this)
@@ -391,6 +412,7 @@ void sort_dialog::on_start()
         case 11: std::sort(     m_array.begin(), m_array.end()); break;
         case 12: std::stable_sort(m_array.begin(), m_array.end()); break;
         case 13: std::qsort(&m_array[0], m_array.size(), sizeof(item), &item::cmp); break;
+        //case 14: bogo_sort(     m_array.begin(), m_array.end()); break;
     }
 
     //const item value = item(m_max_value / 2, this);
@@ -445,7 +467,7 @@ void sort_dialog::on_close_handler(ui::close_event& e)
     if ( m_loop.is_running() )
     {
         e.veto();
-        ui::error_dialog("Unable exit during algorithm execution");
+        ui::error_dialog("Unable to exit during algorithm execution");
     }
 }
 
