@@ -163,18 +163,30 @@ void test_check_box(ui::widget parent)
     BOOST_TEST(!*check_box.optional());
 }
 
+template <class Widget>
+void test_text(Widget& widget)
+{
+    BOOST_TEST_EQ(widget.text(), "Text");
+    widget.text(widget.text() + "!");
+    BOOST_TEST_EQ(widget.text(), "Text!");
+}
+
 void test_text_box(ui::widget parent)
 {
     {
-        ui::string_box text0;
-        BOOST_TEST(text0.native_handle() == NULL);
+        ui::string_box text;
+        BOOST_TEST(text.native_handle() == NULL);
     }
 
     {
-        ui::string_box text1(parent, "Text");
-        BOOST_TEST_EQ(text1.text(), "Text");
-        text1.text(text1.text() + "!");
-        BOOST_TEST_EQ(text1.text(), "Text!");
+        ui::string_box text(parent, "Text");
+        test_text(text);
+    }
+
+    {
+        ui::label label;
+        label.create(parent, "Text");
+        test_text(label);
     }
 }
 
