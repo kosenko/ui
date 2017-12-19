@@ -103,6 +103,12 @@ void test_button(ui::widget parent)
         BOOST_TEST_EQ(button1.tooltip(), "");
         button1.tooltip("My tooltip");
         BOOST_TEST_EQ(button1.tooltip(), "My tooltip");
+
+        ui::font f = button1.font();
+        BOOST_TEST(f.valid());
+        f.size_pt(32);
+        button1.font(f);
+        BOOST_TEST_EQ(button1.font().size_pt(), 32);
     }
 }
 
