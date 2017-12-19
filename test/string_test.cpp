@@ -16,7 +16,7 @@
 namespace ui = boost::ui;
 
 template <class String>
-void test_api_compatibility()
+void test_std_string_api_compatibility()
 {
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
     {
@@ -72,6 +72,26 @@ void test_api_compatibility()
     }
 }
 
+template <class String>
+void test_std_wstring_api_compatibility()
+{
+    {
+        String str(L"xyz");
+        BOOST_TEST(str == L"xyz");
+        str.append(3, L'a');
+        BOOST_TEST(str == L"xyzaaa");
+    }
+}
+
+void test_api_compatibility()
+{
+    test_std_string_api_compatibility<std::string>();
+    test_std_string_api_compatibility<ui::uistring>();
+
+    test_std_wstring_api_compatibility<std::wstring>();
+    test_std_wstring_api_compatibility<ui::uistring>();
+}
+
 template <class CharT>
 void test_ostream()
 {
@@ -114,8 +134,7 @@ void test_getline()
 
 int cpp_main(int, char*[])
 {
-    test_api_compatibility<std::string>();
-    test_api_compatibility<ui::uistring>();
+    test_api_compatibility();
 
     BOOST_TEST(ui::uistring().empty());
     BOOST_TEST(ui::uistring("").empty());
