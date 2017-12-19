@@ -277,7 +277,8 @@ public:
     std::string u8string() const;
 
 #ifndef BOOST_UI_NO_STRING_DESTRUCTIVE
-    /// Returns 7-bit ASCII encoded string
+    /// @brief Returns 7-bit ASCII encoded string
+    /// Replaces 8-bit items with underscore symbol (_)
     std::string asciistring() const;
 
     /// Returns std::string using current locale encoding

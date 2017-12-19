@@ -187,6 +187,9 @@ int cpp_main(int, char*[])
         const ui::uistring str = ui::utf8(charsUTF8);
         BOOST_TEST_EQ(str.u8string(), charsUTF8);
         BOOST_TEST_EQ(str.utf<char>(), charsUTF8);
+        BOOST_TEST_EQ(str.asciistring(), "____");
+        BOOST_TEST_EQ(ui::ascii("Kyiv"), "Kyiv");
+        BOOST_TEST_EQ(ui::ascii(std::string("Ab1")), "Ab1");
 
         std::wstring wstr = str.wstring();
         BOOST_TEST_EQ(wstr.size(), 4u);
