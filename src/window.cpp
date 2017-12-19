@@ -46,12 +46,14 @@ const wxTopLevelWindow* get_impl(const widget& w)
 
 } // namespace unnamed
 
-void window::title(const uistring& title)
+window& window::title(const uistring& title)
 {
     wxTopLevelWindow* impl = get_impl(*this);
-    wxCHECK(impl, );
+    wxCHECK(impl, *this);
 
     impl->SetTitle(native::from_uistring(title));
+
+    return *this;
 }
 
 uistring window::title() const

@@ -51,7 +51,7 @@ class BOOST_UI_DECL window : public widget
 public:
     /// @brief Sets title
     /// @see <a href="http://en.wikipedia.org/wiki/Title_bar">Title bar (Wikipedia)</a>
-    void title(const uistring& title);
+    window& title(const uistring& title);
 
     /// Returns title
     uistring title() const;
