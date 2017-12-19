@@ -169,6 +169,8 @@ void test_text(Widget& widget)
     BOOST_TEST_EQ(widget.text(), "Text");
     widget.text(widget.text() + "!");
     BOOST_TEST_EQ(widget.text(), "Text!");
+    widget.clear();
+    BOOST_TEST_EQ(widget.text(), ui::uistring());
 }
 
 void test_text_box(ui::widget parent)
