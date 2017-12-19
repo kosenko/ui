@@ -99,6 +99,10 @@ void test_button(ui::widget parent)
         BOOST_TEST(!button1.is_enabled());
         button1.enable();
         BOOST_TEST(button1.is_enabled());
+
+        BOOST_TEST_EQ(button1.tooltip(), "");
+        button1.tooltip("My tooltip");
+        BOOST_TEST_EQ(button1.tooltip(), "My tooltip");
     }
 }
 
