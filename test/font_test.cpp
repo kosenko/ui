@@ -14,6 +14,7 @@ namespace ui = boost::ui;
 int ui_main()
 {
     BOOST_TEST(!ui::font().valid());
+    BOOST_TEST(ui::font().native_handle());
     BOOST_TEST_THROWS(ui::font().name(), std::runtime_error);
     BOOST_TEST_THROWS(ui::font().size_pt(), std::runtime_error);
     BOOST_TEST_THROWS(ui::font().get_family(), std::runtime_error);
@@ -21,6 +22,7 @@ int ui_main()
     BOOST_TEST_THROWS(ui::font().get_weight(), std::runtime_error);
 
     BOOST_TEST(ui::font::caption().valid());
+    BOOST_TEST(ui::font::caption().native_handle());
 
     BOOST_TEST_THROWS(ui::font(-1, "Arial"), std::out_of_range);
     BOOST_TEST_THROWS(ui::font(-1, ui::font::family::serif), std::out_of_range);
@@ -30,6 +32,7 @@ int ui_main()
     {
         const ui::font f(12, "Arial");
         BOOST_TEST(f.valid());
+        BOOST_TEST(f.native_handle());
         BOOST_TEST_EQ(f.size_pt(), 12);
         BOOST_TEST_EQ(f.name().string(), "Arial");
         BOOST_TEST(f.get_family() != ui::font::family::monospace);
@@ -41,6 +44,7 @@ int ui_main()
         const ui::font f(16, ui::font::family::sans_serif,
             ui::font::slant::italic, ui::font::weight::bold);
         BOOST_TEST(f.valid());
+        BOOST_TEST(f.native_handle());
         BOOST_TEST_EQ(f.size_pt(), 16);
         BOOST_TEST(f.get_family() == ui::font::family::sans_serif);
         BOOST_TEST(f.get_slant()  == ui::font::slant::italic);
