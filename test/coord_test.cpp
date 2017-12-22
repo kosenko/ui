@@ -20,12 +20,31 @@ namespace ui = boost::ui;
 template <class CharT>
 void test_stream()
 {
-    std::basic_ostringstream<CharT> oss_actual;
-    oss_actual << ui::point(3, 5);
+    {
+        std::basic_ostringstream<CharT> oss_actual;
+        oss_actual << ui::basic_size<double>(1.2, 3.4);
 
-    std::basic_ostringstream<CharT> oss_expected;
-    oss_expected << '(' << '3' << ',' << '5' << ')';
-    BOOST_TEST(oss_actual.str() == oss_expected.str());
+        std::basic_ostringstream<CharT> oss_expected;
+        oss_expected << '(' << '1' << '.' << '2' << ',' << '3' << '.' << '4'<< ')';
+        BOOST_TEST(oss_actual.str() == oss_expected.str());
+    }
+    {
+        std::basic_ostringstream<CharT> oss_actual;
+        oss_actual << ui::point(3, 5);
+
+        std::basic_ostringstream<CharT> oss_expected;
+        oss_expected << '(' << '3' << ',' << '5' << ')';
+        BOOST_TEST(oss_actual.str() == oss_expected.str());
+    }
+    {
+        std::basic_ostringstream<CharT> oss_actual;
+        oss_actual << ui::basic_rect<float>(1.2, 3.4, 5.6, 7.8);
+
+        std::basic_ostringstream<CharT> oss_expected;
+        oss_expected << '(' << '1' << '.' << '2' << ',' << '3' << '.' << '4' << ','
+            << '5' << '.' << '6' << ',' << '7' << '.' << '8'<< ')';
+        BOOST_TEST(oss_actual.str() == oss_expected.str());
+    }
 }
 
 int cpp_main(int argc, char* argv[])
