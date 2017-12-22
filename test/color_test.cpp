@@ -10,8 +10,34 @@
 #include <boost/detail/lightweight_main.hpp>
 
 #include <stdexcept>
+#include <sstream>
 
 namespace ui = boost::ui;
+
+template <class CharT>
+void test_stream()
+{
+    {
+        std::basic_ostringstream<CharT> oss_actual;
+        oss_actual << ui::color::yellow_green;
+
+        std::basic_ostringstream<CharT> oss_expected;
+        oss_expected << 'r' << 'g' << 'b' << '('
+            << '1' << '5' << '4' << ','
+            << '2' << '0' << '5' << ','
+            << '5' << '0' << ')';
+        BOOST_TEST(oss_actual.str() == oss_expected.str());
+    }
+    {
+        std::basic_ostringstream<CharT> oss_actual;
+        oss_actual << ui::color::rgba255(1, 2, 3, 4);
+
+        std::basic_ostringstream<CharT> oss_expected;
+        oss_expected << 'r' << 'g' << 'b' << 'a' << '('
+            << '1' << ',' << '2' << ',' << '3' << ',' << '4' << ')';
+        BOOST_TEST(oss_actual.str() == oss_expected.str());
+    }
+}
 
 int cpp_main(int argc, char* argv[])
 {
@@ -35,6 +61,15 @@ int cpp_main(int argc, char* argv[])
 
     BOOST_TEST_THROWS(ui::color::rgb1(2, 0, 0), std::out_of_range);
     BOOST_TEST_THROWS(ui::color::rgb1(0, -0.5, 0), std::out_of_range);
+
+    test_stream<char>();
+    test_stream<wchar_t>();
+#ifndef BOOST_NO_CXX11_CHAR16_T
+    //test_stream<char16_t>();
+#endif
+#ifndef BOOST_NO_CXX11_CHAR32_T
+    //test_stream<char32_t>();
+#endif
 
     return boost::report_errors();
 }

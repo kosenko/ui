@@ -24,14 +24,21 @@ namespace ui    {
 ///@{ @brief Writes color into the stream
 ///   @relatesalso boost::ui::color
 
-inline std::ostream& operator<<(std::ostream& s, const boost::ui::color& c)
+template <class CharT, class Traits>
+std::basic_ostream<CharT, Traits>&
+operator<<(std::basic_ostream<CharT, Traits>& os, const boost::ui::color& c)
 {
-    return s << "rgba"
-        << '(' << static_cast<int>(c.red255())
-        << ',' << static_cast<int>(c.green255())
-        << ',' << static_cast<int>(c.blue255())
-        << ',' << static_cast<int>(c.alpha255())
-        << ')';
+    const bool is_transparent = c.alpha255() != 255;
+    os << 'r' << 'g' << 'b';
+    if ( is_transparent )
+        os << 'a';
+    os << '(' << static_cast<int>(c.red255());
+    os << ',' << static_cast<int>(c.green255());
+    os << ',' << static_cast<int>(c.blue255());
+    if ( is_transparent )
+        os << ',' << static_cast<int>(c.alpha255());
+    os << ')';
+    return os;
 }
 
 } // namespace ui
