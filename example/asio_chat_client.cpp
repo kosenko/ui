@@ -7,6 +7,8 @@
 // GUI implementation of Boost.ASIO chat client example.
 // Start chat server from Boost.ASIO examples.
 
+#define BOOST_ASIO_NO_DEPRECATED
+
 #include <cstdlib>
 #include <deque>
 #include <iostream>
@@ -24,7 +26,7 @@ class chat_client
 
 public:
     chat_client(boost::function<void(const std::string&)> output_fn)
-        : m_socket(m_io_service), m_output_fn(output_fn)
+        : m_socket(m_io_context), m_output_fn(output_fn)
     {
     }
 
@@ -35,11 +37,10 @@ public:
 
     void connect(const std::string& host, const std::string& service)
     {
-        boost::asio::ip::tcp::resolver resolver(m_io_service);
-        boost::asio::ip::tcp::resolver::query query(host, service);
-        boost::asio::ip::tcp::resolver::iterator iterator = resolver.resolve(query);
+        boost::asio::ip::tcp::resolver resolver(m_io_context);
+        boost::asio::ip::tcp::resolver::results_type endpoints = resolver.resolve(host, service);
 
-        boost::asio::async_connect(m_socket, iterator,
+        boost::asio::async_connect(m_socket, endpoints,
             boost::bind(&this_type::handle_connect, this,
                 boost::asio::placeholders::error));
 
@@ -53,7 +54,7 @@ public:
         msg.body_length(actual_str.size());
         std::memcpy(msg.body(), actual_str.c_str(), msg.body_length());
         msg.encode_header();
-        m_io_service.post(boost::bind(&this_type::do_write, this, msg));
+        boost::asio::post(m_io_context, boost::bind(&this_type::do_write, this, msg));
     }
 
 private:
@@ -61,7 +62,7 @@ private:
     {
         try
         {
-            m_io_service.run();
+            m_io_context.run();
         }
         catch ( std::exception& e )
         {
@@ -71,7 +72,7 @@ private:
 
     void close()
     {
-        m_io_service.post(boost::bind(&this_type::do_close, this));
+        boost::asio::post(m_io_context, boost::bind(&this_type::do_close, this));
         m_thread.join();
     }
 
@@ -169,7 +170,7 @@ private:
     }
 
 private:
-    boost::asio::io_service m_io_service;
+    boost::asio::io_context m_io_context;
     boost::asio::ip::tcp::socket m_socket;
 
     chat_message m_read_msg;
