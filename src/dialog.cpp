@@ -42,11 +42,6 @@ public:
     }
 };
 
-dialog::detail_impl* dialog::get_impl()
-{
-    return get_detail_impl<detail_impl>();
-}
-
 dialog& dialog::create(const uistring& title)
 {
     detail_set_detail_impl(new detail_impl(title));

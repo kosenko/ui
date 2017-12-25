@@ -57,11 +57,6 @@ private:
     event_loop m_modal_loop;
 };
 
-frame::detail_impl* frame::get_impl()
-{
-    return get_detail_impl<detail_impl>();
-}
-
 frame& frame::create(const uistring& title)
 {
     detail_set_detail_impl(new detail_impl(title));

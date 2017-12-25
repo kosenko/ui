@@ -36,7 +36,6 @@ public:
 
 private:
     class detail_impl;
-    detail_impl* get_impl();
 };
 
 } // namespace ui
