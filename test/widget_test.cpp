@@ -45,6 +45,10 @@ void test_window(ui::window& parent)
     BOOST_TEST_EQ(win.title(), "My title test!");
 
     BOOST_TEST(!win.is_shown());
+    win.show();
+    BOOST_TEST(win.is_shown());
+    win.hide();
+    BOOST_TEST(!win.is_shown());
 }
 
 void test_canvas(ui::widget parent)
