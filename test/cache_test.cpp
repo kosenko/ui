@@ -10,7 +10,7 @@
 
 namespace ui = boost::ui;
 
-void test_label(ui::dialog& dlg)
+void test_label(ui::window& parent)
 {
     ui::label l1;
     BOOST_TEST(!l1.native_valid());
@@ -40,7 +40,7 @@ void test_label(ui::dialog& dlg)
     BOOST_TEST(!l1.native_valid());
     BOOST_TEST(!l2.native_valid());
 
-    dlg << l1;
+    parent << l1;
     BOOST_TEST(l1.native_valid());
     BOOST_TEST(l2.native_valid());
     BOOST_TEST_EQ(l1.text(), "test label");
@@ -54,7 +54,7 @@ void test_label(ui::dialog& dlg)
     BOOST_TEST(!l1.is_shown());
     BOOST_TEST(!l2.is_shown());
 
-    dlg.show();
+    parent.show();
     BOOST_TEST(!l1.is_shown());
     BOOST_TEST(!l2.is_shown());
 
@@ -83,11 +83,11 @@ void test_label(ui::dialog& dlg)
 
 int ui_main()
 {
-    ui::dialog dlg("Cache Test");
+    ui::frame frm("Cache Test");
 
-    test_label(dlg);
+    test_label(frm);
 
-    //dlg.show_modal();
+    //frm.show_modal();
 
     return boost::report_errors();
 }
