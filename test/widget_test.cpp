@@ -20,21 +20,31 @@
 
 namespace ui = boost::ui;
 
-void test_dialog(ui::dialog& dlg)
+void test_parent(ui::window& parent)
 {
-    ui::dialog dlg_not_created;
-    BOOST_TEST(dlg_not_created.native_handle() == NULL);
-    BOOST_TEST(!dlg_not_created.native_valid());
+    BOOST_TEST(parent.native_handle() != NULL);
+    BOOST_TEST(parent.native_valid());
 
-    BOOST_TEST(dlg.native_handle() != NULL);
-    BOOST_TEST(dlg.native_valid());
+    BOOST_TEST(!parent.is_shown());
 
-    BOOST_TEST(!dlg.is_shown());
+    BOOST_TEST_EQ(parent.title(), "Title");
+    parent.title(parent.title() + " test");
+    BOOST_TEST_EQ(parent.title(), "Title test");
+}
 
-    ui::window win = dlg;
-    BOOST_TEST_EQ(win.title(), "Title");
-    win.title(win.title() + " test");
-    BOOST_TEST_EQ(win.title(), "Title test");
+template <class TWindow>
+void test_window(ui::window& parent)
+{
+    TWindow win_not_created;
+    BOOST_TEST(!win_not_created.native_valid());
+    BOOST_TEST(win_not_created.native_handle() == NULL);
+
+    TWindow win("My title");
+    BOOST_TEST_EQ(win.title(), "My title");
+    win.title(win.title() + " test!");
+    BOOST_TEST_EQ(win.title(), "My title test!");
+
+    BOOST_TEST(!win.is_shown());
 }
 
 void test_canvas(ui::widget parent)
@@ -366,7 +376,9 @@ int ui_main()
 {
     ui::dialog dlg("Title");
 
-    test_dialog(dlg);
+    test_parent(dlg);
+    test_window<ui::dialog>(dlg);
+    test_window<ui::frame>(dlg);
     test_canvas(dlg);
     test_button(dlg);
     test_check_box<ui::check_box>(dlg);
