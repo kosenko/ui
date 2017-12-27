@@ -376,6 +376,41 @@ void test_slider(ui::widget parent)
     ui::hslider(parent, -30, -40, -20);
 }
 
+void test_static_widgets(ui::widget parent)
+{
+    {
+        ui::vline w(parent);
+        BOOST_TEST(w.native_valid());
+    }
+    {
+        ui::hline w(parent);
+        BOOST_TEST(w.native_valid());
+    }
+    {
+        ui::group_box w(parent, "My title");
+        BOOST_TEST(w.native_valid());
+    }
+    {
+        ui::hyperlink w(parent, "http://www.boost.org/", "Boost C++ libraries");
+        BOOST_TEST(w.native_valid());
+    }
+    {
+        ui::image_widget w(parent, ui::image::xdg("folder", 32, 32));
+        BOOST_TEST(w.native_valid());
+    }
+    {
+        ui::image_widget w;
+        BOOST_TEST(!w.native_valid());
+        w.create(parent).image(ui::image::xdg("folder", 32, 32));
+        BOOST_TEST(w.native_valid());
+    }
+    {
+        ui::web_widget w(parent);
+        BOOST_TEST(w.native_valid());
+        w.load("http://www.boost.org/");
+    }
+}
+
 int ui_main()
 {
     ui::dialog dlg("Title");
@@ -393,6 +428,7 @@ int ui_main()
     test_strings_box<ui::list_box>(dlg);
     test_progress_bar(dlg);
     test_slider(dlg);
+    test_static_widgets(dlg);
 
     BOOST_TEST(!ui::getloc().name().empty());
 
