@@ -376,6 +376,23 @@ void test_slider(ui::widget parent)
     ui::hslider(parent, -30, -40, -20);
 }
 
+void test_notebook(ui::widget parent)
+{
+    ui::notebook nb(parent);
+    BOOST_TEST_EQ(nb.current_page_index(), -1);
+
+    ui::panel p1(nb);
+    nb.append_page(p1, "Test 1");
+    BOOST_TEST_EQ(nb.current_page_index(), 0);
+
+    ui::panel p2(nb);
+    nb.append_page(p2, "Test 2");
+    BOOST_TEST_EQ(nb.current_page_index(), 0);
+
+    nb.current_page(1);
+    BOOST_TEST_EQ(nb.current_page_index(), 1);
+}
+
 void test_static_widgets(ui::widget parent)
 {
     {
@@ -428,6 +445,7 @@ int ui_main()
     test_strings_box<ui::list_box>(dlg);
     test_progress_bar(dlg);
     test_slider(dlg);
+    test_notebook(dlg);
     test_static_widgets(dlg);
 
     BOOST_TEST(!ui::getloc().name().empty());
