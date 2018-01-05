@@ -188,8 +188,10 @@ void test_check_box(ui::widget parent)
 }
 
 template <class Widget>
-void test_text(Widget& widget)
+void test_text(ui::widget parent)
 {
+    Widget widget(parent, "Text");
+    BOOST_TEST(widget.native_handle() != NULL);
     BOOST_TEST_EQ(widget.text(), "Text");
     widget.text(widget.text() + "!");
     BOOST_TEST_EQ(widget.text(), "Text!");
@@ -200,20 +202,14 @@ void test_text(Widget& widget)
 void test_text_box(ui::widget parent)
 {
     {
-        ui::string_box text;
-        BOOST_TEST(text.native_handle() == NULL);
+        ui::string_box w;
+        BOOST_TEST(w.native_handle() == NULL);
     }
 
-    {
-        ui::string_box text(parent, "Text");
-        test_text(text);
-    }
-
-    {
-        ui::label label;
-        label.create(parent, "Text");
-        test_text(label);
-    }
+    test_text<ui::string_box>(parent);
+    test_text<ui::text_box>(parent);
+    test_text<ui::password_box>(parent);
+    test_text<ui::label>(parent);
 }
 
 template <class Container>
