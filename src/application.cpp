@@ -302,7 +302,7 @@ static int entry(int argc, char* argv[])
     const int count = memcheck::count();
     if ( count )
     {
-        wxLogDebug(wxS("memcheck leaks count: %d"), count);
+        wxLogDebug(wxS("ERROR: memcheck leaks count: %d"), count);
     }
 #endif
     return ret;

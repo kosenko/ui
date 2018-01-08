@@ -24,11 +24,30 @@ class menu::native_impl : public wxMenu, private detail::memcheck
 public:
     native_impl()
     {
-        Bind(wxEVT_MENU, &this_type::on_menu, this);
+        init();
+    }
+
+    native_impl(const uistring& text)
+        : m_text(text)
+    {
+        init();
+    }
+
+    void append(const menu& i)
+    {
+        AppendSubMenu(i.m_impl, native::from_uistring(i.m_impl->m_text));
+        i.m_shared_count.detach();
     }
 
 private:
+    void init()
+    {
+        Bind(wxEVT_MENU, &this_type::on_menu, this);
+    }
+
     void on_menu(wxCommandEvent& event);
+
+    uistring m_text;
 };
 
 class menu::item::native_impl : public wxMenuItem
@@ -63,7 +82,7 @@ void menu::item::native_impl::on_menu()
     }
 }
 
-#endif
+#endif // wxUSE_MENUS
 
 menu::menu()
 {
@@ -72,10 +91,20 @@ menu::menu()
 #endif
 }
 
+menu::menu(const uistring& text)
+{
+#if wxUSE_MENUS
+    m_impl = new native_impl(text);
+#endif
+}
+
 menu::~menu()
 {
 #if wxUSE_MENUS
-    delete m_impl;
+    if ( m_shared_count.may_delete() )
+    {
+        delete m_impl;
+    }
 #endif
 }
 
@@ -83,6 +112,14 @@ menu& menu::append(const item& i)
 {
 #if wxUSE_MENUS
     m_impl->Append(i.m_impl);
+#endif
+    return *this;
+}
+
+menu& menu::append(const menu& i)
+{
+#if wxUSE_MENUS
+    m_impl->append(i);
 #endif
     return *this;
 }

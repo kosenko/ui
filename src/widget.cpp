@@ -171,7 +171,7 @@ widget& widget::operator=(const widget& other)
 
 void widget::delete_last_detail_impl()
 {
-    if ( m_shared_count.use_count() == 1 )
+    if ( m_shared_count.may_delete() )
     {
         delete m_detail_impl;
     }

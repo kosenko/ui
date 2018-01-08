@@ -15,6 +15,7 @@
 #endif
 
 #include <boost/ui/widget.hpp>
+#include <boost/ui/detail/shared_count.hpp>
 
 #include <boost/noncopyable.hpp>
 
@@ -33,9 +34,18 @@ public:
     menu();
     ~menu();
 
-    ///@{ @brief Appends subitem
+    /// Constructs menu with text
+    menu(const uistring& text);
+
+    ///@{ @brief Appends menu item as subitem
     menu& append(const item& i);
     menu& operator<<(const item& i)
+        { return append(i); }
+    ///@}
+
+    ///@{ @brief Appends menu as subitem
+    menu& append(const menu& i);
+    menu& operator<<(const menu& i)
         { return append(i); }
     ///@}
 
@@ -55,6 +65,8 @@ public:
 private:
     class native_impl;
     native_impl* m_impl;
+
+    mutable detail::shared_count m_shared_count;
 };
 
 /// @brief Menu item

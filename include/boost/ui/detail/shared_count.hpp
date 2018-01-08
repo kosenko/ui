@@ -12,11 +12,21 @@ namespace detail {
 
 class BOOST_UI_DECL shared_count
 {
+    class data_type
+    {
+    public:
+        data_type() : m_use_count(1), m_attached(true) {}
+        bool may_delete() const { return m_attached && m_use_count == 1; }
+
+        long m_use_count;
+        bool m_attached;
+    };
+
 public:
-    shared_count() { m_use_count = new long(1); }
+    shared_count() { m_data = new data_type; }
     explicit shared_count(const shared_count& other)
     {
-        m_use_count = other.m_use_count;
+        m_data = other.m_data;
         add_ref();
     }
     shared_count& operator=(const shared_count& other)
@@ -25,27 +35,30 @@ public:
         {
             dec_ref();
 
-            m_use_count = other.m_use_count;
+            m_data = other.m_data;
             add_ref();
         }
         return *this;
     }
     ~shared_count() { dec_ref(); }
 
-    long use_count() const { return *m_use_count; }
+    long use_count() const { return m_data->m_use_count; }
+
+    void detach() { m_data->m_attached = false; }
+    bool may_delete() const { return m_data->may_delete(); }
 
 private:
     void add_ref()
     {
-        ++*m_use_count;
+        ++m_data->m_use_count;
     }
     void dec_ref()
     {
-        if ( --*m_use_count == 0 )
-            delete m_use_count;
+        if ( --m_data->m_use_count == 0 )
+            delete m_data;
     }
 
-    long* m_use_count;
+    data_type* m_data;
 };
 
 } // namespace detail
