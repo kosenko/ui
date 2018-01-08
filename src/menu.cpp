@@ -124,6 +124,14 @@ menu& menu::append(const menu& i)
     return *this;
 }
 
+menu& menu::append(const separator&)
+{
+#if wxUSE_MENUS
+    m_impl->AppendSeparator();
+#endif
+    return *this;
+}
+
 void menu::popup(widget& w)
 {
     wxWindow *window = native::from_widget(w);

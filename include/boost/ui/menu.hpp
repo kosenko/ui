@@ -22,6 +22,13 @@
 namespace boost {
 namespace ui    {
 
+/// @brief Pseudo class that separates menu items
+/// @ingroup info
+
+class BOOST_UI_DECL separator
+{
+};
+
 /// @brief List of selected items
 /// @see <a href="http://en.wikipedia.org/wiki/Menu_(computing)">Menu (Wikipedia)</a>
 /// @ingroup command
@@ -46,6 +53,12 @@ public:
     ///@{ @brief Appends menu as subitem
     menu& append(const menu& i);
     menu& operator<<(const menu& i)
+        { return append(i); }
+    ///@}
+
+    ///@{ @brief Appends separator
+    menu& append(const separator& i);
+    menu& operator<<(const separator& i)
         { return append(i); }
     ///@}
 
