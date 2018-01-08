@@ -19,6 +19,12 @@
 
 #include <boost/noncopyable.hpp>
 
+#ifndef BOOST_NO_CXX11_VARIADIC_TEMPLATES
+#include <boost/move/utility.hpp>
+#else
+#include <boost/bind.hpp>
+#endif
+
 namespace boost {
 namespace ui    {
 
