@@ -19,7 +19,16 @@ namespace ui    {
 
 class menu::native_impl : public wxMenu, private detail::memcheck
 {
+    typedef native_impl this_type;
+
 public:
+    native_impl()
+    {
+        Bind(wxEVT_MENU, &this_type::on_menu, this);
+    }
+
+private:
+    void on_menu(wxCommandEvent& event);
 };
 
 class menu::item::native_impl : public wxMenuItem
@@ -27,7 +36,32 @@ class menu::item::native_impl : public wxMenuItem
 public:
     native_impl(const uistring& text)
         : wxMenuItem(NULL, wxID_ANY, native::from_uistring(text)) {}
+
+    void on_menu();
+
+    typedef std::vector< boost::function<void()> > menu_handlers_type;
+    menu_handlers_type m_menu_handlers;
 };
+
+void menu::native_impl::on_menu(wxCommandEvent& event)
+{
+    wxMenuItem* rawitem = FindItem(event.GetId());
+    wxCHECK(rawitem, );
+
+    item::native_impl* item = dynamic_cast<item::native_impl*>(rawitem);
+    wxCHECK(item, );
+
+    item->on_menu();
+}
+
+void menu::item::native_impl::on_menu()
+{
+    for ( menu_handlers_type::const_reverse_iterator iter = m_menu_handlers.rbegin();
+            iter != m_menu_handlers.rend(); ++iter )
+    {
+        (*iter)();
+    }
+}
 
 #endif
 
@@ -68,6 +102,13 @@ menu::item::item(const uistring& text)
 #if wxUSE_MENUS
     m_impl = new native_impl(text);
 #endif
+}
+
+void menu::item::on_press_raw(const boost::function<void()>& handler)
+{
+    wxCHECK(m_impl, );
+
+    m_impl->m_menu_handlers.push_back(handler);
 }
 
 } // namespace ui

@@ -66,6 +66,20 @@ public:
     /// Constructs menu item with text
     item(const uistring& text);
 
+    /// Connects menu item press handler
+#ifndef BOOST_NO_CXX11_VARIADIC_TEMPLATES
+    template <class F, class ...Args>
+    item& on_press(F&& f, Args&&... args)
+        { on_press_raw(std::bind(boost::forward<F>(f), boost::forward<Args>(args)...)); return *this; }
+#else
+    item& on_press(const boost::function<void()>& handler)
+        { on_press_raw(handler); return *this; }
+
+    template <class F, class Arg1>
+    item& on_press(F f, Arg1 a1)
+        { on_press_raw(boost::bind(f, a1)); return *this; }
+#endif
+
     /// Implementation-defined men item type
     typedef void* native_handle_type;
 
@@ -75,6 +89,8 @@ public:
     ///@}
 
 private:
+    void on_press_raw(const boost::function<void()>& handler);
+
     class native_impl;
     native_impl* m_impl;
 

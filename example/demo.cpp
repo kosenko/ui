@@ -560,8 +560,8 @@ void demo_frame::on_canvas_mouse_draw(ui::mouse_event& e)
 void demo_frame::on_canvas_context_menu(ui::mouse_event& e)
 {
     (ui::menu()
-        << ui::menu::item("&Hello")
-        << ui::menu::item("&Test")
+        << ui::menu::item("&Press me").on_press(&on_press_me)
+        << ui::menu::item("Show &logs").on_press(&on_log)
     ).popup(m_canvas);
 }
 
