@@ -35,7 +35,7 @@ class BOOST_UI_DECL separator
 {
 };
 
-/// @brief List of selected items
+/// @brief Menu (list of commands) class
 /// @see <a href="http://en.wikipedia.org/wiki/Menu_(computing)">Menu (Wikipedia)</a>
 /// @ingroup command
 
@@ -47,7 +47,7 @@ public:
     menu();
     ~menu();
 
-    /// Constructs menu with text
+    /// Constructs menu with associated text label
     menu(const uistring& text);
 
     ///@{ @brief Appends menu item as subitem
@@ -68,7 +68,7 @@ public:
         { return append(i); }
     ///@}
 
-    /// Popups context menu
+    /// @brief Popups context menu at current mouse postion related to widget @a w
     /// @see <a href="http://en.wikipedia.org/wiki/Context_menu">Context menu (Wikipedia)</a>
     /// @see <a href="http://en.wikipedia.org/wiki/Modal_window">Modal window (Wikipedia)</a>
     void popup(widget& w);
@@ -94,7 +94,7 @@ private:
 class BOOST_UI_DECL menu::item : private boost::noncopyable
 {
 public:
-    /// Constructs menu item with text
+    /// Constructs menu item with associated text label
     item(const uistring& text);
 
     /// Connects menu item press handler
