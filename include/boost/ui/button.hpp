@@ -37,7 +37,8 @@ class BOOST_UI_DECL button : public widget
 public:
     button() {}
 
-    ///@{ Creates button with label string
+    ///@{ @brief Creates button with text label with mnemonics
+    /// @see <a href="https://en.wikipedia.org/wiki/Mnemonics_(keyboard)">Mnemonics (Wikipedia)</a>
     explicit button(widget& parent, const uistring& label)
         { create(parent, label); }
     button& create(widget& parent, const uistring& label);

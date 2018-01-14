@@ -47,7 +47,8 @@ public:
     menu();
     ~menu();
 
-    /// Constructs menu with associated text label
+    /// @brief Constructs menu with associated text label with mnemonics
+    /// @see <a href="https://en.wikipedia.org/wiki/Mnemonics_(keyboard)">Mnemonics (Wikipedia)</a>
     menu(const uistring& text);
 
     ///@{ @brief Appends menu item as subitem
@@ -94,7 +95,8 @@ private:
 class BOOST_UI_DECL menu::item : private boost::noncopyable
 {
 public:
-    /// Constructs menu item with associated text label
+    /// @brief Constructs menu item with associated text label with mnemonics
+    /// @see <a href="https://en.wikipedia.org/wiki/Mnemonics_(keyboard)">Mnemonics (Wikipedia)</a>
     item(const uistring& text);
 
     /// Connects menu item press handler
