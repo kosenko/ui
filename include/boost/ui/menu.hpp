@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Kolya Kosenko
+// Copyright (c) 2017, 2018 Kolya Kosenko
 
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
@@ -35,11 +35,53 @@ class BOOST_UI_DECL separator
 {
 };
 
+class frame;
+class menu;
+
+/// @brief Menu bar class
+/// @details Default constructor is a private member, so use @ref boost::ui::frame::menu_bar() to create this class instance
+/// @see <a href="https://en.wikipedia.org/wiki/Menu_bar">Menu bar (Wikipedia)</a>
+/// @ingroup command
+
+class BOOST_UI_DECL menu_bar
+{
+    menu_bar();
+    void create();
+
+public:
+    /// Copy constructor
+    menu_bar(const menu_bar& other);
+    ~menu_bar();
+
+    ///@{ @brief Appends menu as subitem
+    menu_bar& append(const menu& i);
+    menu_bar& operator<<(const menu& i)
+        { return append(i); }
+    ///@}
+
+    /// Implementation-defined menu bar type
+    typedef void* native_handle_type;
+
+    ///@{ Returns the implementation-defined underlying menu bar handle
+    native_handle_type native_handle() { return m_impl; }
+    const native_handle_type native_handle() const { return m_impl; }
+    ///@}
+
+private:
+    class native_impl;
+    native_impl* m_impl;
+
+#ifndef DOXYGEN
+    friend class frame;
+    friend class menu;
+#endif
+};
+
 /// @brief Menu (list of commands) class
 /// @see <a href="http://en.wikipedia.org/wiki/Menu_(computing)">Menu (Wikipedia)</a>
 /// @ingroup command
 
-class BOOST_UI_DECL menu : private boost::noncopyable
+class BOOST_UI_DECL menu
 {
 public:
     class item;
@@ -87,6 +129,10 @@ private:
     native_impl* m_impl;
 
     mutable detail::shared_count m_shared_count;
+
+#ifndef DOXYGEN
+    friend class menu_bar::native_impl;
+#endif
 };
 
 /// @brief Menu item
@@ -113,7 +159,7 @@ public:
         { on_press_raw(boost::bind(f, a1)); return *this; }
 #endif
 
-    /// Implementation-defined men item type
+    /// Implementation-defined menu item type
     typedef void* native_handle_type;
 
     ///@{ Returns the implementation-defined underlying menu item handle

@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Kolya Kosenko
+// Copyright (c) 2017, 2018 Kolya Kosenko
 
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
@@ -16,6 +16,12 @@ namespace boost {
 namespace ui    {
 
 #if wxUSE_MENUS
+
+class menu_bar::native_impl : public wxMenuBar, private detail::memcheck
+{
+public:
+    void append(const menu& i);
+};
 
 class menu::native_impl : public wxMenu, private detail::memcheck
 {
@@ -38,6 +44,8 @@ public:
         AppendSubMenu(i.m_impl, native::from_uistring(i.m_impl->m_text));
         i.m_shared_count.detach();
     }
+
+    uistring text() { return m_text; }
 
 private:
     void init()
@@ -82,12 +90,55 @@ void menu::item::native_impl::on_menu()
     }
 }
 
+void menu_bar::native_impl::append(const menu& i)
+{
+    Append(i.m_impl, native::from_uistring( i.m_impl->text() ));
+    i.m_shared_count.detach();
+}
+
 #endif // wxUSE_MENUS
+
+menu_bar::menu_bar() : m_impl(NULL)
+{
+}
+
+menu_bar::menu_bar(const menu_bar& other)
+{
+    m_impl = other.m_impl;
+}
+
+void menu_bar::create()
+{
+#if wxUSE_MENUS
+    m_impl = new native_impl;
+#else
+    m_impl = NULL;
+#endif
+}
+
+menu_bar::~menu_bar()
+{
+    // It should be deleted by frame
+    //delete m_impl;
+}
+
+menu_bar& menu_bar::append(const menu& i)
+{
+    wxCHECK(m_impl, *this);
+
+#if wxUSE_MENUS
+    m_impl->append(i);
+#endif
+
+    return *this;
+}
 
 menu::menu()
 {
 #if wxUSE_MENUS
     m_impl = new native_impl;
+#else
+    m_impl = NULL;
 #endif
 }
 
@@ -95,6 +146,8 @@ menu::menu(const uistring& text)
 {
 #if wxUSE_MENUS
     m_impl = new native_impl(text);
+#else
+    m_impl = NULL;
 #endif
 }
 
@@ -146,6 +199,8 @@ menu::item::item(const uistring& text)
 {
 #if wxUSE_MENUS
     m_impl = new native_impl(text);
+#else
+    m_impl = NULL;
 #endif
 }
 

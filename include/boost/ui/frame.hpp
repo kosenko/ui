@@ -15,6 +15,7 @@
 #endif
 
 #include <boost/ui/window.hpp>
+#include <boost/ui/menu.hpp>
 
 namespace boost {
 namespace ui    {
@@ -34,8 +35,13 @@ public:
     frame& create(const uistring& title);
     ///@}
 
+    /// @brief Returns menu bar
+    /// @details If menu bar wasn't created, creates menu bar.
+    ui::menu_bar menu_bar();
+
 private:
     class detail_impl;
+    detail_impl* get_impl();
 };
 
 } // namespace ui

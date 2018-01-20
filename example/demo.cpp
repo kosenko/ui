@@ -288,13 +288,36 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
 
     main_notebook.current_page(page);
 
+    menu_bar()
+        << ( ui::menu("&File")
+            << ui::menu::item("&Open")
+            << ui::menu::item("&Close")
+            << ui::separator()
+            << ui::menu::item("&Press me")
+                .on_press(&on_press_me)
+            << ui::menu::item("Show &logs")
+                .on_press(&on_log)
+            << ui::separator()
+            << ui::menu::item("&Quit")
+                .on_press(&this_type::close, this)
+           )
+        << ( ui::menu("&Edit")
+            << ui::menu::item("Cu&t")
+            << ui::menu::item("&Copy")
+            << ui::menu::item("&Paste")
+           )
+        << ( ui::menu("&Help")
+            << ui::menu::item("A&bout")
+           )
+        ;
+
     resize(600, 500);
 }
 
 void demo_frame::on_press_me()
 {
     std::ostringstream info;
-    info << "Button pressed";
+    info << "Button or menu item pressed";
 
     info << "\n\nBoost version " << BOOST_VERSION / 100000
         << '.' << BOOST_VERSION / 100 % 1000

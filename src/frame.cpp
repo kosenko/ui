@@ -14,6 +14,7 @@
 
 #include <wx/frame.h>
 #include <wx/evtloop.h>
+#include <wx/menu.h>
 
 #include "res/boost.xpm"
 
@@ -45,6 +46,11 @@ public:
 
         m_modal_loop.run();
     }
+    void set_menu_bar(wxMenuBar* wxmb)
+    {
+        wxCHECK(m_native, );
+        m_native->SetMenuBar(wxmb);
+    }
 
 private:
     void on_close(wxCloseEvent& e)
@@ -57,11 +63,37 @@ private:
     event_loop m_modal_loop;
 };
 
+frame::detail_impl* frame::get_impl()
+{
+    return get_detail_impl<detail_impl>();
+}
+
+
 frame& frame::create(const uistring& title)
 {
     detail_set_detail_impl(new detail_impl(title));
 
     return *this;
+}
+
+ui::menu_bar frame::menu_bar()
+{
+    ui::menu_bar mb;
+    mb.create();
+
+    menu_bar::native_handle_type void_mb = mb.native_handle();
+    wxCHECK(void_mb, ui::menu_bar());
+
+    wxObject* object_mb = static_cast<wxObject*>(void_mb);
+    wxMenuBar* wxmb = dynamic_cast<wxMenuBar*>(object_mb);
+    wxCHECK(wxmb, ui::menu_bar());
+
+    detail_impl* impl = get_impl();
+    wxCHECK(impl, mb);
+
+    impl->set_menu_bar(wxmb);
+
+    return mb;
 }
 
 } // namespace ui
