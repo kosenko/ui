@@ -19,6 +19,7 @@ exe hello : hello.cpp example_rc winmain ;
 exe beman : beman.cpp example_rc winmain ;
 exe bootstrap : bootstrap.cpp example_rc winmain ;
 exe io2d : io2d.cpp example_rc winmain ;
+exe minimal : minimal.cpp example_rc winmain ;
 exe snippet : snippet.cpp example_rc winmain ;
 exe stroustrup : stroustrup.cpp example_rc winmain ;
 

@@ -139,6 +139,7 @@ Read README.md file for build instructions and library details.
 @image html hello_windows7.png "\"Hello, World!\" application under Windows 7"
 
 @example cpp11/io2d.cpp Re-implemented examples from P0267 proposal (io2d library)
+@example cpp11/minimal.cpp Minimal sample
 @example cpp11/snippet.cpp Documentation snippets
 @example cpp11/stroustrup.cpp Re-implemented Bjarne Stroustrup's GUI examples
 @example asio_chat_client.cpp Boost.ASIO chat client example
