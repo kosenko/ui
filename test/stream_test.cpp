@@ -17,9 +17,8 @@ void test_stream_api()
         Stream ss;
         BOOST_TEST(ss.str() == "");
 
-        void* ptr = reinterpret_cast<void*>(0x42);
-        ss << 'A' << "aA" << std::string("1") << 3 << 1.2 << true << false << ptr << std::endl;
-        BOOST_TEST(ss.str() == "AaA131.2100x42\n");
+        ss << 'A' << "aA" << std::string("1") << 3 << 1.2 << true << false << std::endl;
+        BOOST_TEST(ss.str() == "AaA131.210\n");
     }
     {
         Stream ss("x1");
@@ -61,6 +60,13 @@ int cpp_main(int, char*[])
         ss << U'D' << U"dD" << std::u32string(U"4");
         BOOST_TEST(ss.str() == "DdD4");
 #endif
+    }
+    {
+        ui::uiostringstream ss;
+
+        void* ptr = reinterpret_cast<void*>(0x42);
+        ss  << ptr;
+        BOOST_TEST_NE(ss.str().wstring().find(L"42"), -1);
     }
     {
         ui::uiostringstream ss1("1");
