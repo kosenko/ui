@@ -20,6 +20,7 @@ project
         [ run font_test.cpp ]
         [ run image_test.cpp : : ../example/res/boost.ico ]
         [ run log_test.cpp ]
+        [ run stream_test.cpp ]
         [ run string_test.cpp ]
         [ run widget_test.cpp ]
         ;

@@ -44,6 +44,7 @@
 #include <boost/ui/panel.hpp>
 #include <boost/ui/progress_bar.hpp>
 #include <boost/ui/slider.hpp>
+#include <boost/ui/stream.hpp>
 #include <boost/ui/string.hpp>
 #include <boost/ui/string_io.hpp>
 #include <boost/ui/strings_box.hpp>

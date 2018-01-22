@@ -28,7 +28,7 @@ my_frame::my_frame(const ui::uistring& title)
             << ui::menu::item("&About\tF1")
                 .on_press([]
                 {
-                    std::ostringstream ss;
+                    ui::uiostringstream ss;
                     ss  << "Welcome to Boost " << BOOST_VERSION / 100000
                         << '.' << BOOST_VERSION / 100 % 1000
                         << '.' << BOOST_VERSION % 100
