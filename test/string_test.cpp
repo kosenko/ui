@@ -260,7 +260,6 @@ void test_uistring()
         BOOST_TEST(std::getline(iss, str));
         BOOST_TEST(str.wstring() == L"cd");
     }
-
 }
 
 void test_touistring()
