@@ -40,7 +40,32 @@ public:
     }
 
     ///@{ @brief Inserts data into stream
+    uiostringstream& operator<<(char value)
+    {
+        m_buffer += value;
+        return *this;
+    }
+    uiostringstream& operator<<(const char* value)
+    {
+        m_buffer += value;
+        return *this;
+    }
     uiostringstream& operator<<(const std::string& value)
+    {
+        m_buffer += value;
+        return *this;
+    }
+    uiostringstream& operator<<(wchar_t value)
+    {
+        m_buffer += value;
+        return *this;
+    }
+    uiostringstream& operator<<(const wchar_t* value)
+    {
+        m_buffer += value;
+        return *this;
+    }
+    uiostringstream& operator<<(const std::wstring& value)
     {
         m_buffer += value;
         return *this;
