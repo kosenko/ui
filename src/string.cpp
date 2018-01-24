@@ -15,6 +15,8 @@
 #include <wx/string.h>
 #include <wx/log.h>
 
+#include <stdio.h> // for snprintf()
+
 namespace boost {
 namespace ui    {
 
@@ -188,7 +190,12 @@ template <class T>
 uistring to_uistring_detail(T value, const char* format)
 {
     char buffer[32];
-    snprintf(buffer, sizeof buffer / sizeof buffer[0], format, value);
+#ifdef _MSC_VER
+    _snprintf
+#else
+    snprintf
+#endif
+        (buffer, sizeof buffer / sizeof buffer[0], format, value);
     return ascii(buffer);
 }
 
