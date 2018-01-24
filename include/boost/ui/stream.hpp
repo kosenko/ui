@@ -80,6 +80,13 @@ public:
         m_buffer += to_uistring(value);
         return *this;
     }
+    uiostringstream& operator<<(float value);
+    uiostringstream& operator<<(double value);
+    uiostringstream& operator<<(bool value)
+    {
+        m_buffer += ascii(value ? "1" : "0");
+        return *this;
+    }
     uiostringstream& operator<<(char value)
     {
         m_buffer += value;
