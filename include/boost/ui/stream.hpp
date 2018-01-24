@@ -40,6 +40,46 @@ public:
     }
 
     ///@{ @brief Inserts data into stream
+    uiostringstream& operator<<(short value)
+    {
+        m_buffer += to_uistring(value);
+        return *this;
+    }
+    uiostringstream& operator<<(unsigned short value)
+    {
+        m_buffer += to_uistring(value);
+        return *this;
+    }
+    uiostringstream& operator<<(int value)
+    {
+        m_buffer += to_uistring(value);
+        return *this;
+    }
+    uiostringstream& operator<<(unsigned int value)
+    {
+        m_buffer += to_uistring(value);
+        return *this;
+    }
+    uiostringstream& operator<<(long value)
+    {
+        m_buffer += to_uistring(value);
+        return *this;
+    }
+    uiostringstream& operator<<(unsigned long value)
+    {
+        m_buffer += to_uistring(value);
+        return *this;
+    }
+    uiostringstream& operator<<(long long value)
+    {
+        m_buffer += to_uistring(value);
+        return *this;
+    }
+    uiostringstream& operator<<(unsigned long long value)
+    {
+        m_buffer += to_uistring(value);
+        return *this;
+    }
     uiostringstream& operator<<(char value)
     {
         m_buffer += value;
