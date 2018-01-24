@@ -92,50 +92,8 @@ void test_api_compatibility()
     test_std_wstring_api_compatibility<ui::uistring>();
 }
 
-template <class CharT>
-void test_ostream()
+void test_uistring()
 {
-    std::basic_ostringstream<CharT> oss_actual;
-    oss_actual << ui::uistring("xy");
-
-    std::basic_ostringstream<CharT> oss_expected;
-    oss_expected << CharT('x') <<  CharT('y');
-    BOOST_TEST(oss_actual.str() == oss_expected.str());
-
-    //oss_actual << std::endl; // TODO: For char16_t and char32_t
-}
-
-template <class CharT>
-void test_istream()
-{
-    const CharT chars[] = { CharT('y'), CharT('z'), 0 };
-    std::basic_istringstream<CharT> iss(chars);
-    ui::uistring str;
-    iss >> str;
-    BOOST_TEST(str == chars);
-}
-
-template <class CharT>
-void test_getline()
-{
-    const CharT chars[] = { CharT('a'), CharT('b'), CharT(' '),
-        CharT('c'), CharT('d'), CharT('\n'), CharT('x'), 0 };
-    std::basic_istringstream<CharT> iss(chars);
-    ui::uistring str;
-
-    BOOST_TEST(std::getline(iss, str, CharT(' ')));
-    const CharT chars2[] = { CharT('a'), CharT('b'), 0 };
-    BOOST_TEST_EQ(str, chars2);
-
-    BOOST_TEST(std::getline(iss, str));
-    const CharT chars3[] = { CharT('c'), CharT('d'), 0 };
-    BOOST_TEST_EQ(str, chars3);
-}
-
-int cpp_main(int, char*[])
-{
-    test_api_compatibility();
-
     BOOST_TEST(ui::uistring().empty());
     BOOST_TEST(ui::uistring("").empty());
     BOOST_TEST(!ui::uistring("test").empty());
@@ -303,6 +261,65 @@ int cpp_main(int, char*[])
         BOOST_TEST(str.wstring() == L"cd");
     }
 
+}
+
+void test_touistring()
+{
+    BOOST_TEST_EQ(ui::to_uistring(-12), "-12");
+    BOOST_TEST_EQ(ui::to_uistring(15u), "15");
+    BOOST_TEST_EQ(ui::to_uistring(-23l), "-23");
+    BOOST_TEST_EQ(ui::to_uistring(26ul), "26");
+    BOOST_TEST_EQ(ui::to_uistring(1.2f).wstring().find(L"1.2"), 0);
+    BOOST_TEST_EQ(ui::to_uistring(2.3).wstring().find(L"2.3"), 0);
+    BOOST_TEST_EQ(ui::to_uistring(3.4l).wstring().find(L"3.4"), 0);
+    BOOST_TEST_EQ(ui::uistring("a") + ui::to_uistring(1), "a1");
+}
+
+template <class CharT>
+void test_ostream()
+{
+    std::basic_ostringstream<CharT> oss_actual;
+    oss_actual << ui::uistring("xy");
+
+    std::basic_ostringstream<CharT> oss_expected;
+    oss_expected << CharT('x') <<  CharT('y');
+    BOOST_TEST(oss_actual.str() == oss_expected.str());
+
+    //oss_actual << std::endl; // TODO: For char16_t and char32_t
+}
+
+template <class CharT>
+void test_istream()
+{
+    const CharT chars[] = { CharT('y'), CharT('z'), 0 };
+    std::basic_istringstream<CharT> iss(chars);
+    ui::uistring str;
+    iss >> str;
+    BOOST_TEST(str == chars);
+}
+
+template <class CharT>
+void test_getline()
+{
+    const CharT chars[] = { CharT('a'), CharT('b'), CharT(' '),
+        CharT('c'), CharT('d'), CharT('\n'), CharT('x'), 0 };
+    std::basic_istringstream<CharT> iss(chars);
+    ui::uistring str;
+
+    BOOST_TEST(std::getline(iss, str, CharT(' ')));
+    const CharT chars2[] = { CharT('a'), CharT('b'), 0 };
+    BOOST_TEST_EQ(str, chars2);
+
+    BOOST_TEST(std::getline(iss, str));
+    const CharT chars3[] = { CharT('c'), CharT('d'), 0 };
+    BOOST_TEST_EQ(str, chars3);
+}
+
+int cpp_main(int, char*[])
+{
+    test_api_compatibility();
+    test_uistring();
+    test_touistring();
     test_ostream<char>();
     test_istream<char>();
     test_getline<char>();

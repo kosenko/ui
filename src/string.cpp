@@ -182,9 +182,55 @@ std::wstring uistring::wstring() const
     return std::wstring(m_impl->ToStdWstring());
 }
 
-std::size_t hash_value(const uistring& val)
+uistring to_uistring(int value)
 {
-    return boost::hash<std::wstring>()(val.wstring());
+    return native::to_uistring(wxString() << value);
+}
+
+uistring to_uistring(unsigned int value)
+{
+    return native::to_uistring(wxString() << value);
+}
+
+uistring to_uistring(long value)
+{
+    return native::to_uistring(wxString() << value);
+}
+
+uistring to_uistring(unsigned long value)
+{
+    return native::to_uistring(wxString() << value);
+}
+
+uistring to_uistring(long long value)
+{
+    return native::to_uistring(wxString() << value);
+}
+
+uistring to_uistring(unsigned long long value)
+{
+    return native::to_uistring(wxString() << value);
+}
+
+uistring to_uistring(float value)
+{
+    return native::to_uistring(wxString() << value);
+}
+
+uistring to_uistring(double value)
+{
+    return native::to_uistring(wxString() << value);
+}
+
+uistring to_uistring(long double value)
+{
+    // TODO: Remove cast
+    return native::to_uistring(wxString() << static_cast<double>(value));
+}
+
+std::size_t hash_value(const uistring& value)
+{
+    return boost::hash<std::wstring>()(value.wstring());
 }
 
 class native_helper

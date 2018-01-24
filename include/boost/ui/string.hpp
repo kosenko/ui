@@ -584,9 +584,22 @@ inline uistring operator+(uistring&& lhs, const char32_t* rhs)
 
 ///@}
 
+///@{ @brief Converts numeric value to @ref uistring
+///   @relatesalso boost::ui::uistring
+BOOST_UI_DECL uistring to_uistring(int value);
+BOOST_UI_DECL uistring to_uistring(unsigned int value);
+BOOST_UI_DECL uistring to_uistring(long value);
+BOOST_UI_DECL uistring to_uistring(unsigned long value);
+BOOST_UI_DECL uistring to_uistring(long long value);
+BOOST_UI_DECL uistring to_uistring(unsigned long long value);
+BOOST_UI_DECL uistring to_uistring(float value);
+BOOST_UI_DECL uistring to_uistring(double value);
+BOOST_UI_DECL uistring to_uistring(long double value);
+///@}
+
 /// @brief Returns hash of @ref uistring for boost::hash
 /// @relatesalso boost::ui::uistring
-BOOST_UI_DECL std::size_t hash_value(const uistring& val);
+BOOST_UI_DECL std::size_t hash_value(const uistring& value);
 
 } // namespace ui
 } // namespace boost
