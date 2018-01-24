@@ -182,50 +182,61 @@ std::wstring uistring::wstring() const
     return std::wstring(m_impl->ToStdWstring());
 }
 
+namespace {
+
+template <class T>
+uistring to_uistring_detail(T value, const char* format)
+{
+    char buffer[32];
+    snprintf(buffer, sizeof buffer / sizeof buffer[0], format, value);
+    return ascii(buffer);
+}
+
+} // unnamed namespace
+
 uistring to_uistring(int value)
 {
-    return native::to_uistring(wxString() << value);
+    return to_uistring_detail(value, "%d");
 }
 
 uistring to_uistring(unsigned int value)
 {
-    return native::to_uistring(wxString() << value);
+    return to_uistring_detail(value, "%u");
 }
 
 uistring to_uistring(long value)
 {
-    return native::to_uistring(wxString() << value);
+    return to_uistring_detail(value, "%ld");
 }
 
 uistring to_uistring(unsigned long value)
 {
-    return native::to_uistring(wxString() << value);
+    return to_uistring_detail(value, "%lu");
 }
 
 uistring to_uistring(long long value)
 {
-    return native::to_uistring(wxString() << value);
+    return to_uistring_detail(value, "%lld");
 }
 
 uistring to_uistring(unsigned long long value)
 {
-    return native::to_uistring(wxString() << value);
+    return to_uistring_detail(value, "%llu");
 }
 
 uistring to_uistring(float value)
 {
-    return native::to_uistring(wxString() << value);
+    return to_uistring_detail(value, "%f");
 }
 
 uistring to_uistring(double value)
 {
-    return native::to_uistring(wxString() << value);
+    return to_uistring_detail(value, "%f");
 }
 
 uistring to_uistring(long double value)
 {
-    // TODO: Remove cast
-    return native::to_uistring(wxString() << static_cast<double>(value));
+    return to_uistring_detail(value, "%Lf");
 }
 
 std::size_t hash_value(const uistring& value)
