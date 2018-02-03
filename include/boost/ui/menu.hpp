@@ -16,14 +16,9 @@
 
 #include <boost/ui/widget.hpp>
 #include <boost/ui/detail/shared_count.hpp>
+#include <boost/ui/detail/event.hpp>
 
 #include <boost/noncopyable.hpp>
-
-#ifndef BOOST_NO_CXX11_VARIADIC_TEMPLATES
-#include <boost/move/utility.hpp>
-#else
-#include <boost/bind.hpp>
-#endif
 
 namespace boost {
 namespace ui    {
@@ -146,18 +141,7 @@ public:
     item(const uistring& text);
 
     /// Connects menu item press handler
-#ifndef BOOST_NO_CXX11_VARIADIC_TEMPLATES
-    template <class F, class ...Args>
-    item& on_press(F&& f, Args&&... args)
-        { on_press_raw(std::bind(boost::forward<F>(f), boost::forward<Args>(args)...)); return *this; }
-#else
-    item& on_press(const boost::function<void()>& handler)
-        { on_press_raw(handler); return *this; }
-
-    template <class F, class Arg1>
-    item& on_press(F f, Arg1 a1)
-        { on_press_raw(boost::bind(f, a1)); return *this; }
-#endif
+    BOOST_UI_DETAIL_HANDLER(press, item);
 
     /// Implementation-defined menu item type
     typedef void* native_handle_type;

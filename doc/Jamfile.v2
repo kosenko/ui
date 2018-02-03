@@ -36,7 +36,8 @@ doxygen
         <doxygen:param>HTML_FOOTER=$(BOOST_ROOT)/libs/ui/doc/doxygen/footer.html
         <doxygen:param>PREDEFINED="DOXYGEN BOOST_UI_DECL BOOST_NOEXCEPT=noexcept \\
             \"BOOST_SCOPED_ENUM_DECLARE_BEGIN(EnumType)=enum class EnumType\" \\
-            BOOST_SCOPED_ENUM_DECLARE_END(EnumType)=;"
+            BOOST_SCOPED_ENUM_DECLARE_END(EnumType)=; \\
+            \"BOOST_UI_DETAIL_HANDLER(handler, cls)=template <class F, class ...Args> cls& on_##handler(F&& f, Args&&... args)\" "
     ;
 
 xml ui : ui.qbk : <dependency>ui_reference ;
