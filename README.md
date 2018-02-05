@@ -9,8 +9,8 @@ Boost.UI is a C++ User Interface (GUI) Boost library that
 * supports modern C++11/14/17 features
 
 [![Licence](https://img.shields.io/badge/license-boost-4480cc.svg)](http://www.boost.org/LICENSE_1_0.txt)
-[![Build Status](https://travis-ci.org/kosenko/ui.svg?branch=master)](https://travis-ci.org/kosenko/ui)
-[![Build status](https://ci.appveyor.com/api/projects/status/yv9f8pw2qcfsau4i/branch/master?svg=true)](https://ci.appveyor.com/project/kosenko/ui/branch/master)
+[![Travis](https://img.shields.io/travis/kosenko/ui/master.svg?label=Linux)](https://travis-ci.org/kosenko/ui)
+[![AppVeyor](https://img.shields.io/appveyor/ci/kosenko/ui/master.svg?label=Windows)](https://ci.appveyor.com/project/kosenko/ui)
 
 ### Documentation
 
