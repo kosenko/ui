@@ -32,6 +32,26 @@ void test_parent(ui::window& parent)
     BOOST_TEST_EQ(parent.title(), "Title test");
 }
 
+void my_handler()
+{
+    BOOST_UI_LOG;
+}
+
+void my_handler_1(int value)
+{
+    BOOST_UI_LOG << value;
+}
+
+void my_handler_event(ui::mouse_event& e)
+{
+    BOOST_UI_LOG.spaces() << e.x() << e.y();
+}
+
+void my_handler_event_1(int value, ui::mouse_event& e)
+{
+    BOOST_UI_LOG.spaces() << value << e.x() << e.y();
+}
+
 class my_handlers
 {
 public:
@@ -48,26 +68,6 @@ public:
 private:
     int m_value;
 };
-
-void my_handler()
-{
-    BOOST_UI_LOG;
-}
-
-void my_handler_event(ui::mouse_event& e)
-{
-    BOOST_UI_LOG.spaces() << e.x() << e.y();
-}
-
-void my_handler_1(int value)
-{
-    BOOST_UI_LOG << value;
-}
-
-void my_handler_event_1(int value, ui::mouse_event& e)
-{
-    BOOST_UI_LOG.spaces() << value << e.x() << e.y();
-}
 
 template <class TWindow>
 void test_window(ui::window& parent)
