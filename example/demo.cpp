@@ -281,7 +281,7 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
         .on_mouse_leave_event(utility::make_event_handler<ui::mouse_event>("canvas", "mouse leave"))
         .on_context_menu_event(utility::make_event_handler<ui::mouse_event>("canvas", "context menu"))
         .on_mouse_wheel_event(utility::make_event_handler<ui::wheel_event>("canvas", "mouse wheel"))
-        .on_mouse_drag_event(boost::bind(&this_type::on_canvas_mouse_draw, this, _1))
+        .on_mouse_drag_event(&this_type::on_canvas_mouse_draw, this)
         .on_context_menu_event(boost::bind(&this_type::on_canvas_context_menu, this, _1))
         ;
     main_notebook.append_page(m_canvas, "Canvas");

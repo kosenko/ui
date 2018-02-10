@@ -15,7 +15,6 @@
 #endif
 
 #include <boost/ui/widget.hpp>
-#include <boost/ui/detail/event.hpp>
 
 namespace boost {
 namespace ui    {

@@ -32,6 +32,43 @@ void test_parent(ui::window& parent)
     BOOST_TEST_EQ(parent.title(), "Title test");
 }
 
+class my_handlers
+{
+public:
+    my_handlers(int value) : m_value(value) {}
+    void my_handler()
+    {
+        BOOST_UI_LOG << m_value;
+    }
+    void my_handler_event(ui::mouse_event& e)
+    {
+        BOOST_UI_LOG.spaces() << m_value << e.x() << e.y();
+    }
+
+private:
+    int m_value;
+};
+
+void my_handler()
+{
+    BOOST_UI_LOG;
+}
+
+void my_handler_event(ui::mouse_event& e)
+{
+    BOOST_UI_LOG.spaces() << e.x() << e.y();
+}
+
+void my_handler_1(int value)
+{
+    BOOST_UI_LOG << value;
+}
+
+void my_handler_event_1(int value, ui::mouse_event& e)
+{
+    BOOST_UI_LOG.spaces() << value << e.x() << e.y();
+}
+
 template <class TWindow>
 void test_window(ui::window& parent)
 {
@@ -49,6 +86,16 @@ void test_window(ui::window& parent)
     BOOST_TEST(win.is_shown());
     win.hide();
     BOOST_TEST(!win.is_shown());
+
+    win.on_mouse_drag(&my_handler);
+    win.on_mouse_drag(&my_handler_1, 2);
+    win.on_mouse_drag_event(&my_handler_event);
+    win.on_mouse_drag_event(&my_handler_event_1, 3);
+    my_handlers a(10);
+    win.on_mouse_drag(&my_handlers::my_handler, &a);
+    win.on_mouse_drag_event(&my_handlers::my_handler_event, &a);
+
+    //win.show_modal();
 }
 
 void test_canvas(ui::widget parent)

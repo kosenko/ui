@@ -479,18 +479,16 @@ public:
 
 } // namespace unnamed
 
-widget& widget::on_mouse_drag(const boost::function<void()>& handler)
+void widget::on_mouse_drag_raw(const boost::function<void()>& handler)
 {
     const boost::function<bool(wxMouseEvent&)> filter = mouse_drag_filter();
     native::bind_helper(*this, wxEVT_MOTION, handler, filter);
-    return *this;
 }
 
-widget& widget::on_mouse_drag_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_mouse_drag_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     const boost::function<bool(wxMouseEvent&)> filter = mouse_drag_filter();
     native::bind_event_helper(*this, wxEVT_MOTION, handler, filter);
-    return *this;
 }
 
 widget& widget::on_mouse_enter(const boost::function<void()>& handler)

@@ -20,6 +20,7 @@
 #include <boost/ui/font.hpp>
 #include <boost/ui/layout.hpp>
 #include <boost/ui/detail/shared_count.hpp>
+#include <boost/ui/detail/event.hpp>
 
 /// Boost C++ libraries namespace
 namespace boost {
@@ -159,8 +160,8 @@ public:
     widget& on_middle_mouse_double_click_event(const boost::function<void(mouse_event&)>& handler);
     widget& on_mouse_move(const boost::function<void()>& handler);
     widget& on_mouse_move_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_mouse_drag(const boost::function<void()>& handler);
-    widget& on_mouse_drag_event(const boost::function<void(mouse_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(mouse_drag, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(mouse_drag_event, widget, mouse_event);
     widget& on_mouse_enter(const boost::function<void()>& handler);
     widget& on_mouse_enter_event(const boost::function<void(mouse_event&)>& handler);
     widget& on_mouse_leave(const boost::function<void()>& handler);
@@ -193,6 +194,9 @@ protected:
 
 private:
     void delete_last_detail_impl();
+
+    void on_mouse_drag_raw(const boost::function<void()>& handler);
+    void on_mouse_drag_event_raw(const boost::function<void(mouse_event&)>& handler);
 
     detail::widget_detail_base* m_detail_impl;
     detail::shared_count m_shared_count;
