@@ -29,6 +29,9 @@
     template <class F, class Arg1> \
     cls& on_##handler(F f, Arg1 a1) \
         { on_##handler##_raw(boost::bind(f, a1)); return *this; } \
+    template <class F, class Arg1, class Arg2> \
+    cls& on_##handler(F f, Arg1 a1, Arg2 a2) \
+        { on_##handler##_raw(boost::bind(f, a1, a2)); return *this; } \
 
 #define BOOST_UI_DETAIL_HANDLER_EVENT(handler, cls, event) \
     cls& on_##handler(const boost::function<void(event&)>& handler) \
@@ -36,5 +39,8 @@
     template <class F, class Arg1> \
     cls& on_##handler(F f, Arg1 a1) \
         { on_##handler##_raw(boost::bind(f, a1, _1)); return *this; } \
+    template <class F, class Arg1, class Arg2> \
+    cls& on_##handler(F f, Arg1 a1, Arg2 a2) \
+        { on_##handler##_raw(boost::bind(f, a1, a2, _1)); return *this; } \
 
 #endif
