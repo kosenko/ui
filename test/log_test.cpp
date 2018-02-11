@@ -25,18 +25,18 @@ int cpp_main(int, char*[])
 {
     {
         ui::uistring str;
-        ui::log_string l(str);
-        test_output(l);
+        test_output(ui::log_string(str).nospaces().noquotes());
         BOOST_TEST_EQ(str, "120.349truechar*wchar_t*CWstringwstringuistring");
     }
     {
         ui::uistring str;
-        test_output(ui::log_string(str).spaces());
+        test_output(ui::log_string(str).noquotes());
         BOOST_TEST_EQ(str, "12 0.34 9 true char* wchar_t* C W string wstring uistring");
     }
     {
         ui::uistring str;
-        test_output(ui::log_string(str).spaces().quotes());
+        ui::log_string l(str);
+        test_output(l);
         BOOST_TEST_EQ(str, "12 0.34 9 true \"char*\" \"wchar_t*\" 'C' 'W' \"\" \"\" \"\" \"string\" \"wstring\" \"uistring\"");
     }
 

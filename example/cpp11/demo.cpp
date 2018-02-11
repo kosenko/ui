@@ -16,7 +16,7 @@ int ui_main()
     ui::list_box list_box = ui::list_box(dlg, {"first", "second", "third"} )
         .on_activate_event([&list_box](ui::index_event& e)
         {
-            ui::log::info().spaces() << "Item activated"
+            ui::log::info() << "Item activated"
                 << e.index() << list_box[e.index()];
         })
         ;

@@ -44,22 +44,22 @@ void my_handler_1(int value)
 
 void my_handler_2(int value, const char* value2)
 {
-    BOOST_UI_LOG.spaces() << value << value2;
+    BOOST_UI_LOG << value << value2;
 }
 
 void my_handler_event(ui::mouse_event& e)
 {
-    BOOST_UI_LOG.spaces() << e.x() << e.y();
+    BOOST_UI_LOG << e.x() << e.y();
 }
 
 void my_handler_event_1(int value, ui::mouse_event& e)
 {
-    BOOST_UI_LOG.spaces() << value << e.x() << e.y();
+    BOOST_UI_LOG << value << e.x() << e.y();
 }
 
 void my_handler_event_2(int value, const char* value2, ui::mouse_event& e)
 {
-    BOOST_UI_LOG.spaces() << value << value2 << e.x() << e.y();
+    BOOST_UI_LOG << value << value2 << e.x() << e.y();
 }
 
 class my_handlers
@@ -72,11 +72,11 @@ public:
     }
     void my_handler_event(ui::mouse_event& e)
     {
-        BOOST_UI_LOG.spaces() << m_value << e.x() << e.y();
+        BOOST_UI_LOG << m_value << e.x() << e.y();
     }
     void my_handler_event_1(int value, ui::mouse_event& e)
     {
-        BOOST_UI_LOG.spaces() << m_value << value << e.x() << e.y();
+        BOOST_UI_LOG << m_value << value << e.x() << e.y();
     }
 
 private:

@@ -22,7 +22,7 @@ namespace utility {
 void on_handler(const char* class_name,
                 const char* event_name)
 {
-    ui::log().spaces() << class_name << event_name;
+    ui::log() << class_name << event_name;
 }
 
 boost::function<void()>
@@ -44,7 +44,7 @@ void on_event_handler<ui::key_event>(ui::key_event& e,
                                      const char* class_name,
                                      const char* event_name)
 {
-    ui::log().spaces() << class_name << event_name
+    ui::log() << class_name << event_name
         << e.key_code() << e.get_char()
         << static_cast<char>(e.get_char())
         << (e.ctrl()  ? "ctrl"  : "")
@@ -58,7 +58,7 @@ void on_event_handler<ui::mouse_event>(ui::mouse_event& e,
                                        const char* class_name,
                                        const char* event_name)
 {
-    ui::log().spaces() << class_name << event_name << e.x() << e.y()
+    ui::log() << class_name << event_name << e.x() << e.y()
         << (e.left()   ? "left"   : "")
         << (e.right()  ? "right"  : "")
         << (e.middle() ? "middle" : "");
@@ -69,7 +69,7 @@ void on_event_handler<ui::wheel_event>(ui::wheel_event& e,
                                        const char* class_name,
                                        const char* event_name)
 {
-    ui::log().spaces() << class_name << event_name << e.x() << e.y()
+    ui::log() << class_name << event_name << e.x() << e.y()
         << (e.left()   ? "left"   : "")
         << (e.right()  ? "right"  : "")
         << (e.middle() ? "middle" : "")
@@ -82,7 +82,7 @@ void on_event_handler<ui::index_event>(ui::index_event& e,
                                        const char* class_name,
                                        const char* event_name)
 {
-    ui::log().spaces() << class_name << event_name << e.index();
+    ui::log() << class_name << event_name << e.index();
 }
 
 template <class Event>
@@ -471,7 +471,7 @@ void demo_frame::on_log()
     ui::log::trace()   << "Trace";
     ui::log()          << "Default log";
 
-    BOOST_UI_LOG.spaces().quotes() << "Test" << 12 << .34 << L'!';
+    BOOST_UI_LOG << "Test" << 12 << .34 << L'!';
 
     std::string().at(0); // Test exception handling
 }
@@ -605,7 +605,7 @@ int ui_main(int argc, char* argv[])
     else if ( argc > 1 )
     {
         for ( int i = 0; i < argc; i++ )
-            ui::log().spaces() << i << "argument" << argv[i];
+            ui::log() << i << "argument" << argv[i];
     }
 
     demo_frame(page).show_modal();

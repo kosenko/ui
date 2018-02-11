@@ -30,11 +30,15 @@ public:
     /// Constructs log using string for output
     log_string(uistring& str);
 
-    /// Inserts white space delitimers between output values
+    /// @{ Inserts white space delitimers between output values
     log_string& spaces(bool show = true) { m_spaces = show; return *this; }
+    log_string& nospaces() { return spaces(false); }
+    /// @}
 
-    /// Adds quotes near string and character output values
+    /// @{ Adds quotes near string and character output values
     log_string& quotes(bool show = true) { m_quotes = show; return *this; }
+    log_string& noquotes() { return quotes(false); }
+    /// @}
 
     /// Logs caller location in the source code
     log_string& location(const char* file, int line = -1, const char* fn = NULL);

@@ -14,7 +14,7 @@ namespace boost {
 namespace ui    {
 
 log_string::log_string(uistring& str)
-    : m_string(str), m_spaces(false), m_quotes(false)
+    : m_string(str), m_spaces(true), m_quotes(true)
 {
 }
 
