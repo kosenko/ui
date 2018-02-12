@@ -106,22 +106,18 @@ index_type choice::current_selection_index() const
 #endif
 }
 
-choice& choice::on_select(const boost::function<void()>& handler)
+void choice::on_select_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_CHOICE
     native::bind_helper(*this, wxEVT_CHOICE, handler);
 #endif
-
-    return *this;
 }
 
-choice& choice::on_select_event(const boost::function<void(index_event&)>& handler)
+void choice::on_select_event_raw(const boost::function<void(index_event&)>& handler)
 {
 #if wxUSE_CHOICE
     native::bind_event_helper(*this, wxEVT_CHOICE, handler);
 #endif
-
-    return *this;
 }
 
 } // namespace ui

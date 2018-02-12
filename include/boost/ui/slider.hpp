@@ -39,10 +39,10 @@ public:
     value_type max() const;
 
     /// Connects slide handler
-    slider& on_slide(const boost::function<void()>& handler);
+    BOOST_UI_DETAIL_HANDLER(slide, slider);
 
     /// Connects slide end handler
-    slider& on_slide_end(const boost::function<void()>& handler);
+    BOOST_UI_DETAIL_HANDLER(slide_end, slider);
 
 protected:
     slider() {}
@@ -56,6 +56,9 @@ private:
     void check_range(value_type value) const
         { check_range(value, min(), max()); }
     static void check_range(value_type value, value_type min, value_type max);
+
+    void on_slide_raw(const boost::function<void()>& handler);
+    void on_slide_end_raw(const boost::function<void()>& handler);
 
     class detail_impl;
     detail_impl* get_impl();

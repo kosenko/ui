@@ -74,11 +74,14 @@ public:
     index_type current_selection_index() const;
 
     ///@{ Connects item selection handler
-    choice& on_select(const boost::function<void()>& handler);
-    choice& on_select_event(const boost::function<void(index_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(select, choice);
+    BOOST_UI_DETAIL_HANDLER_EVENT(select_event, choice, index_event);
     ///@}
 
 private:
+    void on_select_raw(const boost::function<void()>& handler);
+    void on_select_event_raw(const boost::function<void(index_event&)>& handler);
+
     class detail_impl;
     detail_impl* get_impl();
     const detail_impl* get_impl() const;

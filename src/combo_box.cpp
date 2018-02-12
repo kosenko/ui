@@ -108,22 +108,18 @@ uistring combo_box::text() const
 #endif
 }
 
-combo_box& combo_box::on_select(const boost::function<void()>& handler)
+void combo_box::on_select_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_COMBOBOX
     native::bind_helper(*this, wxEVT_COMBOBOX, handler);
 #endif
-
-    return *this;
 }
 
-combo_box& combo_box::on_select_event(const boost::function<void(index_event&)>& handler)
+void combo_box::on_select_event_raw(const boost::function<void(index_event&)>& handler)
 {
 #if wxUSE_COMBOBOX
     native::bind_event_helper(*this, wxEVT_COMBOBOX, handler);
 #endif
-
-    return *this;
 }
 
 } // namespace ui

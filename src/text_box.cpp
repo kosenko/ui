@@ -105,13 +105,11 @@ uistring text_box_base::text() const
 #endif
 }
 
-text_box_base& text_box_base::on_edit(const boost::function<void()>& handler)
+void text_box_base::on_edit_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_TEXTCTRL
     native::bind_helper(*this, wxEVT_TEXT, handler);
 #endif
-
-    return *this;
 }
 
 string_box& string_box::create(widget& parent, const uistring& text)

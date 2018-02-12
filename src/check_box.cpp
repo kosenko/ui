@@ -144,14 +144,11 @@ bool check_box_base::is_indeterminate() const
 #endif
 }
 
-
-check_box_base& check_box_base::on_toggle(const boost::function<void()>& handler)
+void check_box_base::on_toggle_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_CHECKBOX
     native::bind_helper(*this, wxEVT_CHECKBOX, handler);
 #endif
-
-    return *this;
 }
 
 } // namespace ui

@@ -304,166 +304,139 @@ ui::font widget::font() const
     return native::to_font(impl->GetFont());
 }
 
-widget& widget::on_resize(const boost::function<void()>& handler)
+void widget::on_resize_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_SIZE, handler);
-    return *this;
 }
 
-widget& widget::on_key_press(const boost::function<void()>& handler)
+void widget::on_key_press_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_CHAR, handler);
-    return *this;
 }
 
-widget& widget::on_key_press_event(const boost::function<void(key_event&)>& handler)
+void widget::on_key_press_event_raw(const boost::function<void(key_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_CHAR, handler);
-    return *this;
 }
 
-widget& widget::on_key_down(const boost::function<void()>& handler)
+void widget::on_key_down_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_KEY_DOWN, handler);
-    return *this;
 }
 
-widget& widget::on_key_down_event(const boost::function<void(key_event&)>& handler)
+void widget::on_key_down_event_raw(const boost::function<void(key_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_KEY_DOWN, handler);
-    return *this;
 }
 
-widget& widget::on_key_up(const boost::function<void()>& handler)
+void widget::on_key_up_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_KEY_UP, handler);
-    return *this;
 }
 
-widget& widget::on_key_up_event(const boost::function<void(key_event&)>& handler)
+void widget::on_key_up_event_raw(const boost::function<void(key_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_KEY_UP, handler);
-    return *this;
 }
 
-widget& widget::on_left_mouse_down(const boost::function<void()>& handler)
+void widget::on_left_mouse_down_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_LEFT_DOWN, handler);
-    return *this;
 }
 
-widget& widget::on_left_mouse_down_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_left_mouse_down_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_LEFT_DOWN, handler);
-    return *this;
 }
 
-widget& widget::on_left_mouse_up(const boost::function<void()>& handler)
+void widget::on_left_mouse_up_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_LEFT_UP, handler);
-    return *this;
 }
 
-widget& widget::on_left_mouse_up_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_left_mouse_up_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_LEFT_UP, handler);
-    return *this;
 }
 
-widget& widget::on_right_mouse_down(const boost::function<void()>& handler)
+void widget::on_right_mouse_down_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_RIGHT_DOWN, handler);
-    return *this;
 }
 
-widget& widget::on_right_mouse_down_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_right_mouse_down_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_RIGHT_DOWN, handler);
-    return *this;
 }
 
-widget& widget::on_right_mouse_up(const boost::function<void()>& handler)
+void widget::on_right_mouse_up_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_RIGHT_UP, handler);
-    return *this;
 }
 
-widget& widget::on_right_mouse_up_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_right_mouse_up_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_RIGHT_UP, handler);
-    return *this;
 }
 
-widget& widget::on_middle_mouse_down(const boost::function<void()>& handler)
+void widget::on_middle_mouse_down_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_MIDDLE_DOWN, handler);
-    return *this;
 }
 
-widget& widget::on_middle_mouse_down_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_middle_mouse_down_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_MIDDLE_DOWN, handler);
-    return *this;
 }
 
-widget& widget::on_middle_mouse_up(const boost::function<void()>& handler)
+void widget::on_middle_mouse_up_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_MIDDLE_UP, handler);
-    return *this;
 }
 
-widget& widget::on_middle_mouse_up_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_middle_mouse_up_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_MIDDLE_UP, handler);
-    return *this;
 }
 
-widget& widget::on_left_mouse_double_click(const boost::function<void()>& handler)
+void widget::on_left_mouse_double_click_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_LEFT_DCLICK, handler);
-    return *this;
 }
 
-widget& widget::on_left_mouse_double_click_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_left_mouse_double_click_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_LEFT_DCLICK, handler);
-    return *this;
 }
 
-widget& widget::on_right_mouse_double_click(const boost::function<void()>& handler)
+void widget::on_right_mouse_double_click_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_RIGHT_DCLICK, handler);
-    return *this;
 }
 
-widget& widget::on_right_mouse_double_click_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_right_mouse_double_click_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_RIGHT_DCLICK, handler);
-    return *this;
 }
 
-widget& widget::on_middle_mouse_double_click(const boost::function<void()>& handler)
+void widget::on_middle_mouse_double_click_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_MIDDLE_DCLICK, handler);
-    return *this;
 }
 
-widget& widget::on_middle_mouse_double_click_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_middle_mouse_double_click_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_MIDDLE_DCLICK, handler);
-    return *this;
 }
 
-widget& widget::on_mouse_move(const boost::function<void()>& handler)
+void widget::on_mouse_move_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_MOTION, handler);
-    return *this;
 }
 
-widget& widget::on_mouse_move_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_mouse_move_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_MOTION, handler);
-    return *this;
 }
 
 namespace {
@@ -491,52 +464,44 @@ void widget::on_mouse_drag_event_raw(const boost::function<void(mouse_event&)>& 
     native::bind_event_helper(*this, wxEVT_MOTION, handler, filter);
 }
 
-widget& widget::on_mouse_enter(const boost::function<void()>& handler)
+void widget::on_mouse_enter_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_ENTER_WINDOW, handler);
-    return *this;
 }
 
-widget& widget::on_mouse_enter_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_mouse_enter_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_ENTER_WINDOW, handler);
-    return *this;
 }
 
-widget& widget::on_mouse_leave(const boost::function<void()>& handler)
+void widget::on_mouse_leave_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_LEAVE_WINDOW, handler);
-    return *this;
 }
 
-widget& widget::on_mouse_leave_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_mouse_leave_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_LEAVE_WINDOW, handler);
-    return *this;
 }
 
-widget& widget::on_context_menu(const boost::function<void()>& handler)
+void widget::on_context_menu_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_CONTEXT_MENU, handler);
-    return *this;
 }
 
-widget& widget::on_context_menu_event(const boost::function<void(mouse_event&)>& handler)
+void widget::on_context_menu_event_raw(const boost::function<void(mouse_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_CONTEXT_MENU, handler);
-    return *this;
 }
 
-widget& widget::on_mouse_wheel(const boost::function<void()>& handler)
+void widget::on_mouse_wheel_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_MOUSEWHEEL, handler);
-    return *this;
 }
 
-widget& widget::on_mouse_wheel_event(const boost::function<void(wheel_event&)>& handler)
+void widget::on_mouse_wheel_event_raw(const boost::function<void(wheel_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_MOUSEWHEEL, handler);
-    return *this;
 }
 
 widget::native_handle_type widget::native_handle()

@@ -127,49 +127,49 @@ public:
     ui::font font() const;
 
     ///@{ Connects widget resize handler
-    widget& on_resize(const boost::function<void()>& hanlder);
+    BOOST_UI_DETAIL_HANDLER(resize, widget);
     ///@}
 
     ///@{ Connects keyboard event handler
-    widget& on_key_press(const boost::function<void()>& handler);
-    widget& on_key_press_event(const boost::function<void(key_event&)>& handler);
-    widget& on_key_down(const boost::function<void()>& handler);
-    widget& on_key_down_event(const boost::function<void(key_event&)>& handler);
-    widget& on_key_up(const boost::function<void()>& handler);
-    widget& on_key_up_event(const boost::function<void(key_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(key_press, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(key_press_event, widget, key_event);
+    BOOST_UI_DETAIL_HANDLER(key_down, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(key_down_event, widget, key_event);
+    BOOST_UI_DETAIL_HANDLER(key_up, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(key_up_event, widget, key_event);
     ///@}
 
     ///@{ Connects mouse event handler
-    widget& on_left_mouse_down(const boost::function<void()>& handler);
-    widget& on_left_mouse_down_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_left_mouse_up(const boost::function<void()>& handler);
-    widget& on_left_mouse_up_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_right_mouse_down(const boost::function<void()>& handler);
-    widget& on_right_mouse_down_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_right_mouse_up(const boost::function<void()>& handler);
-    widget& on_right_mouse_up_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_middle_mouse_down(const boost::function<void()>& handler);
-    widget& on_middle_mouse_down_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_middle_mouse_up(const boost::function<void()>& handler);
-    widget& on_middle_mouse_up_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_left_mouse_double_click(const boost::function<void()>& handler);
-    widget& on_left_mouse_double_click_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_right_mouse_double_click(const boost::function<void()>& handler);
-    widget& on_right_mouse_double_click_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_middle_mouse_double_click(const boost::function<void()>& handler);
-    widget& on_middle_mouse_double_click_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_mouse_move(const boost::function<void()>& handler);
-    widget& on_mouse_move_event(const boost::function<void(mouse_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(left_mouse_down, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(left_mouse_down_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(left_mouse_up, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(left_mouse_up_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(right_mouse_down, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(right_mouse_down_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(right_mouse_up, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(right_mouse_up_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(middle_mouse_down, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(middle_mouse_down_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(middle_mouse_up, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(middle_mouse_up_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(left_mouse_double_click, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(left_mouse_double_click_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(right_mouse_double_click, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(right_mouse_double_click_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(middle_mouse_double_click, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(middle_mouse_double_click_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(mouse_move, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(mouse_move_event, widget, mouse_event);
     BOOST_UI_DETAIL_HANDLER(mouse_drag, widget);
     BOOST_UI_DETAIL_HANDLER_EVENT(mouse_drag_event, widget, mouse_event);
-    widget& on_mouse_enter(const boost::function<void()>& handler);
-    widget& on_mouse_enter_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_mouse_leave(const boost::function<void()>& handler);
-    widget& on_mouse_leave_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_context_menu(const boost::function<void()>& handler);
-    widget& on_context_menu_event(const boost::function<void(mouse_event&)>& handler);
-    widget& on_mouse_wheel(const boost::function<void()>& handler);
-    widget& on_mouse_wheel_event(const boost::function<void(wheel_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(mouse_enter, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(mouse_enter_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(mouse_leave, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(mouse_leave_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(context_menu, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(context_menu_event, widget, mouse_event);
+    BOOST_UI_DETAIL_HANDLER(mouse_wheel, widget);
+    BOOST_UI_DETAIL_HANDLER_EVENT(mouse_wheel_event, widget, wheel_event);
     ///@}
 
     /// Returns true only if native widget was created
@@ -195,8 +195,45 @@ protected:
 private:
     void delete_last_detail_impl();
 
+    void on_resize_raw(const boost::function<void()>& hanlder);
+
+    void on_key_press_raw(const boost::function<void()>& handler);
+    void on_key_press_event_raw(const boost::function<void(key_event&)>& handler);
+    void on_key_down_raw(const boost::function<void()>& handler);
+    void on_key_down_event_raw(const boost::function<void(key_event&)>& handler);
+    void on_key_up_raw(const boost::function<void()>& handler);
+    void on_key_up_event_raw(const boost::function<void(key_event&)>& handler);
+
+    void on_left_mouse_down_raw(const boost::function<void()>& handler);
+    void on_left_mouse_down_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_left_mouse_up_raw(const boost::function<void()>& handler);
+    void on_left_mouse_up_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_right_mouse_down_raw(const boost::function<void()>& handler);
+    void on_right_mouse_down_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_right_mouse_up_raw(const boost::function<void()>& handler);
+    void on_right_mouse_up_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_middle_mouse_down_raw(const boost::function<void()>& handler);
+    void on_middle_mouse_down_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_middle_mouse_up_raw(const boost::function<void()>& handler);
+    void on_middle_mouse_up_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_left_mouse_double_click_raw(const boost::function<void()>& handler);
+    void on_left_mouse_double_click_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_right_mouse_double_click_raw(const boost::function<void()>& handler);
+    void on_right_mouse_double_click_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_middle_mouse_double_click_raw(const boost::function<void()>& handler);
+    void on_middle_mouse_double_click_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_mouse_move_raw(const boost::function<void()>& handler);
+    void on_mouse_move_event_raw(const boost::function<void(mouse_event&)>& handler);
     void on_mouse_drag_raw(const boost::function<void()>& handler);
     void on_mouse_drag_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_mouse_enter_raw(const boost::function<void()>& handler);
+    void on_mouse_enter_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_mouse_leave_raw(const boost::function<void()>& handler);
+    void on_mouse_leave_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_context_menu_raw(const boost::function<void()>& handler);
+    void on_context_menu_event_raw(const boost::function<void(mouse_event&)>& handler);
+    void on_mouse_wheel_raw(const boost::function<void()>& handler);
+    void on_mouse_wheel_event_raw(const boost::function<void(wheel_event&)>& handler);
 
     detail::widget_detail_base* m_detail_impl;
     detail::shared_count m_shared_count;

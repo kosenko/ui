@@ -113,11 +113,14 @@ public:
     uistring text() const;
 
     ///@{ Connects item selection handler
-    combo_box& on_select(const boost::function<void()>& handler);
-    combo_box& on_select_event(const boost::function<void(index_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(select, combo_box);
+    BOOST_UI_DETAIL_HANDLER_EVENT(select_event, combo_box, index_event);
     ///@}
 
 private:
+    void on_select_raw(const boost::function<void()>& handler);
+    void on_select_event_raw(const boost::function<void(index_event&)>& handler);
+
     class detail_impl;
     detail_impl* get_impl();
     const detail_impl* get_impl() const;

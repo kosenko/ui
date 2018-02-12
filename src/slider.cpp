@@ -118,22 +118,18 @@ void slider::check_range(value_type value, value_type min, value_type max)
         BOOST_THROW_EXCEPTION(std::out_of_range("ui::slider::check_range(): invalid value"));
 }
 
-slider& slider::on_slide(const boost::function<void()>& handler)
+void slider::on_slide_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_SLIDER
     native::bind_helper(*this, wxEVT_SLIDER, handler);
 #endif
-
-    return *this;
 }
 
-slider& slider::on_slide_end(const boost::function<void()>& handler)
+void slider::on_slide_end_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_SLIDER
     native::bind_helper(*this, wxEVT_SCROLL_THUMBRELEASE, handler);
 #endif
-
-    return *this;
 }
 
 } // namespace ui

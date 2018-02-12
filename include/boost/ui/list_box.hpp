@@ -78,16 +78,22 @@ public:
     uistring selected_string() const;
 
     ///@{ Connects item selection handler
-    list_box& on_select(const boost::function<void()>& handler);
-    list_box& on_select_event(const boost::function<void(index_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(select, list_box);
+    BOOST_UI_DETAIL_HANDLER_EVENT(select_event, list_box, index_event);
     ///@}
 
     ///@{ Connects item activation handler
-    list_box& on_activate(const boost::function<void()>& handler);
-    list_box& on_activate_event(const boost::function<void(index_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(activate, list_box);
+    BOOST_UI_DETAIL_HANDLER_EVENT(activate_event, list_box, index_event);
     ///@}
 
 private:
+    void on_select_raw(const boost::function<void()>& handler);
+    void on_select_event_raw(const boost::function<void(index_event&)>& handler);
+
+    void on_activate_raw(const boost::function<void()>& handler);
+    void on_activate_event_raw(const boost::function<void(index_event&)>& handler);
+
     class detail_impl;
     detail_impl* get_impl();
     const detail_impl* get_impl() const;

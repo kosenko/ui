@@ -64,9 +64,13 @@ public:
     bool close();
 
     ///@{ Connects window close handler
-    window& on_close(const boost::function<void()>& handler);
-    window& on_close_event(const boost::function<void(close_event&)>& handler);
+    BOOST_UI_DETAIL_HANDLER(close, window);
+    BOOST_UI_DETAIL_HANDLER_EVENT(close_event, window, close_event);
     ///@}
+
+private:
+    void on_close_raw(const boost::function<void()>& handler);
+    void on_close_event_raw(const boost::function<void(close_event&)>& handler);
 };
 } // namespace ui
 } // namespace boost

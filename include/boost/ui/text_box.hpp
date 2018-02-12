@@ -35,7 +35,7 @@ public:
     uistring text() const;
 
     ///@{ Connects text edit handler
-    text_box_base& on_edit(const boost::function<void()>& handler);
+    BOOST_UI_DETAIL_HANDLER(edit, text_box_base);
     ///@}
 
 protected:
@@ -46,6 +46,8 @@ protected:
 #endif
 
 private:
+    void on_edit_raw(const boost::function<void()>& handler);
+
     class detail_impl;
     detail_impl* get_impl();
     const detail_impl* get_impl() const;

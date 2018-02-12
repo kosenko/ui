@@ -177,13 +177,11 @@ void date_picker::set_ymd(int year, int month, int day)
 #endif
 }
 
-date_picker& date_picker::on_change(const boost::function<void()>& handler)
+void date_picker::on_change_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_DATEPICKCTRL
     native::bind_helper(*this, wxEVT_DATE_CHANGED, handler);
 #endif
-
-    return *this;
 }
 
 //-----------------------------------------------------------------------------
@@ -384,13 +382,11 @@ time_picker& time_picker::set_time(int hours, int minutes, int seconds)
 }
 
 
-time_picker& time_picker::on_change(const boost::function<void()>& handler)
+void time_picker::on_change_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_TIMEPICKCTRL
     native::bind_helper(*this, wxEVT_TIME_CHANGED, handler);
 #endif
-
-    return *this;
 }
 
 } // namespace ui

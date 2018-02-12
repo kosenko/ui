@@ -108,40 +108,32 @@ uistring list_box::selected_string() const
 #endif
 }
 
-list_box& list_box::on_select(const boost::function<void()>& handler)
+void list_box::on_select_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_LISTBOX
     native::bind_helper(*this, wxEVT_LISTBOX, handler);
 #endif
-
-    return *this;
 }
 
-list_box& list_box::on_select_event(const boost::function<void(index_event&)>& handler)
+void list_box::on_select_event_raw(const boost::function<void(index_event&)>& handler)
 {
 #if wxUSE_LISTBOX
     native::bind_event_helper(*this, wxEVT_LISTBOX, handler);
 #endif
-
-    return *this;
 }
 
-list_box& list_box::on_activate(const boost::function<void()>& handler)
+void list_box::on_activate_raw(const boost::function<void()>& handler)
 {
 #if wxUSE_LISTBOX
     native::bind_helper(*this, wxEVT_LISTBOX_DCLICK, handler);
 #endif
-
-    return *this;
 }
 
-list_box& list_box::on_activate_event(const boost::function<void(index_event&)>& handler)
+void list_box::on_activate_event_raw(const boost::function<void(index_event&)>& handler)
 {
 #if wxUSE_LISTBOX
     native::bind_event_helper(*this, wxEVT_LISTBOX_DCLICK, handler);
 #endif
-
-    return *this;
 }
 
 } // namespace ui

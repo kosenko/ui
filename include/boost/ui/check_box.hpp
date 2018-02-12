@@ -68,7 +68,7 @@ public:
     ///@}
 
     /// Connects check box toggle handler
-    check_box_base& on_toggle(const boost::function<void()>& handler);
+    BOOST_UI_DETAIL_HANDLER(toggle, check_box_base);
 
 protected:
     check_box_base() {}
@@ -78,6 +78,8 @@ protected:
 #endif
 
 private:
+    void on_toggle_raw(const boost::function<void()>& handler);
+
     class detail_impl;
     detail_impl* get_impl();
     const detail_impl* get_impl() const;

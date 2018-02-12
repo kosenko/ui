@@ -129,12 +129,14 @@ public:
 #endif
 
     /// Connects data change handler
-    date_picker& on_change(const boost::function<void()>& handler);
+    BOOST_UI_DETAIL_HANDLER(change, date_picker);
 
 #ifndef DOXYGEN
 private:
     void ymd(int& year, int& month, int& day) const;
     void set_ymd(int year, int month, int day);
+
+    void on_change_raw(const boost::function<void()>& handler);
 
     class detail_impl;
     detail_impl* get_impl();
@@ -255,7 +257,7 @@ public:
     time_picker& set_time(int hours, int minutes, int seconds);
 
     /// Connects time change handler
-    time_picker& on_change(const boost::function<void()>& handler);
+    BOOST_UI_DETAIL_HANDLER(change, time_picker);
 
 private:
     void get_time_raw(int* hours_ptr, int* minutes_ptr, int* seconds_ptr) const;
@@ -269,6 +271,8 @@ private:
     {
         set_time(static_cast<int>(seconds / 3600), (seconds / 60) % 60, seconds % 60);
     }
+
+    void on_change_raw(const boost::function<void()>& handler);
 
     class detail_impl;
     detail_impl* get_impl();

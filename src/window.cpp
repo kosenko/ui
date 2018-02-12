@@ -81,16 +81,14 @@ bool window::close()
     return impl->Close();
 }
 
-window& window::on_close(const boost::function<void()>& handler)
+void window::on_close_raw(const boost::function<void()>& handler)
 {
     native::bind_helper(*this, wxEVT_CLOSE_WINDOW, handler);
-    return *this;
 }
 
-window& window::on_close_event(const boost::function<void(close_event&)>& handler)
+void window::on_close_event_raw(const boost::function<void(close_event&)>& handler)
 {
     native::bind_event_helper(*this, wxEVT_CLOSE_WINDOW, handler);
-    return *this;
 }
 
 } // namespace ui
