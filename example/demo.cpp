@@ -211,7 +211,7 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
             << m_progress_bar.create(widgets_panel, 50)
                 .layout().justify()
             << m_slider.create(widgets_panel, 50)
-                .on_slide(boost::bind(&this_type::on_slide, this))
+                .on_slide(&this_type::on_slide, this)
                 .on_slide(utility::make_handler("slider", "slide"))
                 .on_slide_end(utility::make_handler("slider", "slide end"))
                 .layout().justify()
@@ -241,10 +241,10 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
     ui::vbox(datetime_panel)
         << m_date_picker.create(datetime_panel)
             .on_change(utility::make_handler("date picker", "change"))
-            .on_change(boost::bind(&this_type::on_date_change, this))
+            .on_change(&this_type::on_date_change, this)
         << m_time_picker.create(datetime_panel)
             .on_change(utility::make_handler("time picker", "change"))
-            .on_change(boost::bind(&this_type::on_time_change, this))
+            .on_change(&this_type::on_time_change, this)
         ;
 
     ui::web_widget web_widget_panel(main_notebook);
@@ -262,7 +262,7 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
     }
 
     m_canvas.create(main_notebook)
-        .on_resize(boost::bind(&this_type::on_canvas_resize, this))
+        .on_resize(&this_type::on_canvas_resize, this)
         .on_key_press_event(utility::make_event_handler<ui::key_event>("canvas", "key press"))
         .on_key_down_event(utility::make_event_handler<ui::key_event>("canvas", "key down"))
         .on_key_up_event(utility::make_event_handler<ui::key_event>("canvas", "key up"))
@@ -282,7 +282,7 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
         .on_context_menu_event(utility::make_event_handler<ui::mouse_event>("canvas", "context menu"))
         .on_mouse_wheel_event(utility::make_event_handler<ui::wheel_event>("canvas", "mouse wheel"))
         .on_mouse_drag_event(&this_type::on_canvas_mouse_draw, this)
-        .on_context_menu_event(boost::bind(&this_type::on_canvas_context_menu, this, _1))
+        .on_context_menu_event(&this_type::on_canvas_context_menu, this)
         ;
     main_notebook.append_page(m_canvas, "Canvas");
 

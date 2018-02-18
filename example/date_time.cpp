@@ -9,7 +9,6 @@
 #define BOOST_UI_USE_DATE_TIME
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
 
 namespace ui = boost::ui;
@@ -38,13 +37,13 @@ date_time_dialog::date_time_dialog()
         << ( ui::vbox()
             << m_date_label.create(*this).layout().stretch().justify()
             << m_date_picker.create(*this)
-                .on_change(boost::bind(&this_type::on_date_change, this))
+                .on_change(&this_type::on_date_change, this)
                 .layout().justify()
            ).layout().stretch().justify()
         << ( ui::vbox()
             << m_time_label.create(*this).layout().stretch().justify()
             << m_time_picker.create(*this)
-                .on_change(boost::bind(&this_type::on_time_change, this))
+                .on_change(&this_type::on_time_change, this)
                 .layout().justify()
            ).layout().stretch().justify()
         ;

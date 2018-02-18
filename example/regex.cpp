@@ -6,7 +6,6 @@
 // Show C++11 Regex or Boost.Regex work using user data.
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 
 #if !defined(BOOST_NO_CXX11_HDR_REGEX)
 #include <regex>
@@ -59,10 +58,10 @@ regex_dialog::regex_dialog() : ui::dialog(
            )
         << (ui::hbox().layout().justify()
             << ui::button(*this, "&Search")
-                .on_press(boost::bind(&this_type::on_match, this, false))
+                .on_press(&this_type::on_match, this, false)
                 .tooltip("Searches any part of a sequence")
             << ui::button(*this, "&Match")
-                .on_press(boost::bind(&this_type::on_match, this, true))
+                .on_press(&this_type::on_match, this, true)
                 .tooltip("Searches an entire sequence")
             << ui::button(*this, "&Replace")
                 .on_press(&this_type::on_replace, this)

@@ -7,7 +7,6 @@
 // Not finished yet.
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 
 #include <boost/config/warning_disable.hpp>
 #include <boost/spirit/include/qi.hpp>

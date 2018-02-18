@@ -6,7 +6,6 @@
 // Draw normal distribution graph using C++11 or Boost.Random.
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 
 #include <boost/math/special_functions/round.hpp>
 #include <map>
@@ -45,8 +44,8 @@ random_dialog::random_dialog() : ui::dialog(
 {
     m_canvas.create(*this)
         .tooltip("Normal distribution")
-        .on_resize(boost::bind(&this_type::draw, this))
-        .on_left_mouse_up(boost::bind(&this_type::draw, this))
+        .on_resize(&this_type::draw, this)
+        .on_left_mouse_up(&this_type::draw, this)
         ;
 }
 

@@ -10,7 +10,6 @@
 
 #include <boost/config.hpp>
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 #include <boost/algorithm/string.hpp>
 
 #include <fstream>
@@ -87,9 +86,9 @@ filesystem_dialog::filesystem_dialog(const fs::path& p)
            ).layout().justify()
         << ( ui::hbox()
             << m_files_list_box.create(*this)
-                .on_select_event(boost::bind(&this_type::on_file_select, this, _1))
-                .on_activate_event(boost::bind(&this_type::on_file_activate, this, _1))
-                .on_key_press_event(boost::bind(&this_type::on_file_key_press, this, _1))
+                .on_select_event(&this_type::on_file_select, this)
+                .on_activate_event(&this_type::on_file_activate, this)
+                .on_key_press_event(&this_type::on_file_key_press, this)
                 .tooltip("List of files in the current path")
                 .layout().justify().stretch()
             << ( ui::vbox().layout().justify()

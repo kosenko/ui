@@ -44,7 +44,7 @@ public:
             boost::bind(&this_type::handle_connect, this,
                 boost::asio::placeholders::error));
 
-        m_thread = boost::thread(boost::bind(&this_type::run, this));
+        m_thread = boost::thread(&this_type::run, this);
     }
 
     void write(const std::string& str)

@@ -29,7 +29,7 @@ protected:
         ui::vbox box = ui::vbox(panel);
 
         box << m_input_widget.create(panel, default_input_value)
-                .on_edit(boost::bind(&this_type::parse, this))
+                .on_edit(&this_type::parse, this)
                 .tooltip("Input string")
                 .layout().justify();
 

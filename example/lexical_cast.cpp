@@ -6,7 +6,6 @@
 // Show boost::lexical_cast<> work using user provided data.
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 #include <boost/algorithm/string/split.hpp> // boost::split()
 #include <boost/algorithm/string/classification.hpp> // boost::is_any_of()
 
@@ -39,13 +38,13 @@ lc_dialog::lc_dialog() : ui::dialog("Boost.Lexical_Cast + Boost.UI example")
             << ui::label(*this, "Convert to: ")
                 .layout().stretch()
             << m_type_choice.create(*this, types)
-                .on_select(boost::bind(&this_type::convert, this))
+                .on_select(&this_type::convert, this)
                 .select(0)
                 .layout().stretch()
            ).layout().justify()
         << ( ui::hbox()
             << m_input_widget.create(*this, "0\n1\n123\n-4\n5.6\n5,6\n1000000\n1e6\ninf\nx\ntext")
-                .on_edit(boost::bind(&this_type::convert, this))
+                .on_edit(&this_type::convert, this)
                 .tooltip("Input")
                 .layout().justify().stretch()
             << m_output_widget.create(*this)

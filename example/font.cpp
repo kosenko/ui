@@ -6,7 +6,6 @@
 // Show font styles available in Boost.UI.
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 #include <sstream>
 
 #include "to_string.hpp"
@@ -55,7 +54,7 @@ font_dialog::font_dialog()
     ui::vbox(*this)
         << ( ui::hbox().layout().justify()
             << m_family_widget.create(*this, families)
-                .on_select(boost::bind(&this_type::set_family, this))
+                .on_select(&this_type::set_family, this)
                 .tooltip("Font family")
                 .layout()
             << m_name_widget.create(*this, font().name())
@@ -64,12 +63,12 @@ font_dialog::font_dialog()
             << m_size_widget.create(*this, to_string( font().size_pt() ))
                 .tooltip("Font size")
             << m_slant_widget.create(*this, slants)
-                .on_select(boost::bind(&this_type::set_font, this))
+                .on_select(&this_type::set_font, this)
                 .select(0)
                 .tooltip("Font slant")
                 .layout()
             << m_weight_widget.create(*this, weights)
-                .on_select(boost::bind(&this_type::set_font, this))
+                .on_select(&this_type::set_font, this)
                 .select(0)
                 .tooltip("Font weight")
                 .layout()

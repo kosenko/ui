@@ -8,7 +8,6 @@
 #define BOOST_UI_USE_GEOMETRY
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
@@ -79,7 +78,7 @@ geometry_dialog::geometry_dialog(const std::string& filename)
         boost::geometry::expand(m_box, boost::geometry::return_envelope<box_type>(geometry));
     }
 
-    m_canvas.create(*this).on_resize(boost::bind(&this_type::draw, this));
+    m_canvas.create(*this).on_resize(&this_type::draw, this);
 }
 
 void geometry_dialog::draw()

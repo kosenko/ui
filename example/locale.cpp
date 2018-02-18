@@ -9,7 +9,6 @@
 #include <boost/ui.hpp>
 #include <boost/locale.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
-#include <boost/bind.hpp>
 
 namespace ui = boost::ui;
 
@@ -73,12 +72,12 @@ locale_dialog::locale_dialog()
             << ui::label(*this, "Locale:")
                 .layout().margin(1, 1, 0, 1)
             << m_locale_combo_box.create(*this, locales)
-                .on_select(boost::bind(&this_type::on_init, this))
+                .on_select(&this_type::on_init, this)
                 .layout().justify()
             << ui::label(*this, "Charset:")
                 .layout().margin(1, 1, 0, 1)
             << m_charset_combo_box.create(*this, charsets)
-                .on_select(boost::bind(&this_type::on_init, this))
+                .on_select(&this_type::on_init, this)
                 .layout().justify()
             << ui::button(*this, "&Init")
                 .on_press(&this_type::on_init, this)

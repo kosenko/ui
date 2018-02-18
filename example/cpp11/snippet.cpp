@@ -11,8 +11,6 @@
 
 #include <boost/ui.hpp>
 
-#include <functional> // std::bind()
-
 namespace ui = boost::ui;
 
 /// [button]
