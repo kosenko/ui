@@ -17,7 +17,6 @@ namespace chrono_ns = boost::chrono;
 #endif
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 
 #include <boost/interprocess/sync/named_mutex.hpp>
 #include <boost/interprocess/ipc/message_queue.hpp>
@@ -99,8 +98,7 @@ void interprocess_dialog::on_timeout()
 
     m_lock_label.text(was_locked ? "Locked" : "Unlocked");
 
-    ui::on_timeout(chrono_ns::milliseconds(100),
-                   boost::bind(&this_type::on_timeout, this));
+    ui::on_timeout(chrono_ns::milliseconds(100), &this_type::on_timeout, this);
 }
 
 void interprocess_dialog::on_send()

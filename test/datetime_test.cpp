@@ -340,12 +340,49 @@ void test_time_picker(ui::widget parent)
 #endif
 }
 
+void my_handler()
+{
+    BOOST_UI_LOG;
+}
+
+void my_handler_1(int value)
+{
+    BOOST_UI_LOG << value;
+}
+
+void my_handler_2(int value, const char* value2)
+{
+    BOOST_UI_LOG << value << value2;
+}
+
+void test_events()
+{
+#ifndef BOOST_NO_CXX11_HDR_CHRONO
+    ui::on_timeout(std::chrono::milliseconds(100), &my_handler);
+    ui::on_timeout(std::chrono::milliseconds(100), &my_handler_1, 1);
+    ui::on_timeout(std::chrono::milliseconds(100), &my_handler_2, 1, "A");
+#endif
+
+#ifdef BOOST_UI_USE_CHRONO
+    ui::on_timeout(boost::chrono::milliseconds(100), &my_handler);
+    ui::on_timeout(boost::chrono::milliseconds(100), &my_handler_1, 2);
+    ui::on_timeout(boost::chrono::milliseconds(100), &my_handler_2, 2, "B");
+#endif
+
+#ifdef BOOST_UI_USE_DATE_TIME
+    ui::on_timeout(boost::posix_time::time_duration(0, 0, 0, 100), &my_handler);
+    ui::on_timeout(boost::posix_time::time_duration(0, 0, 0, 100), &my_handler_1, 3);
+    ui::on_timeout(boost::posix_time::time_duration(0, 0, 0, 100), &my_handler_2, 3, "C");
+#endif
+}
+
 int ui_main()
 {
     ui::dialog dlg("Title");
 
     test_date_picker(dlg);
     test_time_picker(dlg);
+    test_events();
 
     //dlg.show_modal();
 

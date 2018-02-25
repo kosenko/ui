@@ -20,8 +20,8 @@ namespace chrono_ns = boost::chrono;
 #endif
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 #include <boost/optional.hpp>
+
 #include <vector>
 #include <list>
 #ifndef BOOST_NO_CXX11_HDR_FORWARD_LIST
@@ -457,8 +457,7 @@ void sort_dialog::on_run()
 
     if ( !m_start_button.is_enabled() )
     {
-        ui::on_timeout(chrono_ns::milliseconds(100),
-                       boost::bind(&this_type::on_run, this));
+        ui::on_timeout(chrono_ns::milliseconds(100), &this_type::on_run, this);
     }
 }
 

@@ -18,7 +18,6 @@ namespace chrono_ns = boost::chrono;
 #endif
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 
 #include <boost/timer/timer.hpp>
 
@@ -67,8 +66,7 @@ timer_dialog::timer_dialog() : ui::dialog("Boost.Timer + Boost.UI example")
 void timer_dialog::on_start()
 {
     m_timers.push(boost::timer::cpu_timer());
-    ui::on_timeout(chrono_ns::milliseconds(1000),
-                   boost::bind(&this_type::on_timeout, this));
+    ui::on_timeout(chrono_ns::milliseconds(1000), &this_type::on_timeout, this);
     m_timers.back().start();
 }
 

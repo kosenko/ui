@@ -28,6 +28,12 @@
 #include <boost/date_time/time_duration.hpp>
 #endif
 
+#ifndef BOOST_NO_CXX11_VARIADIC_TEMPLATES
+#include <boost/move/utility.hpp>
+#else
+#include <boost/bind.hpp>
+#endif
+
 namespace boost {
 namespace ui    {
 
@@ -47,6 +53,38 @@ BOOST_UI_DECL int entry(int (*ui_main)(),             int argc, char* argv[]);
 
 namespace detail {
 BOOST_UI_DECL void on_timeout(int milliseconds, const boost::function<void()>& fn);
+
+#ifndef BOOST_NO_CXX11_HDR_CHRONO
+template <class Rep, class Period>
+void on_timeout(const std::chrono::duration<Rep, Period>& d,
+                const boost::function<void()>& fn)
+{
+    on_timeout(static_cast<int>(std::chrono::duration_cast<
+                    std::chrono::milliseconds>(d).count()),
+               fn);
+}
+#endif
+
+#ifdef BOOST_UI_USE_CHRONO
+template <class Rep, class Period>
+void on_timeout(const boost::chrono::duration<Rep, Period>& d,
+                const boost::function<void()>& fn)
+{
+    on_timeout(static_cast<int>(boost::chrono::duration_cast<
+                    boost::chrono::milliseconds>(d).count()),
+               fn);
+}
+#endif
+
+#ifdef BOOST_UI_USE_DATE_TIME
+template <class T, typename rep_type>
+void on_timeout(const boost::date_time::time_duration<T, rep_type>& td,
+                const boost::function<void()>& fn)
+{
+    on_timeout(static_cast<int>( td.total_milliseconds() ), fn);
+}
+#endif
+
 } // namespace detail
 
 #endif
@@ -62,34 +100,93 @@ BOOST_UI_DECL void on_timeout(int milliseconds, const boost::function<void()>& f
 /// @ingroup event
 
 #ifndef BOOST_NO_CXX11_HDR_CHRONO
+#if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
+template <class Rep, class Period, class F, class ...Args>
+void on_timeout(const std::chrono::duration<Rep, Period>& d,
+                F&& f, Args&&... args)
+{
+    detail::on_timeout(d, std::bind(boost::forward<F>(f), boost::forward<Args>(args)...));
+}
+#else
 template <class Rep, class Period>
 void on_timeout(const std::chrono::duration<Rep, Period>& d,
                 const boost::function<void()>& fn)
 {
-    detail::on_timeout(static_cast<int>(std::chrono::duration_cast<
-                           std::chrono::milliseconds>(d).count()),
-                       fn);
+    detail::on_timeout(d, fn);
 }
+template <class Rep, class Period, class F, class Arg1>
+void on_timeout(const std::chrono::duration<Rep, Period>& d,
+                F f, Arg1 a1)
+{
+    detail::on_timeout(d, boost::bind(f, a1));
+}
+template <class Rep, class Period, class F, class Arg1, class Arg2>
+void on_timeout(const std::chrono::duration<Rep, Period>& d,
+                F f, Arg1 a1, Arg2 a2)
+{
+    detail::on_timeout(d, boost::bind(f, a1, a2));
+}
+#endif
 #endif
 
 #ifdef BOOST_UI_USE_CHRONO
+#if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
+template <class Rep, class Period, class F, class ...Args>
+void on_timeout(const boost::chrono::duration<Rep, Period>& d,
+                F&& f, Args&&... args)
+{
+    detail::on_timeout(d, std::bind(boost::forward<F>(f), boost::forward<Args>(args)...));
+}
+#else
 template <class Rep, class Period>
 void on_timeout(const boost::chrono::duration<Rep, Period>& d,
                 const boost::function<void()>& fn)
 {
-    detail::on_timeout(static_cast<int>(boost::chrono::duration_cast<
-                           boost::chrono::milliseconds>(d).count()),
-                       fn);
+    detail::on_timeout(d, fn);
 }
+template <class Rep, class Period, class F, class Arg1>
+void on_timeout(const boost::chrono::duration<Rep, Period>& d,
+                F f, Arg1 a1)
+{
+    detail::on_timeout(d, boost::bind(f, a1));
+}
+template <class Rep, class Period, class F, class Arg1, class Arg2>
+void on_timeout(const boost::chrono::duration<Rep, Period>& d,
+                F f, Arg1 a1, Arg2 a2)
+{
+    detail::on_timeout(d, boost::bind(f, a1, a2));
+}
+#endif
 #endif
 
 #ifdef BOOST_UI_USE_DATE_TIME
+#if !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
+template <class T, typename rep_type, class F, class ...Args>
+void on_timeout(const boost::date_time::time_duration<T, rep_type>& td,
+                F&& f, Args&&... args)
+{
+    detail::on_timeout(td, std::bind(boost::forward<F>(f), boost::forward<Args>(args)...));
+}
+#else
 template <class T, typename rep_type>
 void on_timeout(const boost::date_time::time_duration<T, rep_type>& td,
                 const boost::function<void()>& fn)
 {
-    detail::on_timeout(static_cast<int>( td.total_milliseconds() ), fn);
+    detail::on_timeout(td, fn);
 }
+template <class T, typename rep_type, class F, class Arg1>
+void on_timeout(const boost::date_time::time_duration<T, rep_type>& td,
+                F f, Arg1 a1)
+{
+    detail::on_timeout(td, boost::bind(f, a1));
+}
+template <class T, typename rep_type, class F, class Arg1, class Arg2>
+void on_timeout(const boost::date_time::time_duration<T, rep_type>& td,
+                F f, Arg1 a1, Arg2 a2)
+{
+    detail::on_timeout(td, boost::bind(f, a1, a2));
+}
+#endif
 #endif
 
 ///@}

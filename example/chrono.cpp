@@ -23,7 +23,6 @@ namespace chrono_ns = boost::chrono;
 #endif
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
 
 #include <queue>
 #include <sstream>
@@ -93,8 +92,7 @@ static chrono_ns::milliseconds g_duration =
 
 void chrono_dialog::on_start()
 {
-    ui::on_timeout(g_duration,
-                   boost::bind(&this_type::on_timeout, this));
+    ui::on_timeout(g_duration, &this_type::on_timeout, this);
     m_time_points.push(time_point::now());
 }
 
