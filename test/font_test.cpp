@@ -24,17 +24,18 @@ int ui_main()
     BOOST_TEST(ui::font::caption().valid());
     BOOST_TEST(ui::font::caption().native_handle());
 
-    BOOST_TEST_THROWS(ui::font(-1, "Arial"), std::out_of_range);
+    const std::wstring font_name = ui::font::caption().name().wstring();
+    BOOST_TEST_THROWS(ui::font(-1, font_name), std::out_of_range);
     BOOST_TEST_THROWS(ui::font(-1, ui::font::family::serif), std::out_of_range);
 
-    BOOST_TEST_THROWS(ui::font(12, "Invalid font name"), std::out_of_range);
+    BOOST_TEST_THROWS(ui::font(12, "My invalid font name"), std::out_of_range);
 
     {
-        const ui::font f(12, "Arial");
+        const ui::font f(12, font_name);
         BOOST_TEST(f.valid());
         BOOST_TEST(f.native_handle());
         BOOST_TEST_EQ(f.size_pt(), 12);
-        BOOST_TEST_EQ(f.name().string(), "Arial");
+        BOOST_TEST(f.name().wstring() == font_name);
         BOOST_TEST(f.get_family() != ui::font::family::monospace);
         BOOST_TEST(f.get_slant()  == ui::font::slant::normal);
         BOOST_TEST(f.get_weight() == ui::font::weight::normal);
@@ -54,7 +55,7 @@ int ui_main()
     {
         ui::font f = ui::font::caption();
         BOOST_TEST_EQ(f.size_pt(14).size_pt(), 14);
-        BOOST_TEST_EQ(f.name("Arial").name().string(), "Arial");
+        BOOST_TEST(f.name(font_name).name().wstring() == font_name);
         BOOST_TEST(f.set_slant(ui::font::slant::italic).get_slant()
                             == ui::font::slant::italic);
         BOOST_TEST(f.set_weight(ui::font::weight::bold).get_weight()
