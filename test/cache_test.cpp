@@ -78,12 +78,12 @@ void test_label(ui::window& parent)
     BOOST_TEST(l2.is_shown());
 
     boost::function<void()> f2;
-    l1.on_mouse_move(f2);
+    l1.on_mouse_drag(f2);
 }
 
 int ui_main()
 {
-    ui::frame frm("Cache Test");
+    ui::frame frm("Cache test dialog");
 
     test_label(frm);
 

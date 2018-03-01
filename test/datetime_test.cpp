@@ -24,7 +24,7 @@ static void test_date_time_t(std::time_t actual, std::time_t expected)
     BOOST_TEST(diff > -24 * 60 * 60);
 }
 
-void test_date_picker(ui::widget parent)
+ui::widget test_date_picker(ui::widget parent)
 {
     ui::date_picker picker(parent);
 
@@ -127,9 +127,11 @@ void test_date_picker(ui::widget parent)
     picker.system_clock_time_point(std::chrono::system_clock::from_time_t(time_2001_02_03 + 7 * 24 * 60 * 60));
     test_date_time_t(picker.get_time_t(), time_2001_02_03 + 7 * 24 * 60 * 60);
 #endif
+
+    return picker;
 }
 
-void test_time_picker(ui::widget parent)
+ui::widget test_time_picker(ui::widget parent)
 {
     ui::time_picker picker(parent);
 
@@ -338,6 +340,8 @@ void test_time_picker(ui::widget parent)
     picker.chrono_duration(std::chrono::minutes(93) + std::chrono::seconds(30));
     BOOST_TEST_EQ(picker.get_time_t(), 93 * 60 + 30);
 #endif
+
+    return picker;
 }
 
 void my_handler()
@@ -378,10 +382,12 @@ void test_events()
 
 int ui_main()
 {
-    ui::dialog dlg("Title");
+    ui::dialog dlg("Date and time test dialog");
 
-    test_date_picker(dlg);
-    test_time_picker(dlg);
+    ui::vbox(dlg)
+        << test_date_picker(dlg)
+        << test_time_picker(dlg)
+        ;
     test_events();
 
     //dlg.show_modal();
