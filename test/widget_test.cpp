@@ -115,7 +115,7 @@ void test_window(ui::window& parent)
     //win.show_modal();
 }
 
-void test_canvas(ui::widget parent)
+void test_canvas(ui::widget& parent)
 {
     ui::canvas canvas(parent);
     ui::painter painter = canvas.painter();
@@ -145,7 +145,7 @@ void test_canvas(ui::widget parent)
 #endif
 }
 
-void test_button(ui::widget parent)
+void test_button(ui::widget& parent)
 {
     {
         ui::button button0;
@@ -191,7 +191,7 @@ void test_button(ui::widget parent)
 }
 
 template <class Widget>
-void test_check_box(ui::widget parent)
+void test_check_box(ui::widget& parent)
 {
     Widget check_box(parent, "Checkbox");
     BOOST_TEST(check_box.is_unchecked());
@@ -252,7 +252,7 @@ void test_check_box(ui::widget parent)
 }
 
 template <class Widget>
-void test_text(ui::widget parent)
+void test_text(ui::widget& parent)
 {
     Widget widget(parent, "Text");
     BOOST_TEST(widget.native_handle() != NULL);
@@ -263,7 +263,7 @@ void test_text(ui::widget parent)
     BOOST_TEST_EQ(widget.text(), ui::uistring());
 }
 
-void test_text_box(ui::widget parent)
+void test_text_box(ui::widget& parent)
 {
     {
         ui::string_box w;
@@ -312,7 +312,7 @@ void test_container_api(Container& container)
 }
 
 template <class Widget>
-void test_strings_box(ui::widget parent)
+void test_strings_box(ui::widget& parent)
 {
     {
         Widget sw;
@@ -397,7 +397,7 @@ void test_strings_box(ui::widget parent)
     }
 }
 
-void test_progress_bar(ui::widget parent)
+void test_progress_bar(ui::widget& parent)
 {
     {
         ui::hprogress_bar pb(parent);
@@ -417,7 +417,7 @@ void test_progress_bar(ui::widget parent)
     BOOST_TEST_THROWS(ui::hprogress_bar(parent, 50, 40), std::out_of_range);
 }
 
-void test_slider(ui::widget parent)
+void test_slider(ui::widget& parent)
 {
     {
         ui::hslider sl(parent);
@@ -436,7 +436,7 @@ void test_slider(ui::widget parent)
     ui::hslider(parent, -30, -40, -20);
 }
 
-void test_notebook(ui::widget parent)
+void test_notebook(ui::widget& parent)
 {
     ui::notebook nb(parent);
     BOOST_TEST_EQ(nb.current_page_index(), -1);
@@ -453,7 +453,7 @@ void test_notebook(ui::widget parent)
     BOOST_TEST_EQ(nb.current_page_index(), 1);
 }
 
-void test_static_widgets(ui::widget parent)
+void test_static_widgets(ui::widget& parent)
 {
     {
         ui::vline w(parent);

@@ -24,7 +24,7 @@ static void test_date_time_t(std::time_t actual, std::time_t expected)
     BOOST_TEST(diff > -24 * 60 * 60);
 }
 
-ui::widget test_date_picker(ui::widget parent)
+ui::widget test_date_picker(ui::widget& parent)
 {
     ui::date_picker picker(parent);
 
@@ -131,7 +131,7 @@ ui::widget test_date_picker(ui::widget parent)
     return picker;
 }
 
-ui::widget test_time_picker(ui::widget parent)
+ui::widget test_time_picker(ui::widget& parent)
 {
     ui::time_picker picker(parent);
 
