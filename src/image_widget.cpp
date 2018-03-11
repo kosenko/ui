@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/image_widget.hpp>
 #include <boost/ui/native/widget.hpp>
 

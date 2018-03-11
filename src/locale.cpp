@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/locale.hpp>
 
 #include <wx/intl.h>

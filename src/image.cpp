@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/image.hpp>
 #include <boost/ui/detail/memcheck.hpp>
 

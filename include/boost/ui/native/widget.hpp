@@ -6,6 +6,8 @@
 #ifndef BOOST_UI_NATIVE_WIDGET_HPP
 #define BOOST_UI_NATIVE_WIDGET_HPP
 
+#include <boost/ui/native/config.hpp>
+
 class wxWindow;
 
 #include <boost/ui/widget.hpp>

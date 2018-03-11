@@ -6,6 +6,7 @@
 #ifndef BOOST_UI_NATIVE_COLOR_HPP
 #define BOOST_UI_NATIVE_COLOR_HPP
 
+#include <boost/ui/native/config.hpp>
 #include <wx/colour.h>
 
 namespace boost  {

@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/event_loop.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/ui/detail/memcheck.hpp>

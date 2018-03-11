@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/combo_box.hpp>
 #include <boost/ui/native/event.hpp>
 #include <boost/ui/native/string.hpp>

@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/canvas.hpp>
 #include <boost/ui/painter.hpp>
 #include <boost/ui/native/impl/canvas.hpp>

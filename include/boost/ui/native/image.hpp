@@ -6,6 +6,8 @@
 #ifndef BOOST_UI_NATIVE_IMAGE_HPP
 #define BOOST_UI_NATIVE_IMAGE_HPP
 
+#include <boost/ui/native/config.hpp>
+
 class wxBitmap;
 
 #include <boost/ui/image.hpp>

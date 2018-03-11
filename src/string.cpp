@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/string.hpp>
 #include <boost/ui/string_io.hpp>
 #include <boost/ui/native/string.hpp>

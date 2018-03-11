@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/font.hpp>
 #include <boost/ui/native/font.hpp>
 #include <boost/ui/native/string.hpp>

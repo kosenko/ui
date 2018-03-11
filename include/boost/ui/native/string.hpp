@@ -6,6 +6,8 @@
 #ifndef BOOST_UI_NATIVE_STRING_HPP
 #define BOOST_UI_NATIVE_STRING_HPP
 
+#include <boost/ui/native/config.hpp>
+
 #include <vector>
 
 class wxString;

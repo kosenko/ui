@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/frame.hpp>
 #include <boost/ui/event_loop.hpp>
 #include <boost/ui/native/event.hpp>

@@ -6,6 +6,7 @@
 #ifndef BOOST_UI_NATIVE_EVENT_HPP
 #define BOOST_UI_NATIVE_EVENT_HPP
 
+#include <boost/ui/native/config.hpp>
 #include <boost/ui/native/widget.hpp>
 
 #include <wx/window.h>

@@ -5,6 +5,8 @@
 
 #define BOOST_UI_SOURCE
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/group_box.hpp>
 #include <boost/ui/native/string.hpp>
 #include <boost/ui/native/widget.hpp>

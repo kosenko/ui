@@ -6,6 +6,8 @@
 #ifndef BOOST_UI_NATIVE_ALL_HPP
 #define BOOST_UI_NATIVE_ALL_HPP
 
+#include <boost/ui/native/config.hpp>
+
 #include <boost/ui/native/color.hpp>
 #include <boost/ui/native/event.hpp>
 #include <boost/ui/native/font.hpp>
