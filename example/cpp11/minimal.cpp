@@ -41,6 +41,8 @@ my_frame::my_frame(const ui::uistring& title)
                 })
            )
         ;
+
+    status_bar().text("Welcome to Boost.UI!");
 }
 
 int ui_main()

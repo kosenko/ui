@@ -115,6 +115,16 @@ void test_window(ui::window& parent)
     //win.show_modal();
 }
 
+void test_frame(ui::widget& parent)
+{
+    ui::frame f("Frame");
+    ui::status_bar sb = f.status_bar();
+    BOOST_TEST_EQ(sb.text(), "");
+
+    sb.text("ready");
+    BOOST_TEST_EQ(sb.text(), "ready");
+}
+
 void test_canvas(ui::widget& parent)
 {
     ui::canvas canvas(parent);
@@ -495,6 +505,7 @@ int ui_main()
     test_parent(dlg);
     test_window<ui::dialog>(dlg);
     test_window<ui::frame>(dlg);
+    test_frame(dlg);
     test_canvas(dlg);
     test_button(dlg);
     test_check_box<ui::check_box>(dlg);

@@ -53,6 +53,11 @@ public:
         wxCHECK(m_native, );
         m_native->SetMenuBar(wxmb);
     }
+    void set_status_bar(wxStatusBar* wxsb)
+    {
+        wxCHECK(m_native, );
+        m_native->SetStatusBar(wxsb);
+    }
 
 private:
     void on_close(wxCloseEvent& e)
@@ -96,6 +101,26 @@ ui::menu_bar frame::menu_bar()
     impl->set_menu_bar(wxmb);
 
     return mb;
+}
+
+ui::status_bar frame::status_bar()
+{
+    ui::status_bar sb;
+    sb.create(*this);
+
+    status_bar::native_handle_type void_sb = sb.native_handle();
+    wxCHECK(void_sb, ui::status_bar());
+
+    wxObject* object_sb = static_cast<wxObject*>(void_sb);
+    wxStatusBar* wxsb = dynamic_cast<wxStatusBar*>(object_sb);
+    wxCHECK(wxsb, ui::status_bar());
+
+    detail_impl* impl = get_impl();
+    wxCHECK(impl, sb);
+
+    impl->set_status_bar(wxsb);
+
+    return sb;
 }
 
 } // namespace ui

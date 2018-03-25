@@ -16,6 +16,7 @@
 
 #include <boost/ui/window.hpp>
 #include <boost/ui/menu.hpp>
+#include <boost/ui/status_bar.hpp>
 
 namespace boost {
 namespace ui    {
@@ -38,6 +39,10 @@ public:
     /// @brief Returns menu bar
     /// @details If menu bar wasn't created, creates menu bar.
     ui::menu_bar menu_bar();
+
+    /// @brief Returns status bar
+    /// @details If status bar wasn't created, creates status bar.
+    ui::status_bar status_bar();
 
 private:
     class detail_impl;

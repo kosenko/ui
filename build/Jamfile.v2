@@ -226,6 +226,7 @@ lib
         panel.cpp
         progress_bar.cpp
         slider.cpp
+        status_bar.cpp
         stream.cpp
         string.cpp
         strings_box.cpp

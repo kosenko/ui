@@ -311,6 +311,8 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
            )
         ;
 
+    status_bar().text("Ready");
+
     resize(600, 500);
 }
 
