@@ -48,16 +48,20 @@ public:
 
         m_modal_loop.run();
     }
+#if wxUSE_MENUS
     void set_menu_bar(wxMenuBar* wxmb)
     {
         wxCHECK(m_native, );
         m_native->SetMenuBar(wxmb);
     }
+#endif
+#if wxUSE_STATUSBAR
     void set_status_bar(wxStatusBar* wxsb)
     {
         wxCHECK(m_native, );
         m_native->SetStatusBar(wxsb);
     }
+#endif
 
 private:
     void on_close(wxCloseEvent& e)
@@ -91,6 +95,7 @@ ui::menu_bar frame::menu_bar()
     menu_bar::native_handle_type void_mb = mb.native_handle();
     wxCHECK(void_mb, ui::menu_bar());
 
+#if wxUSE_MENUS
     wxObject* object_mb = static_cast<wxObject*>(void_mb);
     wxMenuBar* wxmb = dynamic_cast<wxMenuBar*>(object_mb);
     wxCHECK(wxmb, ui::menu_bar());
@@ -99,6 +104,7 @@ ui::menu_bar frame::menu_bar()
     wxCHECK(impl, mb);
 
     impl->set_menu_bar(wxmb);
+#endif
 
     return mb;
 }
@@ -111,6 +117,7 @@ ui::status_bar frame::status_bar()
     status_bar::native_handle_type void_sb = sb.native_handle();
     wxCHECK(void_sb, ui::status_bar());
 
+#if wxUSE_STATUSBAR
     wxObject* object_sb = static_cast<wxObject*>(void_sb);
     wxStatusBar* wxsb = dynamic_cast<wxStatusBar*>(object_sb);
     wxCHECK(wxsb, ui::status_bar());
@@ -119,6 +126,7 @@ ui::status_bar frame::status_bar()
     wxCHECK(impl, sb);
 
     impl->set_status_bar(wxsb);
+#endif
 
     return sb;
 }

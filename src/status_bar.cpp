@@ -57,14 +57,20 @@ status_bar::~status_bar()
 status_bar& status_bar::text(const uistring& text)
 {
     wxCHECK(m_impl, *this);
+#if wxUSE_STATUSBAR
     m_impl->SetStatusText(native::from_uistring(text));
+#endif
     return *this;
 }
 
 uistring status_bar::text() const
 {
     wxCHECK(m_impl, uistring());
+#if wxUSE_STATUSBAR
     return native::to_uistring(m_impl->GetStatusText());
+#else
+    return uistring();
+#endif
 }
 
 } // namespace ui
