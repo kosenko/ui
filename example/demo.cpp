@@ -454,8 +454,20 @@ void demo_frame::on_log()
     if ( !ui::prompt_password("Enter your password", "Password", password) )
         return;
 
+    std::wstring filename = L"";
+    if ( !ui::prompt_filename("Select you favorite file", filename) )
+        return;
+
+    std::wstring directory = L"";
+    if ( !ui::prompt_directory("Select you favorite directory", directory) )
+        return;
+
     ui::info_dialog(L"Your name is " + name
-        + L" and your password is " + password);
+        + L" and your password is " + password
+        + L".\nYou favorite file is \"" + filename
+        + L"\".\nYou favorite directory is \"" + directory
+        + L"\"."
+    );
     ui::warning_dialog("Password could be lost");
     ui::error_dialog("Password was lost");
 

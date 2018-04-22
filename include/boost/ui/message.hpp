@@ -86,6 +86,22 @@ BOOST_UI_DECL
 bool prompt_password(const uistring& message, const uistring& title, uistring& value);
 ///@}
 
+///@{ @brief Request user filename using application-modal dialog
+/// @ingroup prompt
+BOOST_UI_DECL
+bool prompt_filename(const uistring& title, std::wstring& value);
+BOOST_UI_DECL
+bool prompt_filename(const uistring& title, uistring& value);
+///@}
+
+///@{ @brief Request user directory using application-modal dialog
+/// @ingroup prompt
+BOOST_UI_DECL
+bool prompt_directory(const uistring& title, std::wstring& value);
+BOOST_UI_DECL
+bool prompt_directory(const uistring& title, uistring& value);
+///@}
+
 } // namespace ui
 } // namespace boost
 

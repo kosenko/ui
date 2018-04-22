@@ -13,6 +13,8 @@
 #include <wx/msgdlg.h>
 #include <wx/textdlg.h>
 #include <wx/notifmsg.h>
+#include <wx/filedlg.h>
+#include <wx/dirdlg.h>
 
 namespace boost {
 namespace ui    {
@@ -142,6 +144,48 @@ bool prompt_password(const uistring& message, const uistring& title, uistring& v
 
     value = native::to_uistring(dialog.GetValue());
     return true;
+#else
+    return false;
+#endif
+}
+
+bool prompt_filename(const uistring& title, std::wstring& value)
+{
+    uistring str = value;
+    if ( !prompt_filename(title, str) )
+        return false;
+
+    value = str.wstring();
+    return true;
+}
+
+bool prompt_filename(const uistring& title, uistring& value)
+{
+#if wxUSE_FILEDLG
+    wxString str = wxFileSelector(native::from_uistring(title), wxString(), native::from_uistring(value));
+    value = native::to_uistring(str);
+    return !str.empty();
+#else
+    return false;
+#endif
+}
+
+bool prompt_directory(const uistring& title, std::wstring& value)
+{
+    uistring str = value;
+    if ( !prompt_directory(title, str) )
+        return false;
+
+    value = str.wstring();
+    return true;
+}
+
+bool prompt_directory(const uistring& title, uistring& value)
+{
+#if wxUSE_DIRDLG
+    wxString str = wxDirSelector(native::from_uistring(title), native::from_uistring(value));
+    value = native::to_uistring(str);
+    return !str.empty();
 #else
     return false;
 #endif
