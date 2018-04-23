@@ -307,7 +307,8 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
             << ui::menu::item("&Paste")
            )
         << ( ui::menu("&Help")
-            << ui::menu::item("A&bout")
+            << ui::menu::item("A&bout...")
+                .on_press(&on_press_me)
            )
         ;
 
@@ -319,9 +320,8 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
 void demo_frame::on_press_me()
 {
     std::ostringstream info;
-    info << "Button or menu item pressed";
 
-    info << "\n\nBoost version " << BOOST_VERSION / 100000
+    info << "Boost version " << BOOST_VERSION / 100000
         << '.' << BOOST_VERSION / 100 % 1000
         << '.' << BOOST_VERSION % 100;
 
