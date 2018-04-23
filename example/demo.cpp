@@ -103,7 +103,7 @@ public:
 
 private:
     static void on_press_me();
-    static void on_log();
+    static void on_test();
 
     void on_slide();
     ui::hprogress_bar m_progress_bar;
@@ -136,8 +136,8 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
         .tooltip("Display environment information")
         .move(5, 5);
 
-    ui::button(fixed_panel, "Show &logs")
-        .on_press(&on_log)
+    ui::button(fixed_panel, "Run &tests")
+        .on_press(&on_test)
         .move(5, 35).resize(80, 100);
 
     ui::button(fixed_panel, "&Beep")
@@ -295,8 +295,8 @@ demo_frame::demo_frame(int page) : ui::frame("Boost.UI Demo")
             << ui::separator()
             << ui::menu::item("&Press me")
                 .on_press(&on_press_me)
-            << ui::menu::item("Show &logs")
-                .on_press(&on_log)
+            << ui::menu::item("Run &tests")
+                .on_press(&on_test)
             << ui::separator()
             << ui::menu::item("&Quit")
                 .on_press(&this_type::close, this)
@@ -437,7 +437,7 @@ void demo_frame::on_press_me()
     ui::info_dialog(info.str());
 }
 
-void demo_frame::on_log()
+void demo_frame::on_test()
 {
     ui::info_notify("We have started");
     ui::warning_notify("format C: was started");
@@ -601,8 +601,8 @@ void demo_frame::on_canvas_context_menu(ui::mouse_event& e)
             .on_press(&on_press_me)
         << ui::separator()
         << ( ui::menu("&More")
-            << ui::menu::item("Show &logs")
-                .on_press(&on_log)
+            << ui::menu::item("Run &tests")
+                .on_press(&on_test)
            )
     ).popup(m_canvas);
 }
