@@ -462,12 +462,19 @@ void demo_frame::on_test()
     if ( !ui::prompt_directory("Select you favorite directory", directory) )
         return;
 
-    ui::info_dialog(L"Your name is " + name
-        + L" and your password is " + password
-        + L".\nYou favorite file is \"" + filename
-        + L"\".\nYou favorite directory is \"" + directory
-        + L"\"."
-    );
+    ui::color color;
+    if ( !ui::prompt_color("Select you favorite color", color) )
+        return;
+
+    std::wostringstream ss;
+    ss << L"Your name is " << name;
+    ss << L" and your password is " << password;
+    ss << L".\nYou favorite file is \"" << filename;
+    ss << L"\".\nYou favorite directory is \"" << directory;
+    ss << L"\".\nYou favorite color is \"" << color;
+    ss << L"\".";
+
+    ui::info_dialog(ss.str());
     ui::warning_dialog("Password could be lost");
     ui::error_dialog("Password was lost");
 

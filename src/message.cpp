@@ -15,6 +15,7 @@
 #include <wx/notifmsg.h>
 #include <wx/filedlg.h>
 #include <wx/dirdlg.h>
+#include <wx/colordlg.h>
 
 namespace boost {
 namespace ui    {
@@ -186,6 +187,23 @@ bool prompt_directory(const uistring& title, uistring& value)
     wxString str = wxDirSelector(native::from_uistring(title), native::from_uistring(value));
     value = native::to_uistring(str);
     return !str.empty();
+#else
+    return false;
+#endif
+}
+
+bool prompt_color(const uistring& title, color& value)
+{
+#if wxUSE_COLOURDLG
+    const wxColour color = wxGetColourFromUser(NULL,
+        native::from_uistring(title));
+    if ( color.IsOk() )
+    {
+        value = color::rgba255(color.Red(), color.Green(), color.Blue(), color.Alpha());
+        return true;
+    }
+    else
+        return false;
 #else
     return false;
 #endif

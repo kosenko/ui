@@ -15,6 +15,7 @@
 #endif
 
 #include <boost/ui/string.hpp>
+#include <boost/ui/color.hpp>
 
 namespace boost {
 namespace ui    {
@@ -100,6 +101,12 @@ BOOST_UI_DECL
 bool prompt_directory(const uistring& title, std::wstring& value);
 BOOST_UI_DECL
 bool prompt_directory(const uistring& title, uistring& value);
+///@}
+
+///@{ @brief Request color using application-modal dialog
+/// @ingroup prompt
+BOOST_UI_DECL
+bool prompt_color(const uistring& title, color& value);
 ///@}
 
 } // namespace ui
