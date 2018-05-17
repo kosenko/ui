@@ -42,7 +42,7 @@ private:
     void on_file_select(ui::index_event& e);
     void on_file_activate(ui::index_event& e);
     void on_file_key_press(ui::key_event& e);
-    void on_change_path();
+    void on_edit_path();
     void on_up();
     void on_initial_path();
     void on_home_path();
@@ -80,8 +80,8 @@ filesystem_dialog::filesystem_dialog(const fs::path& p)
         << (ui::hbox()
                 << m_path_label.create(*this)
                     .layout().stretch()
-                << ui::button(*this, "Chan&ge...")
-                    .on_press(&this_type::on_change_path, this)
+                << ui::button(*this, "&Edit...")
+                    .on_press(&this_type::on_edit_path, this)
                     .tooltip("Edit current path")
            ).layout().justify()
         << ( ui::hbox()
@@ -336,10 +336,10 @@ void filesystem_dialog::on_file_key_press(ui::key_event& e)
         on_up();
 }
 
-void filesystem_dialog::on_change_path()
+void filesystem_dialog::on_edit_path()
 {
     std::wstring filename = m_path.wstring();
-    if ( !ui::prompt("Enter new path", "Change current directory", filename) )
+    if ( !ui::prompt("Enter new path", "Edit current directory", filename) )
         return;
 
     load_path(filename);
