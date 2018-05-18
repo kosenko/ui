@@ -8,6 +8,10 @@
 #ifndef BOOST_UI_MESSAGE_HPP
 #define BOOST_UI_MESSAGE_HPP
 
+#ifdef DOXYGEN
+#define BOOST_UI_USE_FILESYSTEM
+#endif
+
 #include <boost/ui/config.hpp>
 
 #ifdef BOOST_HAS_PRAGMA_ONCE
@@ -16,6 +20,10 @@
 
 #include <boost/ui/string.hpp>
 #include <boost/ui/color.hpp>
+
+#ifdef BOOST_UI_USE_FILESYSTEM
+#include <boost/filesystem.hpp>
+#endif
 
 namespace boost {
 namespace ui    {
@@ -88,19 +96,43 @@ bool prompt_password(const uistring& message, const uistring& title, uistring& v
 ///@}
 
 ///@{ @brief Request user filename using application-modal dialog
+/// @see BOOST_UI_USE_FILESYSTEM
 /// @ingroup prompt
 BOOST_UI_DECL
 bool prompt_filename(const uistring& title, std::wstring& value);
 BOOST_UI_DECL
 bool prompt_filename(const uistring& title, uistring& value);
+#ifdef BOOST_UI_USE_FILESYSTEM
+inline bool prompt_filename(const uistring& title, boost::filesystem::path& value)
+{
+    uistring str = value.wstring();
+    if ( !prompt_filename(title, str) )
+        return false;
+
+    value = str.wstring();
+    return true;
+}
+#endif
 ///@}
 
 ///@{ @brief Request user directory using application-modal dialog
+/// @see BOOST_UI_USE_FILESYSTEM
 /// @ingroup prompt
 BOOST_UI_DECL
 bool prompt_directory(const uistring& title, std::wstring& value);
 BOOST_UI_DECL
 bool prompt_directory(const uistring& title, uistring& value);
+#ifdef BOOST_UI_USE_FILESYSTEM
+inline bool prompt_directory(const uistring& title, boost::filesystem::path& value)
+{
+    uistring str = value.wstring();
+    if ( !prompt_directory(title, str) )
+        return false;
+
+    value = str.wstring();
+    return true;
+}
+#endif
 ///@}
 
 ///@{ @brief Request color using application-modal dialog

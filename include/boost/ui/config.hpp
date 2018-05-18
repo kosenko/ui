@@ -86,6 +86,10 @@
 /// @ingroup helper
 #define BOOST_UI_USE_DATE_TIME
 
+/// @brief Enables Boost.Filesystem library
+/// @ingroup helper
+#define BOOST_UI_USE_FILESYSTEM
+
 #endif // DOXYGEN
 
 #endif // BOOST_UI_CONFIG_HPP

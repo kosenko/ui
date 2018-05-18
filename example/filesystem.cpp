@@ -7,6 +7,7 @@
 
 #define BOOST_FILESYSTEM_NO_DEPRECATED
 #define BOOST_SYSTEM_NO_DEPRECATED
+#define BOOST_UI_USE_FILESYSTEM
 
 #include <boost/config.hpp>
 #include <boost/ui.hpp>
@@ -344,6 +345,12 @@ void filesystem_dialog::on_file_key_press(ui::key_event& e)
 
 void filesystem_dialog::on_edit_path()
 {
+    /*
+    fs::path filename = m_path;
+    if ( !ui::prompt_directory("Select current directory", filename) )
+        return;
+    */
+
     std::wstring filename = m_path.wstring();
     if ( !ui::prompt("Enter new path", "Edit current directory", filename) )
         return;
