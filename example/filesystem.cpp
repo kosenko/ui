@@ -14,6 +14,12 @@
 
 #include <fstream>
 
+/*
+#if defined(__has_include) && __has_include(<experimental/filesystem>)
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+*/
+
 // Visual C++ 14 (2015)
 #if defined(BOOST_DINKUMWARE_STDLIB) && (BOOST_DINKUMWARE_STDLIB >= 650)
 #include <chrono>

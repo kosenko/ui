@@ -38,7 +38,9 @@ exe date_time : date_time.cpp example_rc winmain
 exe font : font.cpp example_rc winmain ;
 
 exe filesystem : filesystem.cpp example_rc winmain
-    /boost/filesystem//boost_filesystem ;
+    /boost/filesystem//boost_filesystem
+    #: <toolset>gcc,<host-os>linux:<linkflags>"-lstdc++fs"
+    ;
 
 exe interprocess : interprocess.cpp example_rc winmain
     /boost/date_time//boost_date_time
