@@ -20,6 +20,9 @@ namespace boost {
 namespace ui    {
 
 /// @brief Abstract text editor widget
+/// @details
+/// Usage example:
+/// @snippet cpp11/snippet.cpp string_box
 /// @ingroup text
 
 class BOOST_UI_DECL text_box_base : public widget
@@ -54,6 +57,9 @@ private:
 };
 
 /// @brief Single-line text editor widget
+/// @details
+/// Usage example:
+/// @snippet cpp11/snippet.cpp string_box
 /// @see <a href="http://en.wikipedia.org/wiki/Text_box">Text box (Wikipedia)</a>
 /// @ingroup text
 
@@ -72,6 +78,9 @@ public:
 };
 
 /// @brief Password editor widget
+/// @details
+/// Usage example:
+/// @snippet cpp11/snippet.cpp string_box
 /// @see <a href="http://en.wikipedia.org/wiki/Text_box">Text box (Wikipedia)</a>
 /// @ingroup text
 
@@ -90,6 +99,9 @@ public:
 };
 
 /// @brief Multi-line text editor widget
+/// @details
+/// Usage example:
+/// @snippet cpp11/snippet.cpp string_box
 /// @see <a href="http://en.wikipedia.org/wiki/Text_box">Text box (Wikipedia)</a>
 /// @ingroup text
 

@@ -20,6 +20,9 @@ namespace boost {
 namespace ui    {
 
 /// @brief Widget to select string from popup list of strings
+/// @details
+/// Usage example:
+/// @snippet cpp11/snippet.cpp choice
 /// @see <a href="http://en.wikipedia.org/wiki/Drop-down_list">Drop-down list (Wikipedia)</a>
 /// @ingroup strings
 

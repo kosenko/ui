@@ -20,6 +20,9 @@ namespace boost {
 namespace ui    {
 
 /// @brief Widget to select one or more strings
+/// @details
+/// Usage example:
+/// @snippet cpp11/snippet.cpp list_box
 /// @see <a href="http://en.wikipedia.org/wiki/List_box">List box (Wikipedia)</a>
 /// @ingroup strings
 
