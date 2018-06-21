@@ -84,7 +84,7 @@ public:
     /// @throw std::out_of_range If @a pos is an invalid index
     uistring at(size_type pos) const;
 
-    /// Reruns specified element
+    /// Retuns specified element
     uistring operator[](size_type pos) const;
 
     /// Checks whether the container has options
