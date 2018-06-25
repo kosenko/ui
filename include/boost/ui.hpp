@@ -110,17 +110,17 @@ Basic TLW is @ref boost::ui::dialog. If you need @ref boost::ui::menu_bar or @re
 @snippet cpp11/snippet.cpp frame
 
 @subsection thread_safety Thread safety
-Boost.UI is @b not thread safe library, so you should use @ref boost::ui::call_async() function to synchronize worker threads with main (GUI) thread.
+Boost.UI is @b NOT thread safe library, so you should use @ref boost::ui::call_async() function to synchronize worker threads with main (GUI) thread.
 However you can use @ref log in any thread, it is thread safe.
 
 @subsection event_loops Event loops
 Boost.UI has own event loops and you can't create other your own event loops inside main (GUI) thread without freezing GUI.
 For example if you are using Boost.ASIO you should create other (worker) thread and synchronize it with main thread as described before.
-Note that main thread is used to interact with user, not for long time calculations.
+Note that main thread is used to interact with end user, not for long time calculations.
 
 @subsection exception_safety Exception safety
 Boost.UI catches exception inside @ref boost::ui::entry() and event handlers if you didn't catch it before.
-And shows exception dialog window to the user.
+After exception catch library shows exception dialog window to the end user.
 
 @subsection event_handling Event handing
 @ref widget have various event subscription functions (for example @ref boost::ui::button::on_press()).
