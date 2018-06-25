@@ -21,7 +21,7 @@ namespace ui    {
 
 /// @brief Top level widget that hosts other widgets
 /// @see <a href="http://en.wikipedia.org/wiki/Dialog_box">Dialog (Wikipedia)</a>
-/// @ingroup container
+/// @ingroup tlw
 
 class BOOST_UI_DECL dialog : public window
 {

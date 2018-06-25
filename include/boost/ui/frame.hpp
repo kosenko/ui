@@ -23,7 +23,7 @@ namespace ui    {
 
 /// @brief Top level widget that hosts other widgets and supports menu bar
 /// @see <a href="http://en.wikipedia.org/wiki/Window_(computing)">Window (Wikipedia)</a>
-/// @ingroup container
+/// @ingroup tlw
 
 class BOOST_UI_DECL frame : public window
 {

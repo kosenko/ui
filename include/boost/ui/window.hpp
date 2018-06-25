@@ -44,7 +44,7 @@ private:
 
 /// @brief Abstract top level widget that hosts other widgets
 /// @see <a href="http://en.wikipedia.org/wiki/Window_(computing)">Window (Wikipedia)</a>
-/// @ingroup container
+/// @ingroup tlw
 
 class BOOST_UI_DECL window : public widget
 {

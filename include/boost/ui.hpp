@@ -94,9 +94,16 @@ C++ programs should have a better way to interact with humans then std::cin / st
 Boost.UI library master include file is <boost/ui.hpp> and this library uses @ref boost::ui namespace to hold all classes and functions.
 Boost.UI requires GUI initialization and uninitialization, therefore you should use @ref boost::ui::entry() function to do it.
 
+@subsection top_level_widgets Top level widgets (TLW)
+@ref tlw (TLW) are widgets that are used to host other (child) widgets and they are controlled by OS window manager.
+Basic TLW is @ref boost::ui::dialog. If you need @ref boost::ui::menu_bar or @ref boost::ui::status_bar support you should use @ref boost::ui::frame TLW.
+@ref boost::ui::window is a base class for all (two) TLW classes.
+
+@ref boost::ui::window::show_modal() class function displays TLW and waits while end user close TLW manually or @ref boost::ui::window::close() class function is called.
+
 @subsection thread_safety Thread safety
 Boost.UI is @b not thread safe library, so you should use @ref boost::ui::call_async() function to synchronize worker threads with main (GUI) thread.
-However you can use @ref log in any thread.
+However you can use @ref log in any thread, it is thread safe.
 
 @subsection event_loops Event loops
 Boost.UI has own event loops and you can't create other your own event loops inside main (GUI) thread without freezing GUI.
@@ -219,6 +226,9 @@ Read README.md file for build instructions and library details.
 @ingroup container
 
 @defgroup prompt Prompts
+@ingroup container
+
+@defgroup tlw Top level widgets
 @ingroup container
 
 @defgroup layout Layouts
