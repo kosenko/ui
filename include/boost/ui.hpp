@@ -104,6 +104,10 @@ Basic TLW is @ref boost::ui::dialog. If you need @ref boost::ui::menu_bar or @re
 @ref boost::ui::window is a base class for all (two) TLW classes.
 
 @ref boost::ui::window::show_modal() class function displays TLW and waits while end user close TLW manually or @ref boost::ui::window::close() class function is called.
+@snippet cpp11/snippet.cpp dialog
+
+@ref boost::ui::frame with @ref boost::ui::menu_bar and @ref boost::ui::status_bar support:
+@snippet cpp11/snippet.cpp frame
 
 @subsection thread_safety Thread safety
 Boost.UI is @b not thread safe library, so you should use @ref boost::ui::call_async() function to synchronize worker threads with main (GUI) thread.

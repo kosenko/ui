@@ -43,6 +43,10 @@ private:
 };
 
 /// @brief Abstract top level widget that hosts other widgets
+/// @details
+/// Usage examples:
+/// @snippet cpp11/snippet.cpp dialog
+/// @snippet cpp11/snippet.cpp frame
 /// @see <a href="http://en.wikipedia.org/wiki/Window_(computing)">Window (Wikipedia)</a>
 /// @ingroup tlw
 

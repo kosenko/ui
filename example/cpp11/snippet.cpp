@@ -37,13 +37,75 @@ private:
 };
 /// [button]
 
+/// [dialog]
+class my_dialog : public ui::dialog
+{
+public:
+    my_dialog() : ui::dialog("Dialog example")
+    {
+        ui::button(*this, "&Close this dialog")
+            .on_press(&my_dialog::on_close, this);
+    }
+
+private:
+    void on_close()
+    {
+        close();
+    }
+};
+
+void run_dialog()
+{
+    my_dialog().show_modal();
+}
+/// [dialog]
+
+/// [frame]
+class my_frame : public ui::frame
+{
+    typedef my_frame this_type;
+
+public:
+    my_frame() : ui::frame("Frame example")
+    {
+        ui::button(*this, "&Close this frame")
+            .on_press(&this_type::on_close, this);
+
+        menu_bar()
+            << ( ui::menu("&File")
+                << ui::menu::item("&Quit")
+                    .on_press(&this_type::on_close, this)
+            )
+            ;
+
+        status_bar().text("Ready");
+    }
+
+private:
+    void on_close()
+    {
+        close();
+    }
+};
+
+void run_frame()
+{
+    my_frame().show_modal();
+}
+/// [frame]
+
 void run_gui()
 {
     ui::dialog parent("Boost.UI documentation snippets");
 
     ui::vbox layout(parent);
 
-    layout << ui::button(parent, "&button").on_press([]{ button_dialog(); });
+    layout << ui::button(parent, "&Button").on_press([]{ button_dialog(); });
+
+    layout << (ui::hbox()
+        << ui::button(parent, "&Dialog").on_press([]{ run_dialog(); })
+        << ui::button(parent, "&Frame") .on_press([]{ run_frame();  })
+        );
 
     layout << ui::button(parent, "&Event").on_press([]
     {

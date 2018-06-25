@@ -22,6 +22,9 @@ namespace boost {
 namespace ui    {
 
 /// @brief Top level widget that hosts other widgets and supports menu bar
+/// @details
+/// Usage example:
+/// @snippet cpp11/snippet.cpp frame
 /// @see <a href="http://en.wikipedia.org/wiki/Window_(computing)">Window (Wikipedia)</a>
 /// @ingroup tlw
 

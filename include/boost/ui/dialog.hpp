@@ -20,6 +20,9 @@ namespace boost {
 namespace ui    {
 
 /// @brief Top level widget that hosts other widgets
+/// @details
+/// Usage example:
+/// @snippet cpp11/snippet.cpp dialog
 /// @see <a href="http://en.wikipedia.org/wiki/Dialog_box">Dialog (Wikipedia)</a>
 /// @ingroup tlw
 
