@@ -9,9 +9,13 @@
 
 #include <chrono>
 
+/// [include]
 #include <boost/ui.hpp>
+/// [include]
 
+/// [namespace]
 namespace ui = boost::ui;
+/// [namespace]
 
 /// [button]
 class button_dialog : public ui::dialog
@@ -33,7 +37,7 @@ private:
 };
 /// [button]
 
-int ui_main()
+void run_gui()
 {
     ui::dialog parent("Boost.UI documentation snippets");
 
@@ -109,6 +113,12 @@ ui::list_box list_box = ui::list_box(parent,
 
     parent.resize(400, 600);
     parent.show_modal();
+}
+
+/// [main]
+int ui_main()
+{
+    run_gui();
 
     return 0;
 }
@@ -117,3 +127,4 @@ int main(int argc, char* argv[])
 {
     return ui::entry(&ui_main, argc, argv);
 }
+/// [main]

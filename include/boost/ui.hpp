@@ -91,8 +91,12 @@ C++ programs should have a better way to interact with humans then std::cin / st
 @section overview Overview
 
 @subsection initialization Initialization
-Boost.UI library master include file is <boost/ui.hpp> and this library uses @ref boost::ui namespace to hold all classes and functions.
+Boost.UI library master include file is <boost/ui.hpp>
+@snippet cpp11/snippet.cpp include
+and this library uses @ref boost::ui namespace to hold all classes and functions.
+@snippet cpp11/snippet.cpp namespace
 Boost.UI requires GUI initialization and uninitialization, therefore you should use @ref boost::ui::entry() function to do it.
+@snippet cpp11/snippet.cpp main
 
 @subsection top_level_widgets Top level widgets (TLW)
 @ref tlw (TLW) are widgets that are used to host other (child) widgets and they are controlled by OS window manager.
