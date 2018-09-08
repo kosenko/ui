@@ -41,7 +41,7 @@ environment:
 install:
 - cmd: |
     cd ..
-    git clone -b boost-1.66.0 --depth 1 https://github.com/boostorg/boost.git boost-root
+    git clone -b boost-1.68.0 --depth 1 https://github.com/boostorg/boost.git boost-root
     cd boost-root
     git submodule update --init --checkout --depth 1
     git submodule update --init tools/build
@@ -57,8 +57,8 @@ build: off
 test_script:
 - cmd: |
     cd ..
-    appveyor DownloadFile https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.3/wxWidgets-3.0.3.zip
-    7z x wxWidgets-3.0.3.zip -y -owxWidgets
+    appveyor DownloadFile https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.zip
+    7z x wxWidgets-3.0.4.zip -y -owxWidgets
     set WXWIN=%APPVEYOR_BUILD_FOLDER%\..\wxWidgets
     cd %WXWIN%
     cd build\msw
