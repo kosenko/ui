@@ -266,7 +266,7 @@ widget& widget::tooltip(const uistring& text)
 {
 #if wxUSE_TOOLTIPS
     wxWindow* impl = native::from_widget(*this);
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->SetToolTip(native::from_uistring(text));
 #endif
@@ -278,7 +278,7 @@ uistring widget::tooltip() const
 {
 #if wxUSE_TOOLTIPS
     const wxWindow* impl = native::from_widget(*this);
-    wxCHECK(impl, uistring());
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
 
     return native::to_uistring(impl->GetToolTipText());
 #else
@@ -291,7 +291,7 @@ widget& widget::font(const ui::font& f)
     wxCHECK(f.valid(), *this);
 
     wxWindow* impl = native::from_widget(*this);
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->SetFont(native::from_font(f));
 
@@ -301,7 +301,7 @@ widget& widget::font(const ui::font& f)
 ui::font widget::font() const
 {
     const wxWindow* impl = native::from_widget(*this);
-    wxCHECK(impl, ui::font());
+    wxCHECK_MSG(impl, ui::font(), "Widget should be created");
 
     return native::to_font(impl->GetFont());
 }
