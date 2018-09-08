@@ -98,16 +98,30 @@ and this library uses @ref boost::ui namespace to hold all classes and functions
 Boost.UI requires GUI initialization and uninitialization, therefore you should use @ref boost::ui::entry() function to do it.
 @snippet cpp11/snippet.cpp main
 
+@subsection widgets Widgets
+Widget is a graphical control element and represents any visible object on screen. @ref boost::ui::widget is a base class for all widgets.
+Widget should be created to be visible and use its functions, @ref boost::ui::widget::native_valid() function returns true in this case.
+@see <a href="http://en.wikipedia.org/wiki/Widget_(GUI)">Widget (Wikipedia)</a>
+
 @subsection top_level_widgets Top level widgets (TLW)
 @ref tlw (TLW) are widgets that are used to host other (child) widgets and they are controlled by OS window manager.
 Basic TLW is @ref boost::ui::dialog. If you need @ref boost::ui::menu_bar or @ref boost::ui::status_bar support you should use @ref boost::ui::frame TLW.
 @ref boost::ui::window is a base class for all (two) TLW classes.
-
 @ref boost::ui::window::show_modal() class function displays TLW and waits while end user close TLW manually or @ref boost::ui::window::close() class function is called.
 @snippet cpp11/snippet.cpp dialog
-
 @ref boost::ui::frame with @ref boost::ui::menu_bar and @ref boost::ui::status_bar support:
 @snippet cpp11/snippet.cpp frame
+@see <a href="http://en.wikipedia.org/wiki/Window_(computing)">Window (Wikipedia)</a>
+
+@subsection child_widgets Child widgets
+Child widget is a widget that is placed on parent widget (top level widget (TLW) or other child widget - @ref boost::ui::panel).
+Parent widget should be specified for each child widget as a first argument in constructor.
+Child widget is automatically destroyed when parent widget is destroyed.
+
+@subsection canvas 2D drawing on canvas
+If you want to draw lines, circles, etc you should use @ref boost::ui::canvas child widget and draw using drawing context - @ref boost::ui::painter class.
+Other widgets not support drawing.
+@see <a href="http://en.wikipedia.org/wiki/Canvas_(GUI)">Canvas (Wikipedia)</a>
 
 @subsection thread_safety Thread safety
 Boost.UI is @b NOT thread safe library, so you should use @ref boost::ui::call_async() function to synchronize worker threads with main (GUI) thread.
@@ -118,15 +132,16 @@ Boost.UI has own event loops and you can't create other your own event loops ins
 For example if you are using Boost.ASIO you should create other (worker) thread and synchronize it with main thread as described before.
 Note that main thread is used to interact with end user, not for long time calculations.
 
-@subsection exception_safety Exception safety
-Boost.UI catches exception inside @ref boost::ui::entry() and event handlers if you didn't catch it before.
-After exception catch library shows exception dialog window to the end user.
-
 @subsection event_handling Event handing
 @ref widget have various event subscription functions (for example @ref boost::ui::button::on_press()).
 If you pass callback function to it, this function will be called when event occurs (button press in this case).
-Multiple subscription calls causes multiple event handlers calls,
+Multiple subscription calls cause multiple event handlers calls,
 i. e. event handler callback function isn't overrided on next event subscription call.
+@see <a href="http://en.wikipedia.org/wiki/Event_(computing)">Event (Wikipedia)</a>
+
+@subsection exception_safety Exception safety
+Boost.UI catches exception inside @ref boost::ui::entry() and event handlers if you didn't catch it before.
+After exception catch library shows exception dialog window to the end user.
 
 @subsection strings Strings
 Boost.UI has own @ref boost::ui::uistring string class that simplifies conversion between native widget toolkit string classes and C++ Standard string classes.
@@ -237,6 +252,7 @@ Read README.md file for build instructions and library details.
 @ingroup container
 
 @defgroup tlw Top level widgets
+@see <a href="http://en.wikipedia.org/wiki/Window_(computing)">Window (Wikipedia)</a>
 @ingroup container
 
 @defgroup layout Layouts

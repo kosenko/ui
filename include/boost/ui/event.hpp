@@ -31,6 +31,7 @@ class event_functor_event;
 #endif
 
 /// @brief Base class for all events
+/// @see <a href="http://en.wikipedia.org/wiki/Event_(computing)">Event (Wikipedia)</a>
 /// @ingroup event
 
 class event
