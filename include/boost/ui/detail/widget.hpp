@@ -12,12 +12,15 @@ namespace boost  {
 namespace ui     {
 namespace detail {
 
+/// Holds state of boost::ui::widget derived object while wxWindow isn't created yet
 class widget_detail_base
 {
 public:
     widget_detail_base() : m_x(0), m_y(0), m_width(0), m_height(0),
         m_enabled(true),
-        m_shown(true), m_shown_modified(false) // TODO: Support wxTLWs
+        m_shown(true), m_shown_modified(false), // TODO: Support wxTLWs
+        m_window_style_flags_add(0),
+        m_window_style_flags_remove(0)
     {}
     virtual ~widget_detail_base() {}
 
@@ -33,6 +36,8 @@ public:
     bool is_enabled() const;
     void show(bool do_show);
     bool is_shown() const;
+    void modify_style_flags(long add, long remove = 0);
+    long style_flags(long default_flags = 0);
 
     typedef void* native_handle_type;
     virtual native_handle_type native_handle() = 0;
@@ -47,6 +52,8 @@ private:
     // TODO: Move to cache
     coord_type m_x, m_y, m_width, m_height;
     bool m_enabled, m_shown, m_shown_modified;
+    long m_window_style_flags_add;
+    long m_window_style_flags_remove;
 };
 
 class window_detail_base : public widget_detail_base

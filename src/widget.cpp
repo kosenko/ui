@@ -18,6 +18,25 @@
 namespace boost {
 namespace ui    {
 
+class native_helper
+{
+public:
+    static void modify_style_flags(ui::widget& w, long add, long remove = 0)
+    {
+        wxCHECK(w.m_detail_impl, );
+        w.m_detail_impl->modify_style_flags(add, remove);
+    }
+};
+
+namespace native {
+
+void modify_style_flags(ui::widget& w, long add, long remove)
+{
+    native_helper::modify_style_flags(w, add, remove);
+}
+
+} // namespace native
+
 namespace detail {
 
 void widget_detail_base::move(coord_type x, coord_type y)
@@ -117,6 +136,21 @@ bool widget_detail_base::is_shown() const
         return impl->IsShownOnScreen();
     else
         return m_shown;
+}
+
+void widget_detail_base::modify_style_flags(long add, long remove)
+{
+    m_window_style_flags_add = add;
+    m_window_style_flags_remove = remove;
+
+    wxWindow* impl = static_cast<wxWindow*>(native_handle());
+    if ( impl )
+        impl->SetWindowStyleFlag(style_flags( impl->GetWindowStyleFlag() ));
+}
+
+long widget_detail_base::style_flags(long default_flags)
+{
+    return (default_flags | m_window_style_flags_add) & ~(m_window_style_flags_remove);
 }
 
 void widget_detail_base::create_base()

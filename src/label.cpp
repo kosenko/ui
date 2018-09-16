@@ -28,7 +28,7 @@ public:
         set_native_handle(new wxStaticText(native::from_widget(parent),
             wxID_ANY, native::from_uistring(txt),
             wxDefaultPosition, wxDefaultSize,
-            wxST_NO_AUTORESIZE));
+            style_flags(wxST_NO_AUTORESIZE) ));
     }
     void text(const uistring& txt)
     {

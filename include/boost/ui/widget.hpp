@@ -237,6 +237,10 @@ private:
 
     detail::widget_detail_base* m_detail_impl;
     detail::shared_count m_shared_count;
+
+#ifndef DOXYGEN
+    friend class native_helper;
+#endif
 };
 
 /// @brief Widget that wraps previously created native widget
