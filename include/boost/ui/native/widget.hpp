@@ -18,7 +18,7 @@ namespace ui     {
 namespace native {
 
 /// Modifies wxWindow style flags in constructor or using wxWindow::SetWindowStyleFlag() function
-void modify_style_flags(ui::widget& w, long add, long remove = 0);
+BOOST_UI_DECL void modify_style_flags(ui::widget& w, long add, long remove = 0);
 
 inline wxWindow* from_widget(ui::widget& w)
 {

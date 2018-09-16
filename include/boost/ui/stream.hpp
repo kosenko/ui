@@ -24,7 +24,7 @@ namespace ui    {
 /// @brief Output string stream that collects data for UI
 /// @ingroup helper
 
-class uiostringstream
+class BOOST_UI_DECL uiostringstream
 {
 public:
     /// Creates empty stream
