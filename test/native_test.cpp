@@ -18,13 +18,13 @@ void test_label(ui::widget& parent)
     {
         ui::label l;
         l.create(parent, "text");
-        BOOST_TEST_EQ(ui::native::from_widget(l)->GetWindowStyleFlag(), wxST_NO_AUTORESIZE);
-        ui::native::modify_style_flags(l, wxALIGN_RIGHT, wxST_NO_AUTORESIZE);
+        BOOST_TEST_EQ(ui::native::from_widget(l)->GetWindowStyleFlag(), 0);
+        ui::native::modify_style_flags(l, wxALIGN_RIGHT);
         BOOST_TEST_EQ(ui::native::from_widget(l)->GetWindowStyleFlag(), wxALIGN_RIGHT);
     }
     {
         ui::label l;
-        ui::native::modify_style_flags(l, wxALIGN_RIGHT, wxST_NO_AUTORESIZE);
+        ui::native::modify_style_flags(l, wxALIGN_RIGHT);
         l.create(parent, "text");
         BOOST_TEST_EQ(ui::native::from_widget(l)->GetWindowStyleFlag(), wxALIGN_RIGHT);
     }
