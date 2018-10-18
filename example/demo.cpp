@@ -331,11 +331,11 @@ void demo_frame::on_press_me()
     info << "\nDebug";
 #endif
 
-#if defined(BOOST_UI_DYN_LINK) && BOOST_UI_DYN_LINK
+#ifdef BOOST_UI_DYN_LINK
     info << "\nDynamic Boost.UI link";
 #endif
 
-#if defined(BOOST_UI_STATIC_LINK) && BOOST_UI_STATIC_LINK
+#ifdef BOOST_UI_STATIC_LINK
     info << "\nStatic Boost.UI link";
 #endif
 
