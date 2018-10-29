@@ -223,7 +223,7 @@ void widget::detail_set_detail_impl(detail::widget_detail_base* d)
 
 widget& widget::append(const widget& w)
 {
-    wxCHECK(!w.native_valid(), *this);
+    wxCHECK(!!w.native_valid() && w.native_valid() != *this, );
 
     w.m_detail_impl->create_native(*this);
     wxASSERT(w.native_valid());
