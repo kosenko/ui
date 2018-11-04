@@ -13,6 +13,10 @@
 #include <boost/ui.hpp>
 /// [include]
 
+/// [winmain]
+#include <boost/ui/native/winmain.cpp>
+/// [winmain]
+
 /// [namespace]
 namespace ui = boost::ui;
 /// [namespace]

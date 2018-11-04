@@ -147,6 +147,12 @@ After exception catch library shows exception dialog window to the end user.
 Boost.UI has own @ref boost::ui::uistring string class that simplifies conversion between native widget toolkit string classes and C++ Standard string classes.
 Native string format could be ANSI, UTF-8, wchar_t etc.
 
+@subsection winmain WinMain() under Windows
+`WinMain()` function is used under Windows as entry point for GUI applications, but Boost.UI requires `main()` function.
+You can call `main()` from `WinMain()` by including into your cpp file:
+@snippet cpp11/snippet.cpp winmain
+Or make this call manually.
+
 @section src Source code
 See <a href="https://github.com/kosenko/ui">source code (GitHub)</a>.
 Read README.md file for build instructions and library details.
