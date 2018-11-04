@@ -50,3 +50,15 @@ Please try add `wx-config --cxxflags` `wx-config --libs` when linking(compiling)
 
 
 Please try add `-lboost_****` when linking(compiling), e.g., `-lboost_ui`
+
+#### ./a.out: error while loading shared libraries: libboost_filesystem.so.1.68.0: cannot open shared object file: No such file or directory
+
+That's because the library cannot befound. You can find this lib manually with mlocate:
+
+``` sh
+locate libboost_filesystem
+```
+
+if the result is `/usr/local/lib/libboost_filesystem.so.1.68.0`
+
+just add `export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH` to your `.zshrc`/`.bashrc` and so on.
