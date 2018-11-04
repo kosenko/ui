@@ -1,7 +1,12 @@
 Boost.UI build instructions
 ===========================
 1. Download [Boost libraries](http://www.boost.org/) and
-compile Build.Build b2 application using bootstrap script.
+compile Build.Build b2 application using bootstrap script, for example:
+
+```sh
+sudo ./bootstrap.sh --prefix=/usr/local                            ±[●●][master]
+```
+
 It is required to build Boost libraries.
 2. Download [wxWidgets](http://www.wxwidgets.org/) 3.0+ library and build it.
 Optionally please build minimal sample and ensure that it starts properly.
@@ -26,3 +31,22 @@ Under Linux you can just install libwxgtk-webview3.0-dev package instead of manu
  b2 libs/ui/example/ link=static
  b2 libs/ui/example/cpp11/ link=static
  ```
+
+If you want to install ui with all other libs:
+
+``` sh
+sudo  ./b2 install                                            ±[●●][master]
+```
+
+### FAQ
+
+#### if `undefined refernce` occur and is 
+
+##### 1. about with `wx********`
+
+Please try add `wx-config --cxxflags` `wx-config --libs` when linking(compiling)
+
+##### 2. about boost
+
+
+Please try add `-lboost_****` when linking(compiling), e.g., `-lboost_ui`
