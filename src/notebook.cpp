@@ -30,19 +30,19 @@ public:
     void append_page(widget& page, const uistring& label)
     {
         wxWindow* page_window = native::from_widget(page);
-        wxCHECK(page_window, );
+        wxCHECK_RET(page_window, "Page widget should be created");
 
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->AddPage(page_window, native::from_uistring(label));
     }
     void set_current_page(size_type index)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->ChangeSelection(index);
     }
     size_type current_page_index() const
     {
-        wxCHECK(m_native, npos);
+        wxCHECK_MSG(m_native, npos, "Widget should be created");
         return m_native->GetSelection();
     }
 };
@@ -80,7 +80,7 @@ void notebook::append_page(widget& page, const uistring& label)
 {
 #if wxUSE_NOTEBOOK
     detail_impl* impl = get_impl();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->append_page(page, label);
 #endif
@@ -90,7 +90,7 @@ void notebook::current_page(size_type index)
 {
 #if wxUSE_NOTEBOOK
     detail_impl* impl = get_impl();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->set_current_page(index);
 #endif
@@ -100,7 +100,7 @@ notebook::size_type notebook::current_page_index() const
 {
 #if wxUSE_NOTEBOOK
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, npos);
+    wxCHECK_MSG(impl, npos, "Widget should be created");
 
     return impl->current_page_index();
 #else

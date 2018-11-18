@@ -60,9 +60,9 @@ painter_impl::~painter_impl()
 
 void painter_impl::init_dc()
 {
-    wxCHECK(m_native, );
+    wxCHECK_RET(m_native, "Widget should be created");
 
-    wxASSERT(!m_bitmap.IsOk());
+    wxASSERT_MSG(!m_bitmap.IsOk(), "Bitmap buffer is invalid");
     const wxSize size = m_native->GetSize();
     m_bitmap = wxBitmap(size);
 
@@ -85,7 +85,7 @@ void painter_impl::prepare_dc()
 
         //m_gc = wxGraphicsRenderer::GetCairoRenderer()->CreateContextFromImage(m_memdc);
         m_gc = wxGraphicsContext::Create(m_memdc);
-        wxASSERT(m_gc);
+        wxASSERT_MSG(m_gc, "Unable to create valid graphics context");
 
         if ( m_gc )
         {
@@ -124,7 +124,7 @@ void painter_impl::flush()
 
 void painter_impl::prepare()
 {
-    wxCHECK(m_native, );
+    wxCHECK_RET(m_native, "Widget should be created");
 
     if ( m_native->GetSize() != m_bitmap.GetSize() )
     {
@@ -133,7 +133,8 @@ void painter_impl::prepare()
 
         init_dc();
 
-        wxASSERT(m_native->GetSize() == m_bitmap.GetSize());
+        wxASSERT_MSG(m_native->GetSize() == m_bitmap.GetSize(),
+            "Bitmap buffer size differs from widget size");
     }
 
     prepare_dc();
@@ -147,7 +148,7 @@ wxGraphicsContext* painter_impl::get_context()
 {
     prepare();
 
-    wxASSERT(m_gc);
+    wxASSERT_MSG(m_gc, "Invalid graphics context");
     return m_gc;
 }
 
@@ -159,7 +160,7 @@ void painter_impl::on_paint(wxPaintEvent& e)
 
     flush();
 
-    wxCHECK(m_native, );
+    wxCHECK_RET(m_native, "Widget should be created");
     wxPaintDC dc(m_native);
 
     dc.DrawBitmap(m_bitmap, 0, 0);
@@ -178,7 +179,7 @@ void painter_impl::save()
 {
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->PushState();
 #endif
@@ -190,7 +191,7 @@ void painter_impl::restore()
 {
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->PopState();
 #endif
@@ -205,11 +206,11 @@ void painter_impl::restore()
 
 void painter_impl::update_fill_font()
 {
-    wxASSERT(m_state.m_font.IsOk());
+    wxASSERT_MSG(m_state.m_font.IsOk(), "Invalid new font");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->SetFont(m_state.m_font, native::from_color(m_state.m_fill));
 #else
@@ -224,7 +225,7 @@ void painter_impl::update_brush()
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->SetBrush(brush);
 #else
@@ -246,7 +247,7 @@ void painter_impl::update_pen()
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->SetPen(pen);
 #else
@@ -261,7 +262,7 @@ void painter_impl::update_pen()
 
 painter::painter(detail::painter_impl* impl) : m_impl(impl)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     // Initialize and don't reset path later
     m_impl->prepare();
@@ -269,25 +270,25 @@ painter::painter(detail::painter_impl* impl) : m_impl(impl)
 
 void painter::save_raw()
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     m_impl->save();
 }
 
 void painter::restore_raw()
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     m_impl->restore();
 }
 
 void painter::scale_raw(gcoord_type x, gcoord_type y)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->Scale(x, y);
 #endif
@@ -295,11 +296,11 @@ void painter::scale_raw(gcoord_type x, gcoord_type y)
 
 void painter::rotate_raw(gcoord_type angle)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->Rotate(angle);
 #endif
@@ -307,11 +308,11 @@ void painter::rotate_raw(gcoord_type angle)
 
 void painter::translate_raw(gcoord_type x, gcoord_type y)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->Translate(x, y);
 #endif
@@ -319,7 +320,7 @@ void painter::translate_raw(gcoord_type x, gcoord_type y)
 
 void painter::fill_color_raw(const color& c)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     m_impl->m_state.m_fill = c;
     m_impl->update_brush();
@@ -327,7 +328,7 @@ void painter::fill_color_raw(const color& c)
 
 void painter::stroke_color_raw(const color& c)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     m_impl->m_state.m_stroke = c;
     m_impl->update_pen();
@@ -336,11 +337,11 @@ void painter::stroke_color_raw(const color& c)
 void painter::clear_rect_raw(gcoord_type x, gcoord_type y,
                              gcoord_type width, gcoord_type height)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     // TODO: Use transparent brush
     //gc->SetBrush(wxTransparentColor);
@@ -366,11 +367,11 @@ void painter::clear_rect_raw(gcoord_type x, gcoord_type y,
 void painter::fill_rect_raw(gcoord_type x, gcoord_type y,
                             gcoord_type width, gcoord_type height)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->SetPen(*wxTRANSPARENT_PEN);
     gc->DrawRectangle(x, y, width, height);
@@ -386,11 +387,11 @@ void painter::fill_rect_raw(gcoord_type x, gcoord_type y,
 void painter::stroke_rect_raw(gcoord_type x, gcoord_type y,
                               gcoord_type width, gcoord_type height)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->SetBrush(*wxTRANSPARENT_BRUSH);
     gc->DrawRectangle(x, y, width, height);
@@ -405,11 +406,11 @@ void painter::stroke_rect_raw(gcoord_type x, gcoord_type y,
 
 void painter::fill_text_raw(const uistring& text, gcoord_type x, gcoord_type y)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     const wxString str = native::from_uistring(text);
     m_impl->update_fill_font();
@@ -428,15 +429,15 @@ void painter::fill_text_raw(const uistring& text, gcoord_type x, gcoord_type y)
 
 void painter::draw_image_raw(const image& img, gcoord_type dx, gcoord_type dy)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     const wxBitmap* bitmap = native::from_image_ptr(img);
-    wxCHECK(bitmap, );
-    wxCHECK(bitmap->IsOk(), );
+    wxCHECK_RET(bitmap, "Null bitmap image");
+    wxCHECK_RET(bitmap->IsOk(), "Invalid bitmap image");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->DrawBitmap(*bitmap, dx, dy, bitmap->GetWidth(), bitmap->GetHeight());
 #else
@@ -447,18 +448,18 @@ void painter::draw_image_raw(const image& img, gcoord_type dx, gcoord_type dy)
 
 void painter::begin_path_raw()
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     m_impl->begin_path();
 }
 
 void painter::fill_raw()
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->FillPath(m_impl->m_path);
 #endif
@@ -466,11 +467,11 @@ void painter::fill_raw()
 
 void painter::stroke_raw()
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxGraphicsContext* gc = m_impl->get_context();
-    wxCHECK(gc, );
+    wxCHECK_RET(gc, "Invalid graphics context");
 
     gc->StrokePath(m_impl->m_path);
 #else
@@ -492,7 +493,7 @@ void painter::stroke_raw()
 
 void painter::line_width_raw(gcoord_type width)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     m_impl->m_state.m_line_width = width;
     m_impl->update_pen();
@@ -500,7 +501,7 @@ void painter::line_width_raw(gcoord_type width)
 
 void painter::line_cap_raw(ui::line_cap lc)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxPenCap cap = wxCAP_INVALID;
@@ -510,7 +511,7 @@ void painter::line_cap_raw(ui::line_cap lc)
         case ui::line_cap::round:  cap = wxCAP_ROUND;      break;
         case ui::line_cap::square: cap = wxCAP_PROJECTING; break;
     }
-    wxCHECK(cap != wxCAP_INVALID, );
+    wxCHECK_RET(cap != wxCAP_INVALID, "Invalid line cap");
     m_impl->m_state.m_cap = cap;
     m_impl->update_pen();
 #endif
@@ -518,7 +519,7 @@ void painter::line_cap_raw(ui::line_cap lc)
 
 void painter::line_join_raw(ui::line_join lj)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     wxPenJoin join = wxJOIN_INVALID;
@@ -528,7 +529,7 @@ void painter::line_join_raw(ui::line_join lj)
         case ui::line_join::bevel: join = wxJOIN_BEVEL; break;
         case ui::line_join::miter: join = wxJOIN_MITER; break;
     }
-    wxCHECK(join != wxJOIN_INVALID, );
+    wxCHECK_RET(join != wxJOIN_INVALID, "Invalid line join");
     m_impl->m_state.m_join = join;
     m_impl->update_pen();
 #endif
@@ -536,7 +537,7 @@ void painter::line_join_raw(ui::line_join lj)
 
 void painter::line_dash_raw(const std::vector<gcoord_type>& segments)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     const gcoord_type line_width = m_impl->m_state.m_line_width;
@@ -554,7 +555,7 @@ void painter::line_dash_raw(const std::vector<gcoord_type>& segments)
 
 void painter::reset_line_dash_raw()
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     m_impl->m_state.m_dashes.clear();
@@ -564,8 +565,8 @@ void painter::reset_line_dash_raw()
 
 void painter::font_raw(const ui::font& f)
 {
-    wxCHECK(f.valid(), );
-    wxCHECK(m_impl, );
+    wxCHECK_RET(f.valid(), "Invalid font");
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     m_impl->m_state.m_font = native::from_font(f);
     m_impl->update_fill_font();
@@ -573,14 +574,14 @@ void painter::font_raw(const ui::font& f)
 
 ui::font painter::font() const
 {
-    wxCHECK(m_impl, ui::font());
+    wxCHECK_MSG(m_impl, ui::font(), "Widget should be created");
 
     return native::to_font(m_impl->m_state.m_font);
 }
 
 void painter::close_path_raw()
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     m_impl->m_path.CloseSubpath();
@@ -591,7 +592,7 @@ void painter::close_path_raw()
 
 void painter::move_to_raw(gcoord_type x, gcoord_type y)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     m_impl->m_path.MoveToPoint(x, y);
@@ -602,7 +603,7 @@ void painter::move_to_raw(gcoord_type x, gcoord_type y)
 
 void painter::line_to_raw(gcoord_type x, gcoord_type y)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     m_impl->m_path.AddLineToPoint(x, y);
@@ -616,7 +617,7 @@ void painter::line_to_raw(gcoord_type x, gcoord_type y)
 void painter::quadratic_curve_to_raw(gcoord_type cpx, gcoord_type cpy,
                                      gcoord_type   x, gcoord_type   y)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     m_impl->m_path.AddQuadCurveToPoint(cpx, cpy, x, y);
@@ -627,7 +628,7 @@ void painter::bezier_curve_to_raw(gcoord_type cp1x, gcoord_type cp1y,
                                   gcoord_type cp2x, gcoord_type cp2y,
                                   gcoord_type    x, gcoord_type    y)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     m_impl->m_path.AddCurveToPoint(cp1x, cp1y, cp2x, cp2y, x, y);
@@ -637,7 +638,7 @@ void painter::bezier_curve_to_raw(gcoord_type cp1x, gcoord_type cp1y,
 void painter::arc_raw(gcoord_type x, gcoord_type y, gcoord_type radius,
                       gcoord_type start_angle, gcoord_type end_angle, bool anticlockwise)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     m_impl->m_path.AddArc(x, y, radius, start_angle, end_angle, !anticlockwise);
@@ -646,7 +647,7 @@ void painter::arc_raw(gcoord_type x, gcoord_type y, gcoord_type radius,
 
 void painter::rect_raw(gcoord_type x, gcoord_type y, gcoord_type w, gcoord_type h)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     m_impl->m_path.AddRectangle(x, y, w, h);
@@ -655,7 +656,7 @@ void painter::rect_raw(gcoord_type x, gcoord_type y, gcoord_type w, gcoord_type 
 
 painter::native_handle_type painter::native_handle()
 {
-    wxCHECK(m_impl, NULL);
+    wxCHECK_MSG(m_impl, NULL, "Widget should be created");
 
 #ifdef BOOST_UI_USE_GRAPHICS_CONTEXT
     return m_impl->get_context();

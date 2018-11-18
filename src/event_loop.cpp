@@ -31,7 +31,7 @@ bool event_loop::is_running() const
 
 void event_loop::run()
 {
-    wxCHECK(!m_loop, );
+    wxCHECK_RET(!m_loop, "Event loop already runs");
 
     boost::scoped_ptr<native_impl> loop(m_loop = new event_loop::native_impl);
     m_loop->Run();
@@ -40,7 +40,7 @@ void event_loop::run()
 
 void event_loop::exit()
 {
-    wxCHECK(m_loop, );
+    wxCHECK_RET(m_loop, "Event loop don't run");
 
     m_loop->Exit();
 }

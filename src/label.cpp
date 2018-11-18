@@ -87,7 +87,7 @@ label& label::create(widget& parent, const uistring& txt)
 {
 #if wxUSE_STATTEXT
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Failed to create widget");
 
     impl->create(parent, txt);
 #endif
@@ -99,7 +99,7 @@ label& label::text(const uistring& txt)
 {
 #if wxUSE_STATTEXT
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->text(txt);
 #endif
@@ -111,7 +111,7 @@ uistring label::text() const
 {
 #if wxUSE_STATTEXT
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, uistring());
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
 
     return impl->text();
 #else

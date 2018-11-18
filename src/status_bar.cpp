@@ -56,7 +56,7 @@ status_bar::~status_bar()
 
 status_bar& status_bar::text(const uistring& text)
 {
-    wxCHECK(m_impl, *this);
+    wxCHECK_MSG(m_impl, *this, "Widget should be created");
 #if wxUSE_STATUSBAR
     m_impl->SetStatusText(native::from_uistring(text));
 #endif
@@ -65,7 +65,7 @@ status_bar& status_bar::text(const uistring& text)
 
 uistring status_bar::text() const
 {
-    wxCHECK(m_impl, uistring());
+    wxCHECK_MSG(m_impl, uistring(), "Widget should be created");
 #if wxUSE_STATUSBAR
     return native::to_uistring(m_impl->GetStatusText());
 #else

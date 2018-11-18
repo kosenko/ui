@@ -256,7 +256,7 @@ void boost_ui_app::on_timer(wxTimerEvent& event)
 {
     const int id_ = event.GetTimer().GetId();
     timers_type::const_iterator iter = m_timers.find(id_);
-    wxCHECK(iter != m_timers.end(), );
+    wxCHECK_RET(iter != m_timers.end(), "Timer id not found");
     iter->second.second();
 }
 #endif

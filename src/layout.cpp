@@ -135,7 +135,7 @@ layout::item& layout::item::operator=(const item& other)
 
 layout::item& layout::item::append(const item& item)
 {
-    wxCHECK(m_layout, *this);
+    wxCHECK_MSG(m_layout, *this, "No associated layout");
     m_layout->append(item);
     return *this;
 }
@@ -219,7 +219,7 @@ public:
 
 box_layout::box_layout(bool horizontal)
 {
-    m_impl = new impl(horizontal); // TODO: Leaks possible
+    m_impl = new impl(horizontal); // TODO: Memory leaks possible
 }
 
 box_layout::box_layout(widget& parent, bool horizontal)
@@ -230,20 +230,20 @@ box_layout::box_layout(widget& parent, bool horizontal)
 
 static void move_on_top_in_tab_order(wxWindow* window)
 {
-    wxCHECK(window, );
+    wxCHECK_RET(window, "Invalid window");
 
     wxWindow* parent = window->GetParent();
-    wxCHECK(parent, );
+    wxCHECK_RET(parent, "Invalid parent window");
 
-    const wxWindowList& children = window->GetParent()->GetChildren();
-    wxASSERT_LEVEL_2(!children.empty());
+    const wxWindowList& children = parent->GetChildren();
+    wxASSERT_LEVEL_2_MSG(!children.empty(), "Parent window has no chidlren");
 
     window->MoveAfterInTabOrder(children[children.size() - 1]);
 }
 
 static void move_on_top_in_tab_order(wxSizer* sizer)
 {
-    wxCHECK(sizer, );
+    wxCHECK_RET(sizer, "Invalid sizer");
 
     const wxSizerItemList& children = sizer->GetChildren();
     for ( wxSizerItemList::const_iterator iter = children.begin();

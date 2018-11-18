@@ -36,12 +36,12 @@ public:
     }
     uistring text() const
     {
-        wxCHECK(m_native, uistring());
+        wxCHECK_MSG(m_native, uistring(), "Widget should be created");
         return native::to_uistring(m_native->GetStringSelection());
     }
     index_type current_selection_index() const
     {
-        wxCHECK(m_native, -1);
+        wxCHECK_MSG(m_native, -1, "Widget should be created");
         return m_native->GetCurrentSelection();
     }
 };
@@ -88,7 +88,7 @@ uistring choice::text() const
 {
 #if wxUSE_CHOICE
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, uistring());
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
 
     return impl->text();
 #else
@@ -100,7 +100,7 @@ index_type choice::current_selection_index() const
 {
 #if wxUSE_CHOICE
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, npos);
+    wxCHECK_MSG(impl, npos, "Widget should be created");
 
     return impl->current_selection_index();
 #else

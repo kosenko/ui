@@ -20,7 +20,7 @@ namespace ui    {
 std::locale getloc()
 {
     const wxLanguageInfo* info = wxLocale::GetLanguageInfo(wxLocale::GetSystemLanguage());
-    wxCHECK(info, std::locale());
+    wxCHECK_MSG(info, std::locale(), "System language has no valid info");
 
     wxString localeName = info->GetLocaleName();
 #ifndef BOOST_WINDOWS

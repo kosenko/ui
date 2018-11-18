@@ -55,7 +55,7 @@ uistring strings_box::operator[](size_type pos) const
 {
 #if wxUSE_CONTROLS
     const native_impl* impl = get_native();
-    wxCHECK(impl, uistring());
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
 
     return native::to_uistring(impl->GetString(pos));
 #else
@@ -67,7 +67,7 @@ strings_box::size_type strings_box::size() const
 {
 #if wxUSE_CONTROLS
     const native_impl* impl = get_native();
-    wxCHECK(impl, 0);
+    wxCHECK_MSG(impl, 0, "Widget should be created");
 
     return impl->GetCount();
 #else
@@ -79,7 +79,7 @@ void strings_box::clear()
 {
 #if wxUSE_CONTROLS
     native_impl* impl = get_native();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->Clear();
 #endif
@@ -89,7 +89,7 @@ strings_box& strings_box::append(const std::vector<uistring>& options)
 {
 #if wxUSE_CONTROLS
     native_impl* impl = get_native();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->Set(native::from_vector_uistring(options));
 #endif
@@ -101,7 +101,7 @@ void strings_box::push_back(const uistring& value)
 {
 #if wxUSE_CONTROLS
     native_impl* impl = get_native();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->Append(native::from_uistring(value));
 #endif
@@ -111,7 +111,7 @@ strings_box& strings_box::select(size_type pos)
 {
 #if wxUSE_CONTROLS
     native_impl* impl = get_native();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->Select(pos);
 #endif

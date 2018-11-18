@@ -34,13 +34,13 @@ public:
     }
     void image(const ui::image& img)
     {
-        wxCHECK(m_native, );
-        wxCHECK(img.valid(), );
+        wxCHECK_RET(m_native, "Widget should be created");
+        wxCHECK_RET(img.valid(), "Invalid image");
         m_native->SetBitmap(*static_cast<const wxBitmap*>( img.native_handle() ));
     }
     void clear()
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->SetBitmap(wxBitmap());
     }
 };
@@ -86,7 +86,7 @@ image_widget& image_widget::image(const ui::image& img)
 {
 #if wxUSE_STATBMP
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->image(img);
 #endif
@@ -98,7 +98,7 @@ void image_widget::clear()
 {
 #if wxUSE_STATBMP
     detail_impl* impl = get_impl();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->clear();
 #endif

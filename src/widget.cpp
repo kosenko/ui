@@ -23,7 +23,7 @@ class native_helper
 public:
     static void modify_style_flags(ui::widget& w, long add, long remove = 0)
     {
-        wxCHECK(w.m_detail_impl, );
+        wxCHECK_MSG(w.m_detail_impl, , "Widget should be created");
         w.m_detail_impl->modify_style_flags(add, remove);
     }
 };
@@ -173,7 +173,7 @@ class detail_impl : public detail::widget_detail<wxWindow>
 public:
     explicit detail_impl(native_handle_type handle)
     {
-        wxASSERT(handle);
+        wxASSERT_MSG(handle, "Native widget should be created before");
         set_native_handle(handle);
     }
 };
@@ -215,18 +215,19 @@ void widget::delete_last_detail_impl()
 
 void widget::detail_set_detail_impl(detail::widget_detail_base* d)
 {
-    wxASSERT(!m_detail_impl);
+    wxASSERT_MSG(!m_detail_impl, "Don't set implementation twice");
     delete m_detail_impl;
 
     m_detail_impl = d;
 }
 
+// NOTE: Experimental code, use child widget ctor instead of this function
 widget& widget::append(const widget& w)
 {
-    wxCHECK(!w.native_valid(), *this);
+    wxCHECK_MSG(!w.native_valid(), *this, "Unable to append already created widget yet");
 
     w.m_detail_impl->create_native(*this);
-    wxASSERT(w.native_valid());
+    wxASSERT_MSG(w.native_valid(), "Native widget wasn't created");
     // TODO: Check if cache was destroyed here
 
     return *this;
@@ -234,65 +235,65 @@ widget& widget::append(const widget& w)
 
 widget& widget::move(coord_type x, coord_type y)
 {
-    wxCHECK(m_detail_impl, *this);
+    wxCHECK_MSG(m_detail_impl, *this, "Widget should be created");
     m_detail_impl->move(x, y);
     return *this;
 }
 
 widget& widget::resize(coord_type width, coord_type height)
 {
-    wxCHECK(m_detail_impl, *this);
+    wxCHECK_MSG(m_detail_impl, *this, "Widget should be created");
     m_detail_impl->resize(width, height);
     return *this;
 }
 
 coord_type widget::x() const
 {
-    wxCHECK(m_detail_impl, -1);
+    wxCHECK_MSG(m_detail_impl, -1, "Widget should be created");
     return m_detail_impl->x();
 }
 
 coord_type widget::y() const
 {
-    wxCHECK(m_detail_impl, -1);
+    wxCHECK_MSG(m_detail_impl, -1, "Widget should be created");
     return m_detail_impl->y();
 }
 
 coord_type widget::width() const
 {
-    wxCHECK(m_detail_impl, -1);
+    wxCHECK_MSG(m_detail_impl, -1, "Widget should be created");
     return m_detail_impl->width();
 }
 
 coord_type widget::height() const
 {
-    wxCHECK(m_detail_impl, -1);
+    wxCHECK_MSG(m_detail_impl, -1, "Widget should be created");
     return m_detail_impl->height();
 }
 
 widget& widget::enable(bool do_enable)
 {
-    wxCHECK(m_detail_impl, *this);
+    wxCHECK_MSG(m_detail_impl, *this, "Widget should be created");
     m_detail_impl->enable(do_enable);
     return *this;
 }
 
 bool widget::is_enabled() const
 {
-    wxCHECK(m_detail_impl, false);
+    wxCHECK_MSG(m_detail_impl, false, "Widget should be created");
     return m_detail_impl->is_enabled();
 }
 
 widget& widget::show(bool do_show)
 {
-    wxCHECK(m_detail_impl, *this);
+    wxCHECK_MSG(m_detail_impl, *this, "Widget should be created");
     m_detail_impl->show(do_show);
     return *this;
 }
 
 bool widget::is_shown() const
 {
-    wxCHECK(m_detail_impl, false);
+    wxCHECK_MSG(m_detail_impl, false, "Widget should be created");
     return m_detail_impl->is_shown();
 }
 
@@ -322,7 +323,7 @@ uistring widget::tooltip() const
 
 widget& widget::font(const ui::font& f)
 {
-    wxCHECK(f.valid(), *this);
+    wxCHECK_MSG(f.valid(), *this, "Invalid font");
 
     wxWindow* impl = native::from_widget(*this);
     wxCHECK_MSG(impl, *this, "Widget should be created");

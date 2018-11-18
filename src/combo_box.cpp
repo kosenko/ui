@@ -37,12 +37,12 @@ public:
     }
     void text(const uistring& txt)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->ChangeValue(native::from_uistring(txt));
     }
     uistring text() const
     {
-        wxCHECK(m_native, uistring());
+        wxCHECK_MSG(m_native, uistring(), "Widget should be created");
         return native::to_uistring(m_native->GetValue());
     }
 };
@@ -90,7 +90,7 @@ combo_box& combo_box::text(const uistring& txt)
 {
 #if wxUSE_COMBOBOX
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->text(txt);
 #endif
@@ -102,7 +102,7 @@ uistring combo_box::text() const
 {
 #if wxUSE_COMBOBOX
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, uistring());
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
 
     return impl->text();
 #else

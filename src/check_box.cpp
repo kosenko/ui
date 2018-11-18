@@ -34,27 +34,27 @@ public:
     }
     void check(bool checked)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->Set3StateValue(checked ? wxCHK_CHECKED : wxCHK_UNCHECKED);
     }
     void indeterminate()
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->Set3StateValue(wxCHK_UNDETERMINED);
     }
     bool is_checked() const
     {
-        wxCHECK(m_native, false);
+        wxCHECK_MSG(m_native, false, "Widget should be created");
         return m_native->Get3StateValue() == wxCHK_CHECKED;
     }
     bool is_unchecked() const
     {
-        wxCHECK(m_native, false);
+        wxCHECK_MSG(m_native, false, "Widget should be created");
         return m_native->Get3StateValue() == wxCHK_UNCHECKED;
     }
     bool is_indeterminate() const
     {
-        wxCHECK(m_native, false);
+        wxCHECK_MSG(m_native, false, "Widget should be created");
         return m_native->Get3StateValue() == wxCHK_UNDETERMINED;
     }
 };
@@ -90,7 +90,7 @@ check_box_base& check_box_base::check(bool checked)
 {
 #if wxUSE_CHECKBOX
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->check(checked);
 #endif
@@ -102,7 +102,7 @@ check_box_base& check_box_base::indeterminate()
 {
 #if wxUSE_CHECKBOX
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->indeterminate();
 #endif
@@ -114,7 +114,7 @@ bool check_box_base::is_checked() const
 {
 #if wxUSE_CHECKBOX
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, false);
+    wxCHECK_MSG(impl, false, "Widget should be created");
 
     return impl->is_checked();
 #else
@@ -126,7 +126,7 @@ bool check_box_base::is_unchecked() const
 {
 #if wxUSE_CHECKBOX
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, false);
+    wxCHECK_MSG(impl, false, "Widget should be created");
 
     return impl->is_unchecked();
 #else
@@ -138,7 +138,7 @@ bool check_box_base::is_indeterminate() const
 {
 #if wxUSE_CHECKBOX
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, false);
+    wxCHECK_MSG(impl, false, "Widget should be created");
 
     return impl->is_indeterminate();
 #else

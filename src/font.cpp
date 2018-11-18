@@ -142,7 +142,7 @@ font::font(double pt, family f, slant s, weight w)
 
     m_impl = new impl;
     m_impl->Create(pt, nf, ns, nw);
-    wxASSERT(valid());
+    wxASSERT_MSG(valid(), "Unable to create valid font");
 }
 
 font::font(double pt, const uistring& n, slant s, weight w)
@@ -264,13 +264,13 @@ namespace native {
 
 wxFont from_font(ui::font& f)
 {
-    wxCHECK(f.valid(), wxFont());
+    wxCHECK_MSG(f.valid(), wxFont(), "Invalid font");
     return *static_cast<wxFont*>(f.native_handle());
 }
 
 const wxFont from_font(const ui::font& f)
 {
-    wxCHECK(f.valid(), wxFont());
+    wxCHECK_MSG(f.valid(), wxFont(), "Invalid font");
     return *static_cast<const wxFont*>(f.native_handle());
 }
 

@@ -51,7 +51,7 @@ const wxTopLevelWindow* get_impl(const widget& w)
 window& window::title(const uistring& title)
 {
     wxTopLevelWindow* impl = get_impl(*this);
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->SetTitle(native::from_uistring(title));
 
@@ -61,7 +61,7 @@ window& window::title(const uistring& title)
 uistring window::title() const
 {
     const wxTopLevelWindow* impl = get_impl(*this);
-    wxCHECK(impl, uistring());
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
 
     return native::to_uistring(impl->GetTitle());
 }
@@ -70,7 +70,7 @@ void window::show_modal()
 {
     detail::window_detail_base* impl =
         get_detail_impl<detail::window_detail_base>();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->show_modal();
 }
@@ -78,7 +78,7 @@ void window::show_modal()
 bool window::close()
 {
     wxTopLevelWindow* impl = get_impl(*this);
-    wxCHECK(impl, true);
+    wxCHECK_MSG(impl, true, "Widget should be created");
 
     return impl->Close();
 }

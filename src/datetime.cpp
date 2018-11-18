@@ -32,12 +32,12 @@ public:
     }
     wxDateTime GetValue() const
     {
-        wxCHECK(m_native, wxDateTime());
+        wxCHECK_MSG(m_native, wxDateTime(), "Widget should be created");
         return m_native->GetValue();
     }
     void SetValue(const wxDateTime& datetime)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->SetValue(datetime);
     }
 };
@@ -75,7 +75,7 @@ std::time_t date_picker::get_time_t() const
 {
 #if wxUSE_DATEPICKCTRL
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, static_cast<std::time_t>(-1));
+    wxCHECK_MSG(impl, static_cast<std::time_t>(-1), "Widget should be created");
 
     const std::time_t result = impl->GetValue().GetTicks();
     if ( result == -1 )
@@ -91,7 +91,7 @@ date_picker& date_picker::set_time_t(std::time_t t)
 {
 #if wxUSE_DATEPICKCTRL
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     const wxDateTime datetime(t);
     if ( !datetime.IsValid() )
@@ -107,7 +107,7 @@ std::tm date_picker::get_tm() const
 {
 #if wxUSE_DATEPICKCTRL
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, std::tm());
+    wxCHECK_MSG(impl, std::tm(), "Widget should be created");
 
     const wxDateTime datetime = impl->GetValue();
     if ( !datetime.IsValid() )
@@ -137,7 +137,7 @@ date_picker& date_picker::set_tm(const std::tm& t)
 {
 #if wxUSE_DATEPICKCTRL
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     const wxDateTime datetime(t);
     if ( !datetime.IsValid() )
@@ -153,7 +153,7 @@ void date_picker::ymd(int& year, int& month, int& day) const
 {
 #if wxUSE_DATEPICKCTRL
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     const wxDateTime datetime = impl->GetValue();
     if ( !datetime.IsValid() )
@@ -169,7 +169,7 @@ void date_picker::set_ymd(int year, int month, int day)
 {
 #if wxUSE_DATEPICKCTRL
     detail_impl* impl = get_impl();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     const wxDateTime datetime(day, static_cast<wxDateTime::Month>(month - 1), year);
     if ( !datetime.IsValid() )
@@ -199,22 +199,22 @@ public:
     }
     wxDateTime GetValue() const
     {
-        wxCHECK(m_native, wxDateTime());
+        wxCHECK_MSG(m_native, wxDateTime(), "Widget should be created");
         return m_native->GetValue();
     }
     void SetValue(const wxDateTime& datetime)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->SetValue(datetime);
     }
     bool SetTime(int hour, int min, int sec)
     {
-        wxCHECK(m_native, false);
+        wxCHECK_MSG(m_native, false, "Widget should be created");
         return m_native->SetTime(hour, min, sec);
     }
     bool GetTime(int* hour, int* min, int* sec) const
     {
-        wxCHECK(m_native, false);
+        wxCHECK_MSG(m_native, false, "Widget should be created");
         return m_native->GetTime(hour, min, sec);
     }
 };
@@ -252,7 +252,7 @@ std::time_t time_picker::get_time_t() const
 {
 #if wxUSE_TIMEPICKCTRL
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, static_cast<std::time_t>(-1));
+    wxCHECK_MSG(impl, static_cast<std::time_t>(-1), "Widget should be created");
 
     const wxDateTime datetime = impl->GetValue();
     if ( !datetime.IsValid() )
@@ -268,7 +268,7 @@ time_picker& time_picker::set_time_t(std::time_t t)
 {
 #if wxUSE_TIMEPICKCTRL
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     //BOOST_THROW_EXCEPTION(std::out_of_range("boost::ui::time_picker::set_time_t(): invalid std::time_t time"));
 
@@ -293,7 +293,7 @@ std::tm time_picker::get_tm() const
 {
 #if wxUSE_TIMEPICKCTRL
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, std::tm());
+    wxCHECK_MSG(impl, std::tm(), "Widget should be created");
 
     const wxDateTime datetime = impl->GetValue();
     if ( !datetime.IsValid() )
@@ -322,7 +322,7 @@ time_picker& time_picker::set_tm(const std::tm& t)
 {
 #if wxUSE_TIMEPICKCTRL
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     if (   t.tm_hour < 0 || t.tm_hour > 23
         || t.tm_min  < 0 || t.tm_min  > 59
@@ -346,7 +346,7 @@ void time_picker::get_time_raw(int* hours_ptr, int* minutes_ptr, int* seconds_pt
 {
 #if wxUSE_TIMEPICKCTRL
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     int hours = 0;
     int minutes = 0;
@@ -367,7 +367,7 @@ time_picker& time_picker::set_time(int hours, int minutes, int seconds)
 {
 #if wxUSE_TIMEPICKCTRL
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     if (   hours   < 0 || hours   > 23
         || minutes < 0 || minutes > 59

@@ -37,12 +37,12 @@ public:
     }
     size_type selected_index() const
     {
-        wxCHECK(m_native, npos);
+        wxCHECK_MSG(m_native, npos, "Widget should be created");
         return m_native->GetSelection();
     }
     uistring selected_string() const
     {
-        wxCHECK(m_native, uistring());
+        wxCHECK_MSG(m_native, uistring(), "Widget should be created");
         return native::to_uistring(m_native->GetStringSelection());
     }
 };
@@ -89,7 +89,7 @@ list_box::size_type list_box::selected_index() const
 {
 #if wxUSE_LISTBOX
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, npos);
+    wxCHECK_MSG(impl, npos, "Widget should be created");
 
     return impl->selected_index();
 #else
@@ -101,8 +101,8 @@ uistring list_box::selected_string() const
 {
 #if wxUSE_LISTBOX
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, uistring());
-    wxASSERT(has_selection());
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
+    wxASSERT_MSG(has_selection(), "Nothing was selected");
 
     return impl->selected_string();
 #else

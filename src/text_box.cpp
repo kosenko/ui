@@ -31,17 +31,17 @@ public:
     }
     void clear()
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->Clear();
     }
     void text(const uistring& text)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->ChangeValue(native::from_uistring(text));
     }
     uistring text() const
     {
-        wxCHECK(m_native, uistring());
+        wxCHECK_MSG(m_native, uistring(), "Widget should be created");
         return native::to_uistring(m_native->GetValue());
     }
 };
@@ -77,7 +77,7 @@ void text_box_base::clear()
 {
 #if wxUSE_TEXTCTRL
     detail_impl* impl = get_impl();
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->clear();
 #endif
@@ -87,7 +87,7 @@ text_box_base& text_box_base::text(const uistring& text)
 {
 #if wxUSE_TEXTCTRL
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->text(text);
 #endif
@@ -99,7 +99,7 @@ uistring text_box_base::text() const
 {
 #if wxUSE_TEXTCTRL
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, uistring());
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
 
     return impl->text();
 #else

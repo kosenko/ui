@@ -32,17 +32,17 @@ public:
     }
     value_type value() const
     {
-        wxCHECK(m_native, -1);
+        wxCHECK_MSG(m_native, -1, "Widget should be created");
         return m_native->GetValue();
     }
     value_type min() const
     {
-        wxCHECK(m_native, -1);
+        wxCHECK_MSG(m_native, -1, "Widget should be created");
         return m_native->GetMin();
     }
     value_type max() const
     {
-        wxCHECK(m_native, -1);
+        wxCHECK_MSG(m_native, -1, "Widget should be created");
         return m_native->GetMax();
     }
 };
@@ -82,7 +82,7 @@ slider::value_type slider::value() const
 {
 #if wxUSE_SLIDER
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, -1);
+    wxCHECK_MSG(impl, -1, "Widget should be created");
 
     return impl->value();
 #else
@@ -94,7 +94,7 @@ slider::value_type slider::min() const
 {
 #if wxUSE_SLIDER
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, -1);
+    wxCHECK_MSG(impl, -1, "Widget should be created");
 
     return impl->min();
 #else
@@ -106,7 +106,7 @@ slider::value_type slider::max() const
 {
 #if wxUSE_SLIDER
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, -1);
+    wxCHECK_MSG(impl, -1, "Widget should be created");
 
     return impl->max();
 #else

@@ -75,10 +75,10 @@ public:
 void menu::native_impl::on_menu(wxCommandEvent& event)
 {
     wxMenuItem* rawitem = FindItem(event.GetId());
-    wxCHECK(rawitem, );
+    wxCHECK_RET(rawitem, "Unable to find menu item by id");
 
     item::native_impl* item = dynamic_cast<item::native_impl*>(rawitem);
-    wxCHECK(item, );
+    wxCHECK_RET(item, "Menu item has invalid type");
 
     item->on_menu();
 }
@@ -126,7 +126,7 @@ menu_bar::~menu_bar()
 
 menu_bar& menu_bar::append(const menu& i)
 {
-    wxCHECK(m_impl, *this);
+    wxCHECK_MSG(m_impl, *this, "Widget should be created");
 
 #if wxUSE_MENUS
     m_impl->append(i);
@@ -190,7 +190,7 @@ menu& menu::append(const separator&)
 void menu::popup(widget& w)
 {
     wxWindow *window = native::from_widget(w);
-    wxCHECK(window, );
+    wxCHECK_RET(window, "Widget should be valid");
 
 #if wxUSE_MENUS
     window->PopupMenu(m_impl);
@@ -208,7 +208,7 @@ menu::item::item(const uistring& text)
 
 void menu::item::on_press_raw(const boost::function<void()>& handler)
 {
-    wxCHECK(m_impl, );
+    wxCHECK_RET(m_impl, "Widget should be created");
 
     m_impl->m_menu_handlers.push_back(handler);
 }

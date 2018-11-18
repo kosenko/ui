@@ -34,17 +34,17 @@ public:
     }
     void value(value_type value)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->SetValue(value);
     }
     value_type value() const
     {
-        wxCHECK(m_native, -1);
+        wxCHECK_MSG(m_native, -1, "Widget should be created");
         return m_native->GetValue();
     }
     value_type max() const
     {
-        wxCHECK(m_native, -1);
+        wxCHECK_MSG(m_native, -1, "Widget should be created");
         return m_native->GetRange();
     }
 };
@@ -86,7 +86,7 @@ progress_bar& progress_bar::value(value_type value)
 
 #if wxUSE_GAUGE
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->value(value);
 #endif
@@ -98,7 +98,7 @@ progress_bar::value_type progress_bar::value() const
 {
 #if wxUSE_GAUGE
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, -1);
+    wxCHECK_MSG(impl, -1, "Widget should be created");
 
     return impl->value();
 #else
@@ -110,7 +110,7 @@ progress_bar::value_type progress_bar::max() const
 {
 #if wxUSE_GAUGE
     const detail_impl* impl = get_impl();
-    wxCHECK(impl, -1);
+    wxCHECK_MSG(impl, -1, "Widget should be created");
 
     return impl->max();
 #else

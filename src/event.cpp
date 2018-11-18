@@ -79,7 +79,7 @@ void event_functor_event<wxContextMenuEvent, mouse_event>::init(mouse_event& uie
     wxPoint pos = wxevent.GetPosition();
 
     wxWindow* window = dynamic_cast<wxWindow*>(wxevent.GetEventObject());
-    wxCHECK(window, );
+    wxCHECK_RET(window, "Context menu event has no associated widget");
     pos = window->ScreenToClient(pos);
 
     uievent.m_x = pos.x;

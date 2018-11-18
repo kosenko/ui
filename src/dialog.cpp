@@ -39,7 +39,7 @@ public:
     }
     void show_modal()
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->ShowModal();
     }
 };

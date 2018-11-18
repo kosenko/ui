@@ -27,12 +27,12 @@ public:
     }
     void set_html(const uistring& html)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->SetPage(native::from_uistring(html), wxString());
     }
     void load(const uistring& url)
     {
-        wxCHECK(m_native, );
+        wxCHECK_RET(m_native, "Widget should be created");
         m_native->LoadURL(native::from_uistring(url));
     }
 };
@@ -61,7 +61,7 @@ web_widget& web_widget::html(const uistring& html)
 {
 #if wxUSE_WEBVIEW
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->set_html(html);
 #endif
@@ -73,7 +73,7 @@ web_widget& web_widget::load(const uistring& url)
 {
 #if wxUSE_WEBVIEW
     detail_impl* impl = get_impl();
-    wxCHECK(impl, *this);
+    wxCHECK_MSG(impl, *this, "Widget should be created");
 
     impl->load(url);
 #endif
