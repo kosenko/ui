@@ -21,7 +21,7 @@ int ui_main()
     ui::dialog dlg("Boost.UI native API usage example");
 
     wxWindow* native_dialog = ui::native::from_widget(dlg);
-    wxCHECK(native_dialog, 1);
+    wxCHECK_MSG(native_dialog, 1, "Invalid native dialog");
     native_dialog->SetTransparent(224);
 
     std::ostringstream ss;

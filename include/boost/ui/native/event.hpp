@@ -54,7 +54,7 @@ void bind_helper(widget& w, EventTag eventType,
                      = empty_filter<typename EventTag::EventClass>())
 {
     wxWindow* impl = from_widget(w);
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->Bind(eventType, event_functor<
         typename EventTag::EventClass>(handler, filter));
@@ -95,7 +95,7 @@ void bind_event_helper(widget& w, EventTag eventType,
                            = empty_filter<typename EventTag::EventClass>())
 {
     wxWindow* impl = from_widget(w);
-    wxCHECK(impl, );
+    wxCHECK_RET(impl, "Widget should be created");
 
     impl->Bind(eventType, event_functor_event<
         typename EventTag::EventClass, UIEvent>(handler, filter));
