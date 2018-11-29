@@ -6,27 +6,24 @@
 # See www.boost.org/LICENSE_1_0.txt
 
 language: cpp
+dist: xenial
 
 matrix:
     include:
         - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++03 SKIP_CPP17=1 SKIP_CPP11=1
           compiler: g++
-          dist: precise
+          dist: trusty
         - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++11 SKIP_CPP17=1
           compiler: g++
-          dist: trusty
         - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++17
           compiler: g++
-          dist: xenial
         - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++03 SKIP_CPP17=1 SKIP_CPP11=1
           compiler: clang++
-          dist: precise
+          dist: trusty
         - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++11 SKIP_CPP17=1
           compiler: clang++
-          dist: trusty
         - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++17
           compiler: clang++
-          dist: xenial
 
 addons:
     apt:
