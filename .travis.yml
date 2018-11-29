@@ -6,6 +6,7 @@
 # See www.boost.org/LICENSE_1_0.txt
 
 language: cpp
+dist: xenial
 
 matrix:
     include:
