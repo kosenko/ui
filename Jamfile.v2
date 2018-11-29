@@ -9,4 +9,5 @@ build-project build ;
 build-project test ;
 build-project example ;
 build-project example/cpp11 ;
+build-project example/cpp17 ;
 build-project doc ;

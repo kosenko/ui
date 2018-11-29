@@ -9,13 +9,17 @@ language: cpp
 
 matrix:
     include:
-        - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++03 SKIP_CPP11=1
+        - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++03 SKIP_CPP11=1 SKIP_CPP17=1
           compiler: g++
-        - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++11
+        - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++11 SKIP_CPP11=1
           compiler: g++
-        - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++03 SKIP_CPP11=1
+        - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++17
+          compiler: g++
+        - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++03 SKIP_CPP11=1 SKIP_CPP17=1
           compiler: clang++
-        - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++11
+        - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++11 SKIP_CPP11=1
+          compiler: clang++
+        - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++17
           compiler: clang++
 
 addons:
@@ -64,3 +68,4 @@ script:
     - ./b2 libs/ui/test toolset=$TOOLSET
     - ./b2 libs/ui/example toolset=$TOOLSET
     - (test "$SKIP_CPP11" && echo "SKIPPED") || ./b2 libs/ui/example/cpp11 toolset=$TOOLSET
+    - (test "$SKIP_CPP17" && echo "SKIPPED") || ./b2 libs/ui/example/cpp17 toolset=$TOOLSET
