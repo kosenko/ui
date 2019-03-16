@@ -50,11 +50,6 @@ install:
     - ./bootstrap.sh
     - ./b2 headers
 
-before_script:
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-    - sleep 3 # give xvfb some time to start
-
 script:
     - set -e
     - |-
@@ -68,7 +63,7 @@ script:
     - export WX_CONFIG=`realpath .`/wx-config
     - popd
     - ./b2 libs/ui/build toolset=$TOOLSET
-    - ./b2 libs/ui/test toolset=$TOOLSET
+    - xvfb-run ./b2 libs/ui/test toolset=$TOOLSET
     - ./b2 libs/ui/example toolset=$TOOLSET
     - (test "$SKIP_CPP11" && echo "SKIPPED") || ./b2 libs/ui/example/cpp11 toolset=$TOOLSET
     - (test "$SKIP_CPP17" && echo "SKIPPED") || ./b2 libs/ui/example/cpp17 toolset=$TOOLSET
