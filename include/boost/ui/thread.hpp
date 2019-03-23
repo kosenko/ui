@@ -16,6 +16,10 @@
 
 #include <boost/function.hpp>
 
+#ifndef BOOST_NO_CXX11_VARIADIC_TEMPLATES
+#include <boost/move/utility.hpp> // boost::forward()
+#endif
+
 namespace boost  {
 namespace ui     {
 
