@@ -47,6 +47,7 @@ by Bjarne Stroustrup
   * example/cpp11/io2d.cpp - Re-implemented examples from
 [P0267 proposal](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0267r6.pdf) (io2d library)
   * example/cpp11/snippet.cpp - Documentation snippets
+  * example/cpp11/datarep.cpp - Data representation example
 * **include** - Interface headers with documentation
 * **src** - Source code
 * **test** - Unit tests

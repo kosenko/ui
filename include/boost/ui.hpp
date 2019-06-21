@@ -170,6 +170,8 @@ Read README.md file for build instructions and library details.
 @example cpp11/bootstrap.cpp Bootstrap code
 @image html bootstrap_unity.png "Bootstrap application under Unity"
 
+@example cpp11/datarep.cpp Data representation example
+
 @example cpp11/demo.cpp Boost.UI C++11 demo
 
 @example cpp11/hello.cpp C++11 "Hello, World!" application
