@@ -9,6 +9,7 @@
 #include <boost/ui.hpp>
 #include <sstream>
 #include <limits>
+#include <bitset>
 
 namespace ui = boost::ui;
 
