@@ -50,7 +50,7 @@ private:
 
     value_type m_value;
 
-    static const auto BITS_COUNT = CHAR_BIT * sizeof(m_value);
+    static const unsigned BITS_COUNT = CHAR_BIT * sizeof(value_type);
 };
 
 data_representation_dialog::data_representation_dialog()
