@@ -181,6 +181,7 @@ Read README.md file for build instructions and library details.
 @example cpp11/io2d.cpp Re-implemented examples from P0267 proposal (io2d library)
 @example cpp11/minimal.cpp Minimal sample
 @example cpp11/snippet.cpp Documentation snippets
+@example cpp11/stacktrace.cpp Boost.Stacktrace usage example
 @example cpp11/stroustrup.cpp Re-implemented Bjarne Stroustrup's GUI examples
 @example asio_chat_client.cpp Boost.ASIO chat client example
 @example chrono.cpp Boost.Chrono and std::chrono usage example
@@ -209,7 +210,6 @@ Read README.md file for build instructions and library details.
 @example sort.cpp Visualization of sorting algorithms
 @see <a href="http://en.wikipedia.org/wiki/Sorting_algorithm">Sorting algorithm (Wikipedia)</a>
 @example spirit.cpp Boost.Spirit usage example
-@example stacktrace.cpp Boost.Stacktrace usage example
 @example thread.cpp Boost.Thread and std::thread usage example
 @see boost::ui::call_async
 @see <a href="http://en.wikipedia.org/wiki/Thread_(computing)">Thread (Wikipedia)</a>

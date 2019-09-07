@@ -22,6 +22,8 @@ exe datarep : datarep.cpp example_rc winmain ;
 exe io2d : io2d.cpp example_rc winmain ;
 exe minimal : minimal.cpp example_rc winmain ;
 exe snippet : snippet.cpp example_rc ;
+lib dl ;
+exe stacktrace : stacktrace.cpp example_rc winmain : <target-os>linux:<library>dl ;
 exe stroustrup : stroustrup.cpp example_rc winmain ;
 
 exe demo : demo.cpp example_rc winmain ;

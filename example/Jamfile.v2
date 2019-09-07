@@ -61,9 +61,6 @@ exe regex : regex.cpp example_rc winmain
 exe sort : sort.cpp example_rc winmain
     /boost/chrono//boost_chrono ;
 
-lib dl ;
-exe stacktrace : stacktrace.cpp example_rc winmain : <target-os>linux:<library>dl ;
-
 exe thread : thread.cpp example_rc winmain
     /boost/thread//boost_thread ;
 

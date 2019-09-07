@@ -10,19 +10,17 @@
 
 namespace ui = boost::ui;
 
-void handle_button_press()
-{
-    std::ostringstream info;
-    info << boost::stacktrace::stacktrace();
-    ui::info_dialog(info.str());
-}
-
 int ui_main()
 {
     ui::dialog dlg("Boost.Stacktrace + Boost.UI example");
 
     ui::button(dlg, "Show &stacktrace")
-        .on_press(&handle_button_press);
+        .on_press([]
+        {
+            std::ostringstream info;
+            info << boost::stacktrace::stacktrace();
+            ui::info_dialog(info.str());
+        });
 
     dlg.show_modal();
 

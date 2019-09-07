@@ -34,13 +34,13 @@ Latest development documentation is available [online](https://kosenko.github.io
   * example/random.cpp - **Boost.Random** and **std::random** usage example
   * example/regex.cpp - **Boost.Regex** and **std::regex** usage example
   * example/sort.cpp - Visualization of **sorting algorithms**
-  * example/stacktrace.cpp - **Boost.Stacktrace** usage example
   * example/thread.cpp - **Boost.Thread** and **std::thread** usage example
   * example/timer.cpp - **Boost.Timer** usage example
   * example/tokenizer.cpp - **Boost.Tokenizer** usage example
 * **example/cpp11** - C++11 Examples
   * example/cpp11/hello.cpp - C++11 **"Hello, world!"** application
   * example/cpp11/beman.cpp - [Beman's challenge](https://isocpp.org/files/papers/n3791.html)
+  * example/cpp11/stacktrace.cpp - **Boost.Stacktrace** usage example
   * example/cpp11/stroustrup.cpp - Re-implemented GUI examples
 from ["Programming -- Principles and Practice Using C++"](http://www.stroustrup.com/programming.html)
 by Bjarne Stroustrup
