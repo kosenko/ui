@@ -50,9 +50,9 @@ boostbook standalone
     :
         ui
     :
-        <xsl:param>boost.root=https://kosenko.github.io/boost.org
-        #<xsl:param>boost.root=https://www.boost.org/doc/libs/1_65_1
-        #<xsl:param>boost.root=$(BOOST_ROOT)
+        #<xsl:param>boost.root=../../../..
+        <xsl:param>"boost.root=https://kosenko.github.io/boost.org"
+        #<xsl:param>"boost.root=https://www.boost.org/doc/libs/1_65_1"
     ;
 
 ###############################################################################
