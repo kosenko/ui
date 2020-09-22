@@ -7,6 +7,8 @@
 
 project boost/ui/doc ;
 using doxygen ;
+using quickbook ;
+using boostbook ;
 
 doxygen
         # target
