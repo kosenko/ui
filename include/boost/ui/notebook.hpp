@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file notebook.hpp Notebook widget
+/// @file notebook.hpp @brief Notebook widget
 
 #ifndef BOOST_UI_NOTEBOOK_HPP
 #define BOOST_UI_NOTEBOOK_HPP

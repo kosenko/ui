@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file layout.hpp Layout classes
+/// @file layout.hpp @brief Layout classes
 
 #ifndef BOOST_UI_LAYOUT_HPP
 #define BOOST_UI_LAYOUT_HPP

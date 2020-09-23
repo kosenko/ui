@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file audio.hpp Audio
+/// @file audio.hpp @brief Audio
 
 #ifndef BOOST_UI_AUDIO_HPP
 #define BOOST_UI_AUDIO_HPP

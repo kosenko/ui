@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file window.hpp Window class
+/// @file window.hpp @brief Window class
 
 #ifndef BOOST_UI_WINDOW_HPP
 #define BOOST_UI_WINDOW_HPP

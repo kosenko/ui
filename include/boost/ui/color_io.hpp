@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file color_io.hpp Color I/O operations
+/// @file color_io.hpp @brief Color I/O operations
 
 #ifndef BOOST_UI_COLOR_IO_HPP
 #define BOOST_UI_COLOR_IO_HPP

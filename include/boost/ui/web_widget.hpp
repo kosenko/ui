@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file web_widget.hpp Web widget
+/// @file web_widget.hpp @brief Web widget
 
 #ifndef BOOST_UI_WEB_WIDGET_HPP
 #define BOOST_UI_WEB_WIDGET_HPP

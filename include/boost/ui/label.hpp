@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file label.hpp Label widget
+/// @file label.hpp @brief Label widget
 
 #ifndef BOOST_UI_LABEL_HPP
 #define BOOST_UI_LABEL_HPP

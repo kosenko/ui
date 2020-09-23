@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file coord.hpp Coordinates classes
+/// @file coord.hpp @brief Coordinates classes
 
 #ifndef BOOST_UI_COORD_HPP
 #define BOOST_UI_COORD_HPP

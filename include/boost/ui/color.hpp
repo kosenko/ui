@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file color.hpp Color class
+/// @file color.hpp @brief Color class
 
 #ifndef BOOST_UI_COLOR_HPP
 #define BOOST_UI_COLOR_HPP

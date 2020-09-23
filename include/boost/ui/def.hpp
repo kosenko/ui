@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file def.hpp Definitions
+/// @file def.hpp @brief Definitions
 
 #ifndef BOOST_UI_DEF_HPP
 #define BOOST_UI_DEF_HPP

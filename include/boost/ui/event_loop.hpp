@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file event_loop.hpp Event loop class
+/// @file event_loop.hpp @brief Event loop class
 
 #ifndef BOOST_UI_EVENT_LOOP_HPP
 #define BOOST_UI_EVENT_LOOP_HPP

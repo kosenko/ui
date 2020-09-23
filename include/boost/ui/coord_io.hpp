@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file coord_io.hpp Coordinates I/O
+/// @file coord_io.hpp @brief Coordinates I/O
 
 #ifndef BOOST_UI_COORD_IO_HPP
 #define BOOST_UI_COORD_IO_HPP

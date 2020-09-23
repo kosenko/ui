@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file check_box.hpp Check box widget
+/// @file check_box.hpp @brief Check box widget
 
 #ifndef BOOST_UI_CHECK_BOX_HPP
 #define BOOST_UI_CHECK_BOX_HPP

@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file status_bar.hpp Status bar class
+/// @file status_bar.hpp @brief Status bar class
 
 #ifndef BOOST_UI_STATUS_BAR_HPP
 #define BOOST_UI_STATUS_BAR_HPP

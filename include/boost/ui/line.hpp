@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file line.hpp line widget
+/// @file line.hpp @brief line widget
 
 #ifndef BOOST_UI_LINE_HPP
 #define BOOST_UI_LINE_HPP

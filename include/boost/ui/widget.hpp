@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file widget.hpp Widget class
+/// @file widget.hpp @brief Widget class
 
 #ifndef BOOST_UI_WIDGET_HPP
 #define BOOST_UI_WIDGET_HPP
@@ -37,9 +37,9 @@ class widget_detail_base;
 #endif
 
 /// @brief Base class for all widgets
-/// @see <a href="http://en.wikipedia.org/wiki/Widget_(GUI)">Widget (Wikipedia)</a>
-/// @see <a href="http://en.wikipedia.org/wiki/Graphical_user_interface_elements">
-///     Graphical user interface elements (Wikipedia)</a>
+/// @see <a href="https://en.wikipedia.org/wiki/Graphical_widget">Graphical_widget (Wikipedia)</a>
+/// @see <a href="https://en.wikipedia.org/wiki/List_of_graphical_user_interface_elements">
+///     List of graphical user interface elements (Wikipedia)</a>
 /// @ingroup widget
 
 class BOOST_UI_DECL widget

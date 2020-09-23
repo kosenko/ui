@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file stream.hpp Stream class and manipulators
+/// @file stream.hpp @brief Stream class and manipulators
 
 #ifndef BOOST_UI_STREAM_HPP
 #define BOOST_UI_STREAM_HPP

@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file string.hpp String class and operations
+/// @file string.hpp @brief String class and operations
 
 #ifndef BOOST_UI_STRING_HPP
 #define BOOST_UI_STRING_HPP

@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file font.hpp Font class
+/// @file font.hpp @brief Font class
 
 #ifndef BOOST_UI_FONT_HPP
 #define BOOST_UI_FONT_HPP

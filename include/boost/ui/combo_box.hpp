@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file combo_box.hpp Combo box widget
+/// @file combo_box.hpp @brief Combo box widget
 
 #ifndef BOOST_UI_COMBO_BOX_HPP
 #define BOOST_UI_COMBO_BOX_HPP

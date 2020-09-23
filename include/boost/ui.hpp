@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file ui.hpp Master Boost.UI file
+/// @file ui.hpp @brief Master Boost.UI file
 
 #ifndef BOOST_UI_HPP
 #define BOOST_UI_HPP
@@ -219,73 +219,95 @@ Read README.md file for build instructions and library details.
 @example tokenizer.cpp Boost.Tokenizer usage example
 
 @defgroup graphics Graphics
+@brief Canvas graphics
 @see <a href="http://en.wikipedia.org/wiki/Computer_graphics">Computer graphics (Wikipedia)</a>
 
 @defgroup widget Widgets
+@brief Graphical widgets
 
 @defgroup command Command widgets
+@brief Widgets with action handlers
 @ingroup widget
 
 @defgroup io Data input-output widgets
+@brief Data input and output widgets
 @ingroup widget
 
 @defgroup datetime Date and time pickers
+@brief Date and time modifiers
 @ingroup io
 
 @defgroup strings Strings container widgets
+@brief String list widgets
 @ingroup io
 
 @defgroup text Text widgets
+@brief Text editor widgets
 @see <a href="http://en.wikipedia.org/wiki/Text_box">Text box (Wikipedia)</a>
 @ingroup io
 
 @defgroup info Informational widgets
+@brief Data output widgets
 @ingroup widget
 
 @defgroup log Logging
+@brief Debug output and async user notifications
 @ingroup info
 
 @defgroup container Containers
+@brief Widgets that holds other widgets
 @ingroup widget
 
 @defgroup alert Alerts
+@brief Predefined dialog boxes
 @see <a href="http://en.wikipedia.org/wiki/Alert_dialog_box">Alert dialog box (Wikipedia)</a>
 @ingroup container
 
 @defgroup notify Notifications
+@brief User notifications
 @see <a href="http://en.wikipedia.org/wiki/Notification_area">Notification area (Wikipedia)</a>
 @ingroup container
 
 @defgroup prompt Prompts
+@brief Data value requests
 @ingroup container
 
 @defgroup tlw Top level widgets
+@brief Custom dialog windows
 @see <a href="http://en.wikipedia.org/wiki/Window_(computing)">Window (Wikipedia)</a>
 @ingroup container
 
 @defgroup layout Layouts
+@brief Widget layout managment
 @see <a href="http://en.wikipedia.org/wiki/Layout_manager">Layout manager (Wikipedia)</a>
 
 @defgroup event Events
-Usage example:
+@brief Event loop, event handler related classes and global event handlers
+@details Usage example:
 @snippet cpp11/snippet.cpp event
 @see <a href="http://en.wikipedia.org/wiki/Event_(computing)">Event (Wikipedia)</a>
 @see <a href="http://www.w3.org/TR/uievents/">UI Events (W3C)</a>
 
 @defgroup audio Audio
+@brief Audio functions
 @see <a href="http://en.wikipedia.org/wiki/Sound">Sound (Wikipedia)</a>
 
 @defgroup coord Coordinates
+@brief Basic geometry classes
+@details
 @see <a href="http://en.wikipedia.org/wiki/Cartesian_coordinate_system">
     Cartesian coordinate system (Wikipedia)</a>
 @see <a href="http://en.wikipedia.org/wiki/Geometric_primitive">Geometric primitive (Wikipedia)</a>
 @see <a href="http://www.w3.org/TR/geometry/">Geometry Interfaces (W3C)</a>
 
 @defgroup locale Localization
+@brief Support for std::locale
 
 @defgroup thread Thread support
+@brief Thread safe async calls
 
 @defgroup helper Helpers
+@brief Helper strings, macros and entry functions
 
 */
 

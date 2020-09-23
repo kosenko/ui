@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file hyperlink.hpp Hyperlink widget
+/// @file hyperlink.hpp @brief Hyperlink widget
 
 #ifndef BOOST_UI_HYPERLINK_HPP
 #define BOOST_UI_HYPERLINK_HPP

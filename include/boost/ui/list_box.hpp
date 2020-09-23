@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file list_box.hpp List box widget
+/// @file list_box.hpp @brief List box widget
 
 #ifndef BOOST_UI_LIST_BOX_HPP
 #define BOOST_UI_LIST_BOX_HPP

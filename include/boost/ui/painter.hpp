@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file painter.hpp Painter class
+/// @file painter.hpp @brief Painter class
 
 #ifndef BOOST_UI_PAINTER_HPP
 #define BOOST_UI_PAINTER_HPP

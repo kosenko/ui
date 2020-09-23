@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file strings_box.hpp Widget with array of strings
+/// @file strings_box.hpp @brief Widget with array of strings
 
 #ifndef BOOST_UI_STRINGS_BOX_HPP
 #define BOOST_UI_STRINGS_BOX_HPP

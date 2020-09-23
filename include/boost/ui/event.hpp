@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file event.hpp Event classes
+/// @file event.hpp @brief Event classes
 
 #ifndef BOOST_UI_EVENT_HPP
 #define BOOST_UI_EVENT_HPP

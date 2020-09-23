@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file message.hpp Display message file
+/// @file message.hpp @brief Display message file
 
 #ifndef BOOST_UI_MESSAGE_HPP
 #define BOOST_UI_MESSAGE_HPP

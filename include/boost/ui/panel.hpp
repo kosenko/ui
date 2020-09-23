@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file panel.hpp Panel widget
+/// @file panel.hpp @brief Panel widget
 
 #ifndef BOOST_UI_PANEL_HPP
 #define BOOST_UI_PANEL_HPP

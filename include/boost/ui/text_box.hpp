@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file text_box.hpp Text editor widgets
+/// @file text_box.hpp @brief Text editor widgets
 
 #ifndef BOOST_UI_TEXT_BOX_HPP
 #define BOOST_UI_TEXT_BOX_HPP

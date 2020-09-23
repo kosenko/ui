@@ -3,7 +3,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // See http://www.boost.org/LICENSE_1_0.txt
 
-/// @file menu.hpp Menu classes
+/// @file menu.hpp @brief Menu classes
 
 #ifndef BOOST_UI_MENU_HPP
 #define BOOST_UI_MENU_HPP
