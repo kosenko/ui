@@ -87,6 +87,7 @@ C++ programs should have a better way to interact with humans then std::cin / st
 @image html demo_windows7.png "Demo application under Windows 7"
 @image html demo_windows_xp.png "Demo application under Windows XP"
 @image html demo_windows95.png "Demo application with Windows 95 theme"
+@image html demo_windows10.png "Demo application under Windows 10"
 
 @section overview Overview
 
@@ -192,6 +193,7 @@ Read README.md file for build instructions and library details.
 @image html demo_windows7.png "Demo application under Windows 7"
 @image html demo_windows_xp.png "Demo application under Windows XP"
 @image html demo_windows95.png "Demo application with Windows 95 theme"
+@image html demo_windows10.png "Demo application under Windows 10"
 
 @example font.cpp Boost.UI font usage example
 @example filesystem.cpp Boost.Filesystem and std::filesystem file manager
