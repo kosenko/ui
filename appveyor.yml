@@ -13,6 +13,7 @@ environment:
     matrix:
         # Visual Studio 2008, _CPPLIB_VER: 505
         - VS: 9.0
+          SKIP_CPP03: 1
           SKIP_CPP11: 1
           SKIP_CPP17: 1
 
@@ -39,6 +40,7 @@ environment:
 
         # Visual Studio 2010, _CPPLIB_VER: 520
         - VS: 10.0
+          SKIP_CPP03: 1
           SKIP_CPP11: 1
           SKIP_CPP17: 1
 
@@ -72,6 +74,6 @@ test_script:
 
     b2 libs/ui/build link=static toolset=msvc-%VS% %B2_ARGS%
     b2 libs/ui/test link=static toolset=msvc-%VS% %B2_ARGS%
-    b2 libs/ui/example link=static toolset=msvc-%VS% %B2_ARGS%
+    IF NOT DEFINED SKIP_CPP03 (b2 libs/ui/example link=static toolset=msvc-%VS% %B2_ARGS%) ELSE (ECHO SKIPPED)
     IF NOT DEFINED SKIP_CPP11 (b2 libs/ui/example/cpp11 link=static toolset=msvc-%VS% %B2_ARGS%) ELSE (ECHO SKIPPED)
     IF NOT DEFINED SKIP_CPP17 (b2 libs/ui/example/cpp17 link=static toolset=msvc-%VS% %B2_ARGS%) ELSE (ECHO SKIPPED)
