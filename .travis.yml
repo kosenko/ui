@@ -20,9 +20,9 @@ matrix:
           compiler: clang++
         - env: TOOLSET=gcc COMPILER=g++ CXXSTD=c++03 SKIP_CPP17=1 SKIP_CPP11=1
           compiler: g++
-        - env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++03 SKIP_CPP17=1 SKIP_CPP11=1
-          compiler: clang++
-          dist: trusty
+        #- env: TOOLSET=clang COMPILER=clang++ CXXSTD=c++03 SKIP_CPP17=1 SKIP_CPP11=1
+        #  compiler: clang++
+        #  dist: trusty
 
 addons:
     apt:
