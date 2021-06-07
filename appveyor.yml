@@ -22,7 +22,7 @@ environment:
         #  APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
 
         # Visual Studio 2015, _CPPLIB_VER: 650
-        - VS: 14.0
+        #- VS: 14.0
 
         # Visual Studio 2013, _CPPLIB_VER: 610
         - VS: 12.0
