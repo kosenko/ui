@@ -29,12 +29,15 @@ environment:
           NMAKE_ARGS: TARGET_CPU=X64
           ARCH: x86_amd64
           B2_ARGS: address-model=64
+          SKIP_CPP03: 1
+          SKIP_CPP11: 1
           SKIP_CPP17: 1
 
         # Visual Studio 2012, _CPPLIB_VER: 540
         - VS: 11.0
           NMAKE_ARGS: BUILD=release
           B2_ARGS: variant=release
+          SKIP_CPP03: 1
           SKIP_CPP11: 1
           SKIP_CPP17: 1
 
