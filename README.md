@@ -27,7 +27,6 @@ Latest development documentation is available [online](https://kosenko.github.io
   * example/date_time.cpp - **Boost.Date_Time** usage example
   * example/font.cpp - Font usage example
   * example/filesystem.cpp - **Boost.Filesystem** and **std::filesystem** file manager
-  * example/geometry.cpp - **Boost.Geometry** usage example
   * example/interprocess.cpp - **Boost.Interprocess** usage example
   * example/lexical_cast.cpp - **Boost.Lexical_Cast** usage example
   * example/locale.cpp - **Boost.Locale** usage example
@@ -48,6 +47,8 @@ by Bjarne Stroustrup
 [P0267 proposal](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0267r6.pdf) (io2d library)
   * example/cpp11/snippet.cpp - Documentation snippets
   * example/cpp11/datarep.cpp - Data representation example
+* **example/cpp17** - C++17 Examples
+  * example/cpp17/geometry.cpp - **Boost.Geometry** usage example
 * **include** - Interface headers with documentation
 * **src** - Source code
 * **test** - Unit tests

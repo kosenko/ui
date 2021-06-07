@@ -14,4 +14,5 @@ project
 obj winmain : ../../include/boost/ui/native/winmain.cpp ;
 obj example_rc : ../res/example.rc ;
 
+exe geometry : geometry.cpp example_rc winmain ;
 exe p1108 : p1108.cpp example_rc winmain ;

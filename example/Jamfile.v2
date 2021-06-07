@@ -21,7 +21,6 @@ obj example_rc : res/example.rc ;
 exe hello : hello.cpp example_rc winmain ;
 exe demo : demo.cpp example_rc winmain ;
 exe native : native.cpp example_rc winmain ;
-exe geometry : geometry.cpp example_rc winmain ;
 exe spirit : spirit.cpp example_rc winmain ;
 
 exe asio_chat_client : asio_chat_client.cpp example_rc winmain

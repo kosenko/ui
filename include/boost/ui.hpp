@@ -198,7 +198,7 @@ Read README.md file for build instructions and library details.
 @example font.cpp Boost.UI font usage example
 @example filesystem.cpp Boost.Filesystem and std::filesystem file manager
 @see <a href="http://en.wikipedia.org/wiki/File_manager">File manager (Wikipedia)</a>
-@example geometry.cpp Boost.Geometry usage example
+@example cpp17/geometry.cpp Boost.Geometry usage example
 @example hello.cpp "Hello, World!" application
 @see <a href="http://en.wikipedia.org/wiki/%22Hello,_world!%22_program">"Hello, world!" program (Wikipedia)</a>
 @example interprocess.cpp Boost.Interprocess usage example
