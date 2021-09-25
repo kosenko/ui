@@ -38,7 +38,7 @@ before_install:
 
 install:
     - cd ..
-    - git clone -b boost-1.76.0 --depth 1 https://github.com/boostorg/boost.git boost-root
+    - git clone -b boost-1.77.0 --depth 1 https://github.com/boostorg/boost.git boost-root
     - cd boost-root
     - git submodule update --init --checkout --depth 1
     - git submodule update --init tools/build
