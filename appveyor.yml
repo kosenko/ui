@@ -27,7 +27,7 @@ environment:
         # Visual Studio 2013, _CPPLIB_VER: 610
         - VS: 12.0
           NMAKE_ARGS: TARGET_CPU=X64
-          ARCH: x86_amd64
+          ARCH: amd64
           B2_ARGS: address-model=64
           SKIP_CPP03: 1
           SKIP_CPP11: 1
