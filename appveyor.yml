@@ -11,11 +11,11 @@ shallow_clone: true
 
 environment:
     matrix:
-        # Visual Studio 2008, _CPPLIB_VER: 505
-        - VS: 9.0
-          SKIP_CPP03: 1
-          SKIP_CPP11: 1
-          SKIP_CPP17: 1
+        ## Visual Studio 2008, _CPPLIB_VER: 505
+        #- VS: 9.0
+          #SKIP_CPP03: 1
+          #SKIP_CPP11: 1
+          #SKIP_CPP17: 1
 
         # Visual Studio 2017
         #- VS: 14.1
@@ -26,6 +26,7 @@ environment:
           NMAKE_ARGS: TARGET_CPU=X64
           ARCH: amd64
           B2_ARGS: address-model=64
+          SKIP_CPP17: 1
 
         ## Visual Studio 2013, _CPPLIB_VER: 610
         #- VS: 12.0
