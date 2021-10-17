@@ -53,11 +53,11 @@ script:
     - set -e
     - |-
         echo "using $TOOLSET : : $COMPILER : <cxxflags>-std=$CXXSTD ;" > ~/user-config.jam
-    - wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.tar.bz2
-    - tar -xf wxWidgets-3.0.4.tar.bz2
+    - wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5/wxWidgets-3.0.5.tar.bz2
+    - tar -xf wxWidgets-3.0.5.tar.bz2
     - mkdir build-wx
     - pushd build-wx
-    - ../wxWidgets-3.0.4/configure --disable-optimise --enable-debug=max
+    - ../wxWidgets-3.0.5/configure --disable-optimise --enable-debug=max
     - make
     - export WX_CONFIG=`realpath .`/wx-config
     - popd
