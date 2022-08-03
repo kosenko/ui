@@ -8,7 +8,7 @@
 #define BOOST_ENABLE_ASSERT_HANDLER
 
 #include <boost/ui.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/assign/list_of.hpp>
 #include <boost/lexical_cast/try_lexical_convert.hpp>
 #include <boost/version.hpp>
@@ -89,7 +89,7 @@ template <class Event>
 boost::function<void(Event&)>
 make_event_handler(const char* class_name, const char* event_name)
 {
-    return boost::bind(&on_event_handler<Event>, _1, class_name, event_name);
+    return boost::bind(&on_event_handler<Event>, boost::placeholders::_1, class_name, event_name);
 }
 
 } // namespace utility
