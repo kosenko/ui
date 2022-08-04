@@ -11,7 +11,7 @@
 #include <boost/ui/native/event.hpp>
 #include <boost/ui/native/string.hpp>
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 
 #include <wx/toplevel.h>
 
@@ -23,8 +23,8 @@ namespace native {
 template <>
 void event_functor_event<wxCloseEvent, close_event>::init(close_event& uievent, wxCloseEvent& wxevent)
 {
-    uievent.m_veto_fn = boost::bind(&wxCloseEvent::Veto, boost::ref(wxevent), _1);
-    uievent.m_skip_fn = boost::bind(&wxCloseEvent::Skip, boost::ref(wxevent), _1);
+    uievent.m_veto_fn = boost::bind(&wxCloseEvent::Veto, boost::ref(wxevent), boost::placeholders::_1);
+    uievent.m_skip_fn = boost::bind(&wxCloseEvent::Skip, boost::ref(wxevent), boost::placeholders::_1);
 }
 
 } // namespace native
