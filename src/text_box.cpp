@@ -44,6 +44,16 @@ public:
         wxCHECK_MSG(m_native, uistring(), "Widget should be created");
         return native::to_uistring(m_native->GetValue());
     }
+    void placeholder(const uistring& text)
+    {
+        wxCHECK_RET(m_native, "Widget should be created");
+        m_native->SetHint(native::from_uistring(text));
+    }
+    uistring placeholder() const
+    {
+        wxCHECK_MSG(m_native, uistring(), "Widget should be created");
+        return native::to_uistring(m_native->GetHint());
+    }
 };
 
 #endif
@@ -102,6 +112,30 @@ uistring text_box_base::text() const
     wxCHECK_MSG(impl, uistring(), "Widget should be created");
 
     return impl->text();
+#else
+    return uistring();
+#endif
+}
+
+text_box_base& text_box_base::detail_placeholder(const uistring& text)
+{
+#if wxUSE_TEXTCTRL
+    detail_impl* impl = get_impl();
+    wxCHECK_MSG(impl, *this, "Widget should be created");
+
+    impl->placeholder(text);
+#endif
+
+    return *this;
+}
+
+uistring text_box_base::detail_placeholder() const
+{
+#if wxUSE_TEXTCTRL
+    const detail_impl* impl = get_impl();
+    wxCHECK_MSG(impl, uistring(), "Widget should be created");
+
+    return impl->placeholder();
 #else
     return uistring();
 #endif

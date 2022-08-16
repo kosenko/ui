@@ -46,6 +46,8 @@ protected:
 
 #ifndef DOXYGEN
     void detail_create(widget& parent, const uistring& text, int style);
+    text_box_base& detail_placeholder(const uistring& text);
+    uistring detail_placeholder() const;
 #endif
 
 private:
@@ -75,6 +77,12 @@ public:
         { create(parent, text); }
     string_box& create(widget& parent, const uistring& text = uistring());
     ///@}
+
+    /// Sets placeholder text into the editor
+    string_box& placeholder(const uistring& text) { detail_placeholder(text); return *this; }
+
+    /// Returns placeholder text from the editor
+    uistring placeholder() const { return detail_placeholder(); }
 };
 
 /// @brief Password editor widget
